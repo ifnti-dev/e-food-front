@@ -11,7 +11,7 @@ function ReactDataTable({ ...props }: Config) {
     };
   }, []);
 
-  return <table ref={tableRef} className="table table-hover align-middle mb-0" style={{ width: '100%' }}></table>;
+  return <table ref={tableRef} className="table table-hover align-middle mb-0 table-striped " style={{ width: '100%' }}></table>;
 }
 
 export default ReactDataTable;
