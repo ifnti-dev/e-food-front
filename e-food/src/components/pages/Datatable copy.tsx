@@ -1,15 +1,8 @@
-// import React, { useEffect } from 'react';
+// import { useEffect } from 'react';
 // import $ from 'jquery'; // Import de jQuery
 
 function Datatable() {
-    // useEffect(() => {
-    //     $('#patient-table').DataTable({
-    //         responsive: true,
-    //         columnDefs: [
-    //             { targets: [-1, -3], className: 'dt-body-right' }
-    //         ]
-    //     });
-    // }, []);
+    
     return (
         <>
         <div className="card mb-3">
@@ -283,6 +276,7 @@ function Datatable() {
                 </table>
             </div>
         </div>
+      
         </>
     )
 
