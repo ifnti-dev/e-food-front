@@ -8,8 +8,8 @@ function Header() {
                         {/* <!-- header rightbar icon --> */}
                         <div className="h-right d-flex align-items-center mr-5 mr-lg-0 order-1">
                             <div className="d-flex">
-                                <a className="nav-link text-primary collapsed" href="help.html" title="Get Help">
-                                    <i className="icofont-info-square fs-5"></i>
+                                <a className="nav-link text-primary collapsed" href="#" title="Get Help">
+                                    {/* <i className="icofont-info-square fs-5"></i> */}
                                 </a>
                                 <div className="avatar-list avatar-list-stacked px-3">
                                     <img className="avatar rounded-circle" src="/imgs/xs/avatar2.jpg" alt="" />
@@ -18,12 +18,12 @@ function Header() {
                                     <img className="avatar rounded-circle" src="/imgs/xs/avatar4.jpg" alt="" />
                                     <img className="avatar rounded-circle" src="/imgs/xs/avatar7.jpg" alt="" />
                                     <img className="avatar rounded-circle" src="/imgs/xs/avatar8.jpg" alt="" />
-                                    <span className="avatar rounded-circle text-center pointer" data-bs-toggle="modal" data-bs-target="#addUser"><i className="icofont-ui-add"></i></span>
+                                    <span className="avatar rounded-circle text-center pointer" data-bs-toggle="modal" data-bs-target="#addUser"><i className="bi bi-plus-lg"></i></span>
                                 </div>
                             </div>
                             <div className="dropdown notifications zindex-popover">
                                 <a className="nav-link dropdown-toggle pulse" href="#" role="button" data-bs-toggle="dropdown">
-                                    <i className="icofont-alarm fs-5"></i>
+                                    <i className=" bi bi-bell-fill"></i>
                                     <span className="pulse-ring"></span>
                                 </a>
                                 <div id="NotificationsDiv" className="dropdown-menu rounded-lg shadow border-0 dropdown-animation dropdown-menu-sm-end p-0 m-0">

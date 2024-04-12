@@ -20,7 +20,7 @@ function SideBar() {
                     <ul className="menu-list flex-grow-1 mt-3">
                         <li className="collapsed">
                             <a className="m-link active" data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
-                                <i className="icofont-home fs-5"></i> <span>Dashboard</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5"></span></a>
+                                <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Dashboard</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
                             {/* <!-- Menu: Sub menu ul --> */}
                             <ul className="sub-menu collapse show" id="dashboard-Components">
                                 <Link to="/"><a className="ms-link active" href=""> <span>Home</span></a></Link>
@@ -48,7 +48,7 @@ function SideBar() {
 
                     {/* <!-- Menu: menu collepce btn --> */}
                     <button type="button" className="btn btn-link sidebar-mini-btn text-light">
-                        <span className="ms-2"><i className="icofont-bubble-right"></i></span>
+                        <span className="ms-2"><i className="bi bi-arrows"></i></span>
                     </button>
                 </div>
             </div>
