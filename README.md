@@ -32,3 +32,6 @@ npm run dev
 ```bash
 npm create vite@latest <nom-du-projet>
 ```
+
+>[!NOTE]
+>Créez votre branche avant toute modification ou activité
