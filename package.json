@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "@fullcalendar/core": "^6.1.11",
+    "@fullcalendar/daygrid": "^6.1.11",
+    "@fullcalendar/interaction": "^6.1.11",
+    "@fullcalendar/react": "^6.1.11",
+    "@fullcalendar/timegrid": "^6.1.11",
+    "prune": "^0.0.2"
+  },
+  "resolutions": {
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.26"
+  }
+}

@@ -17,14 +17,26 @@ function SideBar() {
                     </a>
                     {/* <!-- Menu: main ul --> */}
 
-                    <ul className="menu-list flex-grow-1 mt-3">
+                    <ul className="menu-list  mt-2">
                         <li className="collapsed">
                             <a className="m-link active" data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
                                 <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Dashboard</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
                             {/* <!-- Menu: Sub menu ul --> */}
-                            <ul className="sub-menu collapse show" id="dashboard-Components">
+                            <ul className="sub-menu collapse " id="dashboard-Components">
                                 <Link to="/"><a className="ms-link active" href=""> <span>Home</span></a></Link>
                                 <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link>
+                               
+                            </ul>
+                        </li>
+                    </ul>
+                    <ul className="menu-list flex-grow-1 mt-2">
+                        <li className="collapsed">
+                            <a className="m-link active" data-bs-toggle="collapse" data-bs-target="#events-Components" href="/">
+                                <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Evenements</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
+                            {/* <!-- Menu: Sub menu ul --> */}
+                            <ul className="sub-menu collapse " id="events-Components">
+                                <Link to="/events"><a className="ms-link active" href=""> <span>Créer un évenement</span></a></Link>
+                                {/* <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link> */}
                                
                             </ul>
                         </li>
