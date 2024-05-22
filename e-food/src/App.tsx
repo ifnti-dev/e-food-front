@@ -6,7 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboad from './components/layouts/Dashboard';
 import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
-import Calendar from './components/events/Calendar';
+import Calendar from './components/features/events/components/Calendar';
 const router = createBrowserRouter([
   {
     path:'/',

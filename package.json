@@ -5,6 +5,7 @@
     "@fullcalendar/interaction": "^6.1.11",
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
+    "axios": "^1.7.2",
     "prune": "^0.0.2"
   },
   "resolutions": {
