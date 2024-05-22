@@ -46,42 +46,45 @@ const Calendar = () => {
                 </div>
             </div>}
 
-            <FullCalendar
-                height={800}
-                locale={'fr'}
-                weekNumbers={false}
-                timeZone={'UTC'}
-                buttonText={{
-                    today: 'Aujourd\'hui',
-                    month: 'Mois',
-                    week: 'Semaine',
-                    day: 'Jour',
-                    list: 'list'
-                }}
+            <div>
+                <FullCalendar
+                    height={800}
+                    locale={'fr'}
+                    weekNumbers={false}
+                    timeZone={'UTC'}
+                    buttonText={{
+                        today: 'Aujourd\'hui',
+                        month: 'Mois',
+                        week: 'Semaine',
+                        day: 'Jour',
+                        list: 'list'
+                    }}
 
-                fixedWeekCount={true}
-                // titleRangeSeparator='\u2000'
-                footerToolbar={true}
-                headerToolbar={{
-                    left: 'prev,next',
-                    center: 'title',
-                    right: 'dayGridWeek,dayGridDay' // user can switch between the two
-                }}
-                select={handleSelect}
-                plugins={[dayGridPlugin, interactionPlugin]}
-                initialView="dayGridWeek"
-                dateClick={handleDateClick}
-                selectable={true}
-                weekends={true}
-                events={[
-                    { title: 'event 1', date: '2024-05-21' },
-                    { title: 'event 2', date: '2024-04-02' }
-                ]}
-                eventColor='white'
+                    fixedWeekCount={true}
+                    // titleRangeSeparator='\u2000'
+                    footerToolbar={true}
+                    headerToolbar={{
+                        left: 'prev,next',
+                        center: 'title',
+                        right: 'dayGridWeek,dayGridDay' // user can switch between the two
+                    }}
+                    select={handleSelect}
+                    plugins={[dayGridPlugin, interactionPlugin]}
+                    initialView="dayGridWeek"
+                    dateClick={handleDateClick}
+                    selectable={true}
+                    weekends={true}
+                    events={[
+                        { title: 'event 1', date: '2024-05-21' },
+                        { title: 'event 2', date: '2024-04-02' }
+                    ]}
+                    eventColor='white'
 
-                eventBackgroundColor='#378006'
-                progressiveEventRendering={true}
-            />
+                    eventBackgroundColor='#378006'
+                    progressiveEventRendering={true}
+                />
+            </div>
+
         </>
     )
 }
