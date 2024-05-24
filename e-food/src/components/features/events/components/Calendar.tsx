@@ -5,9 +5,10 @@ import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
 import { DateSelectArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
 import { useEffect, useState } from 'react';
-import { EventPost, FullCalendarProps } from "../types/interfaces";
+import { EventPost, EventToSend, FullCalendarProps } from "../types/interfaces";
 
 import getRestaurantEvents from '../api/getEvent';
+import postRestaurantEvents from '../api/postEvent';
 
 const Calendar = () => {
     const [modal, setModal] = useState(false)
@@ -29,9 +30,30 @@ const Calendar = () => {
         setEvents({ ...events, [event.target.name]: event.target.value })
     }
     //onsubmit
-    const onSubmit = (event: { preventDefault: () => void; }) => {
+    const onSubmit = async (event: { preventDefault: () => void; }) => {
         event.preventDefault();
         addEvent(events);
+        setModal(!modal);
+        const preparedToPost:EventToSend = {
+            date_debut:events.start,
+            date_fin:events.end,
+            description:events.description,
+            titre:events.title,
+            id_restaurant:1
+        }
+
+        try {
+
+            const event = await postRestaurantEvents(preparedToPost);
+            console.log(event);
+            
+
+        } catch (error) {
+            throw error;
+            
+        }
+
+
     }
 
     //Modal
@@ -90,7 +112,7 @@ const Calendar = () => {
                         description: event.description,
                     }
 
-                    console.log(eventFull);
+                   
                     
                     events.push(eventFull);
                 })
@@ -179,9 +201,9 @@ const Calendar = () => {
 
                     fixedWeekCount={true}
                     // titleRangeSeparator='\u2000'
-                    footerToolbar={true}
+                    // footerToolbar={true}
                     headerToolbar={{
-                        left: 'prev,next',
+                        left: 'prev,next today',
                         center: 'title',
                         right: 'dayGridWeek,dayGridDay' // user can switch between the two
                     }}

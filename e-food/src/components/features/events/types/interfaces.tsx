@@ -24,6 +24,16 @@ interface EventPost{
     
 }
 
+interface EventToSend{
+   
+    date_debut:string;
+    titre:string;
+    description:string;
+    date_fin:string;
+    id_restaurant:number;
+    
+}
+
 
 interface FullCalendarProps {
     title: string;
@@ -33,4 +43,4 @@ interface FullCalendarProps {
 }
 
 
-export type { EventProps, EventSelect,EventPost,FullCalendarProps };
+export type { EventProps, EventSelect,EventPost,FullCalendarProps,EventToSend };
