@@ -217,7 +217,7 @@ const Calendar = () => {
 
             <Success isVisible={isVisible} visible={setVisible} props={successProps} />
 
-            <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal}/>
+            <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} />
 
             {modal && <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
                 <div className="modal-dialog modal-dialog-centered modal-md">
@@ -241,8 +241,14 @@ const Calendar = () => {
                                         <textarea className='form-control' name="description" id="" placeholder='Une description...' onChange={onChange} value={events.description}></textarea>
 
                                     </div>
+
+
                                 </div>
 
+                                <div className='float-left'>
+                                <input type="time" name="startTime" id="" />
+                                <input type="time" name="endTime" id="" />
+                                </div>
 
                                 <button className="btn btn-dark" type="submit" id="button-addon2">Ajouter</button>
 
@@ -295,16 +301,16 @@ const Calendar = () => {
                     events={eventsFull}
                     eventColor='white'
 
-                    eventBackgroundColor='#378006'
+                    eventBackgroundColor='#484c7f'
                     progressiveEventRendering={true}
                     eventClick={updateEvent}
                     eventLongPressDelay={1}
                     editable={true}
-                    eventDragStop={function name(args:EventDragStopArg) {
+                    eventDragStop={function name(args: EventDragStopArg) {
                         setDeleteModal(true)
-                        
+
                     }}
-                    
+
                     businessHours={[ // specify an array instead
                         {
                             daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
