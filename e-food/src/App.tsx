@@ -6,15 +6,19 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboad from './components/layouts/Dashboard';
 import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
+import Calendar from './components/features/events/components/Calendar';
 const router = createBrowserRouter([
   {
     path:'/',
     element:<Dashboad/>,
     children:[
       {path:'/', element:<Welcome/>},
-      {path:'/liste', element:<UserTable/>}
+      {path:'/liste', element:<UserTable/>},
+      {path:'/events', element:<Calendar/>},
     ],
+    
   },
+  
 
 ]);
 

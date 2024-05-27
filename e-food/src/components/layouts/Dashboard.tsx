@@ -6,6 +6,7 @@ function Dashboad() {
     return (
         <>
             <div id="mytask-layout" className="theme-indigo">
+               
 
                 {/* <!-- sidebar --> */}
                 <SideBar />
@@ -19,10 +20,10 @@ function Dashboad() {
                     {/* <!-- Body: Body --> */}
                     <div className="body d-flex py-3">
                         <div className="container-xxl">
-                            <Outlet/>
+                            <Outlet />
                         </div>
-                    </div>    
-                  
+                    </div>
+
                     {/* <!-- Modal Members--> */}
                     <div className="modal fade" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true">
                         <div className="modal-dialog modal-dialog-centered modal-lg">
