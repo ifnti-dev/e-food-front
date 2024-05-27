@@ -1,7 +1,7 @@
 import "datatables.net-dt/css/dataTables.dataTables.css";
 import ReactDataTable from "./ReactDatatable";
 import DateFilterForm from "../partials/DateFilterForm";
-import ActionComponent from "../partials/ActionComponent";
+// import ActionComponent from "../partials/ActionComponent";
 
 //const action = () => <ActionComponent/>
 
@@ -13,7 +13,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: ActionComponent()
+   
   },
   {
     id: "2",
@@ -22,7 +22,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "1",
@@ -31,7 +31,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "2",
@@ -40,7 +40,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "1",
@@ -49,7 +49,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "2",
@@ -58,7 +58,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "1",
@@ -67,7 +67,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "2",
@@ -76,7 +76,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "1",
@@ -85,7 +85,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "2",
@@ -94,7 +94,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "1",
@@ -103,7 +103,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
   {
     id: "2",
@@ -112,7 +112,7 @@ const data = [
     adress: "Lomé",
     contact: "2011 04 25",
     status: "Active",
-    action: <ActionComponent/>,
+   
   },
 ];
 
@@ -123,10 +123,17 @@ const columns = [
   { data: "adress", title: "Adresse" },
   { data: "contact", title: "Contacts" },
   { data: "status", title: "Status" },
-  { data: "action", title: "Actions" },
+  // {
+  //   data: null,
+  //   title: "Actions",
+  //   render:() => (
+  //     // <ActionComponent/>
+  //   ),
+  // },
+  // suite
 ];
 const  columnDefs = [
-  { targets: "_all", className: 'dt-right' }
+  { targets: "_all", className: 'dt-left' }
 ];
 
 const language = {
