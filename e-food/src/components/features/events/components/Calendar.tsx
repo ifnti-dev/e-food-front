@@ -152,7 +152,6 @@ const Calendar = () => {
 
     const handleSelect = (select: DateSelectArg) => {
 
-        console.log(select.);
         
         setEvents({ ...events, start: select.startStr, end: select.endStr })
 
