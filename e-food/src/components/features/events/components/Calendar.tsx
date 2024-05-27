@@ -152,7 +152,8 @@ const Calendar = () => {
 
     const handleSelect = (select: DateSelectArg) => {
 
-
+        console.log(select.);
+        
         setEvents({ ...events, start: select.startStr, end: select.endStr })
 
         toggleModal();
@@ -245,7 +246,7 @@ const Calendar = () => {
 
                                 </div>
 
-                                <div className='float-left'>
+                                <div className='float-left mb-5'>
                                 <input type="time" name="startTime" id="" />
                                 <input type="time" name="endTime" id="" />
                                 </div>
