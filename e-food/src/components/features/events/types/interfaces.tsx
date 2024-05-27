@@ -34,13 +34,26 @@ interface EventToSend{
     
 }
 
+interface SwalSuccess{
+    title:string;
+    text:string;
+   
+}
+
 
 interface FullCalendarProps {
     title: string;
     start: string;
     end: string;
     description: string;
+    display:string
+}
+
+interface UpdateFormType{
+    title:string;
+    description:string
+    
 }
 
 
-export type { EventProps, EventSelect,EventPost,FullCalendarProps,EventToSend };
+export type { EventProps, EventSelect,EventPost,FullCalendarProps,EventToSend,SwalSuccess,UpdateFormType };
