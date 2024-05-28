@@ -181,7 +181,7 @@ const Calendar = () => {
 
     let successProps: SwalSuccess = {
         title: "Valide !",
-        text: "Evénement enregistré avec succès"
+        text: "Opération réussie !"
     }
 
     const deleteProps: SwalDeletType = {
