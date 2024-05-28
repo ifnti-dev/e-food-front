@@ -1,13 +1,14 @@
 // import FullCalendar from '@fullcalendar/react'
-import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
-import { DateSelectArg } from '@fullcalendar/core/index.js'
+
 import "../../../../App.css";
 import { useEffect, useState } from 'react';
 import { EventPost, FullCalendarProps } from "../types/interfaces";
 
 import getRestaurantEvents from '../api/getEvent';
+import interactionPlugin from '@fullcalendar/interaction';
+import dayGridPlugin from '@fullcalendar/daygrid';
+import { DateSelectArg } from "@fullcalendar/core/index.js";
+import FullCalendar from "@fullcalendar/react";
 
 const Calendar = () => {
     const [modal, setModal] = useState(false)
@@ -179,7 +180,7 @@ const Calendar = () => {
 
                     fixedWeekCount={true}
                     // titleRangeSeparator='\u2000'
-                    footerToolbar={true}
+                    // footerToolbar={true}
                     headerToolbar={{
                         left: 'prev,next',
                         center: 'title',
