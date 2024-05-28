@@ -5,9 +5,12 @@ const postEventUrl: string = "api/restaurant/events";
 
 // POST /api/restaurant/events
 const putRestaurantEvents = async (body: EventToUpadetType) => {
+    
+    
     const response: any = await instance.put(`${postEventUrl}/`, body = body,)
 
 
+    console.log(response.status);
     
 
     try {

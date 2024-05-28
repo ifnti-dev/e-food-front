@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import swal from "sweetalert";
 import { SwalDeletType } from "../features/events/types/interfaces";
 
-export function DeleteAlert({ visible,setVisible,props }: { visible: boolean,setVisible:React.Dispatch<React.SetStateAction<boolean>> ,props:SwalDeletType}) {
+export function DeleteAlert({ visible,setVisible,props}: { visible: number,setVisible:React.Dispatch<React.SetStateAction<number>> ,props:SwalDeletType}) {
 
     useEffect(() => {
 
@@ -19,15 +19,15 @@ export function DeleteAlert({ visible,setVisible,props }: { visible: boolean,set
                         swal(props.text_success, {
                             icon: "success",
                         });
-                        setVisible(!visible)
+                        setVisible(2)
                     } else {
                         swal(props.text_delete);
-                        setVisible(!visible)
+                        setVisible(3)
                     }
                 });
         }
 
-        if (visible) {
+        if (visible == 1) {
             DeleteAlert()
         }
        
