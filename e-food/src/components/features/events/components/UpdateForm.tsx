@@ -1,11 +1,13 @@
 import { UpdateFormType } from "../types/interfaces";
 
-export default function UpdateForm({ props, onSubmit, show, toggleModalUp,onChange }: { onChange:any, props: UpdateFormType, onSubmit: React.Dispatch<React.SetStateAction<UpdateFormType>>, show: boolean, toggleModalUp: any, }) {
+export default function UpdateForm({ props, onSubmit, show, toggleModalUp,onChange }: { onChange:any, props: UpdateFormType, onSubmit: any, show: boolean, toggleModalUp: any, }) {
 
     const submit = (e: any) => {
         e.preventDefault()
+        //new form from 
         const formData = new FormData(e.target);
-        console.log(formData);
+        // Return the couple changed
+        onSubmit({title:formData.get("title"),description:formData.get('description')})
 
     }
 
@@ -25,14 +27,14 @@ export default function UpdateForm({ props, onSubmit, show, toggleModalUp,onChan
                             <div className="modal-body">
                                 <div className="inviteby_title">
                                     <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Le titre" name='title' value={props.title} onChange={onChange}/>
+                                        <input type="text" className="form-control" placeholder="Le titre" name='title' value={props.title?.toString()} onChange={onChange}/>
 
                                     </div>
                                 </div>
 
                                 <div className="inviteby_description">
                                     <div className="input-group mb-3">
-                                        <textarea className='form-control' name="description" id="" placeholder='Une description...' value={props.description} onChange={onChange} ></textarea>
+                                        <textarea className='form-control' name="description" id="" placeholder='Une description...' value={props.description?.toString()} onChange={onChange} ></textarea>
 
                                     </div>
                                 </div>

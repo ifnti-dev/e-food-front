@@ -26,8 +26,8 @@ interface EventPost{
 interface EventToUpadetType{
     code:number;
     date_debut:string;
-    titre:string;
-    description:string;
+    titre:string|undefined;
+    description:string|undefined;
     date_fin:string;
     id_restaurant:number;
     
@@ -68,8 +68,8 @@ interface FullCalendarProps {
 }
 
 interface UpdateFormType{
-    title:string;
-    description:string
+    title:null|FormDataEntryValue;
+    description:null|FormDataEntryValue
     
 }
 

@@ -4,8 +4,8 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, { EventDragStopArg } from "@fullcalendar/interaction" // needed for dayClick
 import { DateSelectArg, EventClickArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
-import { useEffect, useState } from 'react';
-import { EventPost, EventToSend, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
+import { useEffect, useMemo, useState } from 'react';
+import { EventPost, EventToSend, EventToUpadetType, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
 
 import getRestaurantEvents from '../api/getEvent';
 import postRestaurantEvents from '../api/postEvent';
@@ -19,7 +19,7 @@ const Calendar = () => {
     const [modal, setModal] = useState(false)
 
     const [events, setEvents] = useState<FullCalendarProps>({
-        id:'',
+        id: '',
         title: '',
         description: '',
         start: '',
@@ -34,6 +34,13 @@ const Calendar = () => {
     const [isDeleteModal, setDeleteModal] = useState(false)
 
     const [show, setShowUpdateModal] = useState(false)
+
+
+
+
+
+
+
 
     const onChange = (event: {
         target: { name: any; value: any; };
@@ -96,9 +103,6 @@ const Calendar = () => {
                 setIsLoading(true);
                 const allEvents = await getRestaurantEvents(1);
 
-               
-                
-
 
 
                 allEvents.map((event: (EventPost)) => {
@@ -124,7 +128,7 @@ const Calendar = () => {
 
                     // Fullcalender objet
                     const eventFull: FullCalendarProps = {
-                        id:event.code.toString(),
+                        id: event.code.toString(),
                         title: event.titre,
                         start: formattedDateD,
                         end: formattedDateF,
@@ -157,7 +161,7 @@ const Calendar = () => {
 
     const handleSelect = (select: DateSelectArg) => {
 
-        
+
         setEvents({ ...events, start: select.startStr, end: select.endStr })
 
         toggleModal();
@@ -177,19 +181,21 @@ const Calendar = () => {
     const deleteProps: SwalDeletType = {
         title: "Action non reversible !",
         text: "Changement des dates de l'evénement",
-        text_delete:"Changement non efféctué",
-        text_success:"Opération réussie !"
+        text_delete: "Changement non efféctué",
+        text_success: "Opération réussie !"
     }
+
+    
+
+
 
     /**
      * @param {EventClickArg} event
      */
     const updateEvent = (event: EventClickArg) => {
         console.log(event.event.id);
-        
         setEvent({ title: event.event.title, description: event.event.extendedProps.description })
         updateFormModal()
-
 
     }
 
@@ -198,7 +204,32 @@ const Calendar = () => {
     }
 
     //Update event handler
-    const updateSubmit = () => {
+    const updateSubmit = async (object: UpdateFormType) => {
+        console.log(object);
+        
+
+        const preparedToPost: EventToUpadetType = {
+            date_debut: events.start,
+            date_fin: events.end,
+            description: object.description?.toString(),
+            titre: object.title?.toString(),
+            id_restaurant: 1,
+            code: 1
+        }
+
+        try {
+            setIsLoading(true);
+            // await postRestaurantEvents(preparedToPost);
+
+            setIsLoading(false)
+            setVisible(!isVisible)
+
+
+        } catch (error) {
+            throw error;
+
+        }
+
 
     }
     //Field onChange
@@ -209,7 +240,7 @@ const Calendar = () => {
 
     }
 
-    const lonpressEvent = () => { }
+
 
 
 
@@ -259,8 +290,8 @@ const Calendar = () => {
                                 </div>
 
                                 <div className='float-left mb-5'>
-                                <input type="time" name="startTime" id="" />
-                                <input type="time" name="endTime" id="" />
+                                    <input type="time" name="startTime" id="" />
+                                    <input type="time" name="endTime" id="" />
                                 </div>
 
                                 <button className="btn btn-dark" type="submit" id="button-addon2">Ajouter</button>
