@@ -5,7 +5,7 @@ import interactionPlugin, { EventDragStopArg } from "@fullcalendar/interaction" 
 import { DateSelectArg, EventClickArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
 import { useEffect, useState } from 'react';
-import { EventPost, EventToSend, FullCalendarProps, SwalSuccess, UpdateFormType } from "../types/interfaces";
+import { EventPost, EventToSend, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
 
 import getRestaurantEvents from '../api/getEvent';
 import postRestaurantEvents from '../api/postEvent';
@@ -19,6 +19,7 @@ const Calendar = () => {
     const [modal, setModal] = useState(false)
 
     const [events, setEvents] = useState<FullCalendarProps>({
+        id:'',
         title: '',
         description: '',
         start: '',
@@ -95,6 +96,9 @@ const Calendar = () => {
                 setIsLoading(true);
                 const allEvents = await getRestaurantEvents(1);
 
+               
+                
+
 
 
                 allEvents.map((event: (EventPost)) => {
@@ -120,6 +124,7 @@ const Calendar = () => {
 
                     // Fullcalender objet
                     const eventFull: FullCalendarProps = {
+                        id:event.code.toString(),
                         title: event.titre,
                         start: formattedDateD,
                         end: formattedDateF,
@@ -169,11 +174,19 @@ const Calendar = () => {
         text: "Evénement enregistré avec succès"
     }
 
+    const deleteProps: SwalDeletType = {
+        title: "Action non reversible !",
+        text: "Changement des dates de l'evénement",
+        text_delete:"Changement non efféctué",
+        text_success:"Opération réussie !"
+    }
+
     /**
      * @param {EventClickArg} event
      */
     const updateEvent = (event: EventClickArg) => {
-
+        console.log(event.event.id);
+        
         setEvent({ title: event.event.title, description: event.event.extendedProps.description })
         updateFormModal()
 
@@ -217,7 +230,7 @@ const Calendar = () => {
 
             <Success isVisible={isVisible} visible={setVisible} props={successProps} />
 
-            <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} />
+            <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} props={deleteProps} />
 
             {modal && <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
                 <div className="modal-dialog modal-dialog-centered modal-md">
