@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, {  } from "@fullcalendar/interaction" // needed for dayClick
 import { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { EventPost, EventToSend, EventToUpadetType, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
 
 import getRestaurantEvents from '../api/getEvent';
@@ -138,7 +138,7 @@ const Calendar = () => {
                         start: formattedDateD,
                         end: formattedDateF,
                         description: event.description,
-                        display: "null"
+                        display: "block"
                     }
 
 
@@ -266,11 +266,7 @@ const Calendar = () => {
     // Dragable stop 
     const eventDragStop = async (eventDrag: EventDropArg) => {
     
-        successProps = {
-            title: "Valide !",
-            text: "Les dates modifiées avec succès"
-        }
-
+        
         const preparedToPut: EventToUpadetType = {
             date_debut:eventDrag.event.startStr,
             date_fin: eventDrag.event.endStr,
@@ -288,8 +284,10 @@ const Calendar = () => {
 
             setIsLoading(false);
 
+            
+    
           
-            setVisible(!isVisible)
+            setVisible(false)
 
 
         } catch (error) {
@@ -412,13 +410,14 @@ const Calendar = () => {
                     weekends={true}
                     events={eventsFull}
                     eventColor='white'
-
+                    eventDisplay='inverse-background'
                     eventBackgroundColor='#484c7f'
                     progressiveEventRendering={true}
                     eventClick={updateEvent}
                     eventLongPressDelay={1}
                     editable={true}
                     eventDrop={eventDragStop}
+                    
 
                     businessHours={[ // specify an array instead
                         {
