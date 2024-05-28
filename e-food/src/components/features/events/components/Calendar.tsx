@@ -1,8 +1,8 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin, { EventDragStopArg } from "@fullcalendar/interaction" // needed for dayClick
-import { DateSelectArg, EventClickArg } from '@fullcalendar/core/index.js'
+import interactionPlugin, {  } from "@fullcalendar/interaction" // needed for dayClick
+import { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
 import { useEffect, useMemo, useState } from 'react';
 import { EventPost, EventToSend, EventToUpadetType, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
@@ -179,7 +179,7 @@ const Calendar = () => {
     /** */
 
 
-    const successProps: SwalSuccess = {
+    let successProps: SwalSuccess = {
         title: "Valide !",
         text: "Evénement enregistré avec succès"
     }
@@ -264,10 +264,13 @@ const Calendar = () => {
  
 
     // Dragable stop 
-    const eventDragStop =async (eventDrag: EventDragStopArg) => {
-        
-        console.log(eventDrag.event);
-        
+    const eventDragStop = async (eventDrag: EventDropArg) => {
+    
+        successProps = {
+            title: "Valide !",
+            text: "Les dates modifiées avec succès"
+        }
+
         const preparedToPut: EventToUpadetType = {
             date_debut:eventDrag.event.startStr,
             date_fin: eventDrag.event.endStr,
@@ -277,24 +280,24 @@ const Calendar = () => {
             code: parseInt(eventDrag.event.id)
         }
 
-        // try {
-        //     setIsLoading(true);
+        try {
+            setIsLoading(true);
+
+            await putRestaurantEvents(preparedToPut);
 
 
-        //     await putRestaurantEvents(preparedToPut);
+            setIsLoading(false);
 
-
-        //     setIsLoading(false);
           
-        //     setVisible(!isVisible)
+            setVisible(!isVisible)
 
 
-        // } catch (error) {
+        } catch (error) {
 
 
-        //     throw error;
+            throw error;
 
-        // }
+        }
          
 
         
@@ -306,8 +309,6 @@ const Calendar = () => {
         setEvent({ ...event, [ev.target.name]: ev.target.value })
 
     }
-
-
 
 
 
@@ -417,7 +418,7 @@ const Calendar = () => {
                     eventClick={updateEvent}
                     eventLongPressDelay={1}
                     editable={true}
-                    eventDragStop={eventDragStop}
+                    eventDrop={eventDragStop}
 
                     businessHours={[ // specify an array instead
                         {

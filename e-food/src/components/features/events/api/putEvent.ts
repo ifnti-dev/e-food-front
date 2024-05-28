@@ -10,15 +10,12 @@ const putRestaurantEvents = async (body: EventToUpadetType) => {
     const response: any = await instance.put(`${postEventUrl}/`, body = body,)
 
 
-    console.log(response.status);
     
 
     try {
         if (response.status != 200) {
             throw new Error("Network in not available")
         }
-
-
         return;
 
 
