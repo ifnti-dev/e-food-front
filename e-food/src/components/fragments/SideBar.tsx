@@ -1,6 +1,15 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 function SideBar() {
+
+    const location = useLocation();
+
+    //destructuring pathname from location
+    const { pathname } = location;
+
+    //Javascript split method to get the name of the path in array
+    const splitLocation = pathname.split("/");
+
     return (
         <>
             <div className="sidebar px-4 py-4 py-md-5 me-0">
@@ -19,23 +28,23 @@ function SideBar() {
 
                     <ul className="menu-list  mt-2">
                         <li className="collapsed">
-                            <a className="m-link active" data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
+                            <a className={splitLocation[1] === "" ? "ms-link active" :splitLocation[1] === "liste" ? "ms-link active" : "ms-link"} data-bs-toggle="collapse" data-bs-target="#dashboard-Components" href="#">
                                 <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Dashboard</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
                             {/* <!-- Menu: Sub menu ul --> */}
-                            <ul className="sub-menu collapse " id="dashboard-Components">
-                                <Link to="/"><a className="ms-link active" href=""> <span>Home</span></a></Link>
-                                <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link>
+                            <ul className={splitLocation[1] === "" ? "sub-menu collapse show" :splitLocation[1] === "liste" ? "sub-menu collapse show" : "sub-menu collapse"} id="dashboard-Components">
+                                <Link to="/"><a className={splitLocation[1] === "" ? "ms-link active" : "ms-link"} href=""> <span>Home</span></a></Link>
+                                <Link to="/liste"><a className={splitLocation[1] === "liste" ? "ms-link active" : "ms-link"} href=""> <span>Liste Users</span></a></Link>
                                
                             </ul>
                         </li>
                     </ul>
                     <ul className="menu-list flex-grow-1 mt-2">
                         <li className="collapsed">
-                            <a className="m-link active" data-bs-toggle="collapse" data-bs-target="#events-Components" href="/">
+                            <a className={splitLocation[1] === "events" ? "ms-link active" : "ms-link"}  data-bs-toggle="collapse" data-bs-target="#events-Components" href="/" >
                                 <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Evenements</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
                             {/* <!-- Menu: Sub menu ul --> */}
-                            <ul className="sub-menu collapse " id="events-Components">
-                                <Link to="/events"><a className="ms-link active" href=""> <span>Créer un évenement</span></a></Link>
+                            <ul className= {splitLocation[1] === "events" ? "sub-menu collapse show" : "sub-menu collapse "} id="events-Components">
+                                <Link  to="/events"><a className={splitLocation[1] === "events" ? "ms-link active" : "ms-link"} href=""> <span>Créer un évenement</span></a></Link>
                                 {/* <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link> */}
                                
                             </ul>
