@@ -24,13 +24,36 @@ interface EventPost{
     
 }
 
+interface EventToSend{
+   
+    date_debut:string;
+    titre:string;
+    description:string;
+    date_fin:string;
+    id_restaurant:number;
+    
+}
+
+interface SwalSuccess{
+    title:string;
+    text:string;
+   
+}
+
 
 interface FullCalendarProps {
     title: string;
     start: string;
     end: string;
     description: string;
+    display:string
+}
+
+interface UpdateFormType{
+    title:string;
+    description:string
+    
 }
 
 
-export type { EventProps, EventSelect,EventPost,FullCalendarProps };
+export type { EventProps, EventSelect,EventPost,FullCalendarProps,EventToSend,SwalSuccess,UpdateFormType };
