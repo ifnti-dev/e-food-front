@@ -7,176 +7,24 @@ import "../../../../App.css";
 import { useEffect, useState } from 'react';
 import { EventPost, EventToSend, EventToUpadetType, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
 
-import getRestaurantEvents from '../api/getEvent';
-import postRestaurantEvents from '../api/postEvent';
 import Spinner from './Spinner';
 import { Success } from '../../../sweetalerts/Success';
-import UpdateForm from './UpdateForm';
 import { DeleteAlert } from '../../../sweetalerts/DeleteAlert';
-import putRestaurantEvents from '../api/putEvent';
+// import putRestaurantEvents from '../api/putEvent';
+import { useFetchEvent } from '../hooks/useFetchEvent';
+import { usePostEvent } from '../hooks/usePostEvent';
 
 
 const Calendar = () => {
-    const [modal, setModal] = useState(false)
 
-    const [events, setEvents] = useState<FullCalendarProps>({
-        id: '',
-        title: '',
-        description: '',
-        start: '',
-        end: '',
-        display: ''
-    })
-    const [isLoading, setIsLoading] = useState(false);
+   
 
-    const [eventsFull, setEventsFull] = useState<FullCalendarProps[]>([]);
-    const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
-    const [isVisible, setVisible] = useState(false)
     const [isDeleteModal, setDeleteModal] = useState(0)
 
     const [show, setShowUpdateModal] = useState(false)
 
-
-
-
-
-
-
-
-    const onChange = (event: {
-        target: { name: any; value: any; };
-
-    }) => {
-        setEvents({ ...events, [event.target.name]: event.target.value })
-    }
-    //onsubmit
-    const onSubmit = async (event: { preventDefault: () => void; }) => {
-        event.preventDefault();
-        addEvent(events);
-        setModal(!modal);
-        const preparedToPost: EventToSend = {
-            date_debut: events.start,
-            date_fin: events.end,
-            description: events.description,
-            titre: events.title,
-            id_restaurant: 1
-        }
-
-        try {
-            setIsLoading(true);
-            await postRestaurantEvents(preparedToPost);
-
-            setIsLoading(false)
-            setVisible(!isVisible)
-
-
-        } catch (error) {
-            throw error;
-
-        }
-
-
-    }
-
-    //Modal
-    const toggleModal = () => {
-        setModal(!modal)
-    }
-
-
-    const updateEvents = (events: FullCalendarProps[]) => {
-        setEventsFull(events)
-    }
-
-    const addEvent = (event: FullCalendarProps) => {
-        setEventsFull([...eventsFull, event]);
-    }
-
-
-    useEffect(() => {
-        // fetch data
-        let events: FullCalendarProps[] = [];
-
-        async function fetchData() {
-            try {
-
-                setIsLoading(true);
-
-                //TODOS: remplace id restaurant
-                /**
-                 * @param {number} id
-                 */
-                const allEvents = await getRestaurantEvents(1);
-
-
-
-                allEvents.map((event: (EventPost)) => {
-
-                    const dateDebut: Date = new Date(event.date_debut);
-
-                    const dateFin: Date = new Date(event.date_fin);
-
-
-                    const yearD = dateDebut.getFullYear();
-                    const monthD = String(dateDebut.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
-                    const dayD = String(dateDebut.getDate()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
-
-                    // Créer une chaîne de caractères au format 'YYYY-MM-DD'
-                    const formattedDateD = `${yearD}-${monthD}-${dayD}`;
-
-                    const yearF = dateFin.getFullYear();
-                    const monthF = String(dateFin.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
-                    const dayF = String(dateFin.getDate()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
-
-                    // Créer une chaîne de caractères au format 'YYYY-MM-DD'
-                    const formattedDateF = `${yearF}-${monthF}-${dayF}`;
-
-                    // Fullcalender objet
-                    const eventFull: FullCalendarProps = {
-                        id: event.code.toString(),
-                        title: event.titre,
-                        start: formattedDateD,
-                        end: formattedDateF,
-                        description: event.description,
-                        display: "block"
-                    }
-
-
-
-                    events.push(eventFull);
-
-                })
-
-
-
-                updateEvents(events);
-
-                setIsLoading(false)
-
-            } catch (error) {
-                console.error('Error fetching events:', error);
-            }
-
-        }
-
-        fetchData()
-
-
-    }, [isVisible])
-
-
-    const handleSelect = (select: DateSelectArg) => {
-
-
-        setEvents({ ...events, start: select.startStr, end: select.endStr })
-
-        toggleModal();
-
-
-    }
-
-    //Update event
-    /** */
+    const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
+   
 
 
     let successProps: SwalSuccess = {
@@ -215,91 +63,91 @@ const Calendar = () => {
     }
 
     //Update event handler from title and description 
-    const updateSubmit = async (object: UpdateFormType) => {
-        // Récupérer des données depuis sessionStorage
-        let code = sessionStorage.getItem("code");
-        let dD = sessionStorage.getItem("debut");
-        let dF = sessionStorage.getItem("fin");
+    // const updateSubmit = async (object: UpdateFormType) => {
+    //     // Récupérer des données depuis sessionStorage
+    //     let code = sessionStorage.getItem("code");
+    //     let dD = sessionStorage.getItem("debut");
+    //     let dF = sessionStorage.getItem("fin");
 
-        if (code === null) {
-            code = "0"
-        }
+    //     if (code === null) {
+    //         code = "0"
+    //     }
 
-        const preparedToPut: EventToUpadetType = {
-            date_debut: dD,
-            date_fin: dF,
-            description: object.description?.toString(),
-            titre: object.title?.toString(),
-            id_restaurant: 1,
-            code: parseInt(code)
-        }
+    //     const preparedToPut: EventToUpadetType = {
+    //         date_debut: dD,
+    //         date_fin: dF,
+    //         description: object.description?.toString(),
+    //         titre: object.title?.toString(),
+    //         id_restaurant: 1,
+    //         code: parseInt(code)
+    //     }
 
-        try {
-            setIsLoading(true);
-
-
-            await putRestaurantEvents(preparedToPut);
+    //     try {
+    //         setIsLoading(true);
 
 
-            setIsLoading(false);
-            setShowUpdateModal(!show);
-            setVisible(!isVisible)
+    //         await putRestaurantEvents(preparedToPut);
 
 
-        } catch (error) {
+    //         setIsLoading(false);
+    //         setShowUpdateModal(!show);
+    //         setVisible(!visible)
 
 
-            throw error;
-
-        }
-        finally {
-            sessionStorage.removeItem("code");
-            sessionStorage.removeItem("debut");
-            sessionStorage.removeItem("fin");
-        }
+    //     } catch (error) {
 
 
-    }
+    //         throw error;
+
+    //     }
+    //     finally {
+    //         sessionStorage.removeItem("code");
+    //         sessionStorage.removeItem("debut");
+    //         sessionStorage.removeItem("fin");
+    //     }
+
+
+    // }
 
  
 
-    // Dragable stop 
-    const eventDragStop = async (eventDrag: EventDropArg) => {
+    // // Dragable stop 
+    // const eventDragStop = async (eventDrag: EventDropArg) => {
     
         
-        const preparedToPut: EventToUpadetType = {
-            date_debut:eventDrag.event.startStr,
-            date_fin: eventDrag.event.endStr,
-            description: eventDrag.event.extendedProps.description,
-            titre: eventDrag.event.title,
-            id_restaurant: 1,
-            code: parseInt(eventDrag.event.id)
-        }
+    //     const preparedToPut: EventToUpadetType = {
+    //         date_debut:eventDrag.event.startStr,
+    //         date_fin: eventDrag.event.endStr,
+    //         description: eventDrag.event.extendedProps.description,
+    //         titre: eventDrag.event.title,
+    //         id_restaurant: 1,
+    //         code: parseInt(eventDrag.event.id)
+    //     }
 
-        try {
-            setIsLoading(true);
+    //     try {
+    //         setIsLoading(true);
 
-            await putRestaurantEvents(preparedToPut);
+    //         await putRestaurantEvents(preparedToPut);
 
 
-            setIsLoading(false);
+    //         setIsLoading(false);
 
             
     
           
-            setVisible(false)
+    //         setVisible(false)
 
 
-        } catch (error) {
+    //     } catch (error) {
 
 
-            throw error;
+    //         throw error;
 
-        }
+    //     }
          
 
         
-    }
+    // }
     //Field onChange
     const OnChangeUpdate = (ev: {
         target: { name: any; value: any; }
@@ -308,12 +156,22 @@ const Calendar = () => {
 
     }
 
+    //Fetch event handler hook
+    const {loading, events} = useFetchEvent()
+
+    //post event handler
+
+    const {onSubmit,visible,setVisible,toggleModal,modal,handleSelect,onChange } = usePostEvent()
+    
+
 
 
     return (
+
+        
         <div className='position-relative'>
 
-            <UpdateForm props={{
+            {/* <UpdateForm props={{
                 title: event.title,
                 description: event.description
             }}
@@ -321,11 +179,11 @@ const Calendar = () => {
                 toggleModalUp={updateFormModal}
                 onSubmit={updateSubmit}
                 onChange={OnChangeUpdate}
-            />
+            /> */}
 
             {/* <!-- Modal Members--> */}
 
-            <Success isVisible={isVisible} visible={setVisible} props={successProps} />
+            <Success isVisible={visible} visible={setVisible} props={successProps} />
 
             <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} props={deleteProps}  />
 
@@ -369,7 +227,7 @@ const Calendar = () => {
                 </div>
             </div>}
 
-            <Spinner value={isLoading} />
+            <Spinner value={loading} />
 
 
             <div>
@@ -408,7 +266,7 @@ const Calendar = () => {
                     // dateClick={handleDateClick}
                     selectable={true}
                     weekends={true}
-                    events={eventsFull}
+                    events={events}
                     eventColor='white'
                     eventDisplay='inverse-background'
                     eventBackgroundColor='#484c7f'
@@ -416,7 +274,7 @@ const Calendar = () => {
                     eventClick={updateEvent}
                     eventLongPressDelay={1}
                     editable={true}
-                    eventDrop={eventDragStop}
+                    // eventDrop={eventDragStop}
                     
 
                     businessHours={[ // specify an array instead
