@@ -84,13 +84,8 @@ export function useUpdateFromTitleAndDes(){
         }
        
 
-
     }
         
-    
-
-
-    
 
     return {
         event,updateEvent,OnChangeUpdate,updateFormModal,show,updateSubmit

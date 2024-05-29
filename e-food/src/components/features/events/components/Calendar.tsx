@@ -1,7 +1,7 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin, {  } from "@fullcalendar/interaction" // needed for dayClick
+import interactionPlugin, { } from "@fullcalendar/interaction" // needed for dayClick
 import "../../../../App.css";
 import { SwalDeletType, SwalSuccess, } from "../types/interfaces";
 
@@ -13,69 +13,27 @@ import { usePostEvent } from '../hooks/usePostEvent';
 import { useUpdateFromDates } from '../hooks/useUpdateFromdates';
 import { useUpdateFromTitleAndDes } from '../hooks/useUpdateFromTitleAndDes';
 import UpdateForm from './UpdateForm';
+import { successProps } from '../constants/constant';
 
 
 const Calendar = () => {
 
-   
-
-    // const [isDeleteModal, setDeleteModal] = useState(0)
-
-
-    // const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
-   
-
-
-    let successProps: SwalSuccess = {
-        title: "Valide !",
-        text: "Opération réussie !"
-    }
-
-    const deleteProps: SwalDeletType = {
-        title: "Action non reversible !",
-        text: "Changement des dates de l'evénement",
-        text_delete: "Changement non efféctué",
-        text_success: "Opération réussie !"
-    }
-
-
-
-    /**
-     * @param {EventClickArg} event
-    //  */
-    // const updateEvent = (event: EventClickArg) => {
-    //     sessionStorage.setItem("code", event.event.id);
-    //     sessionStorage.setItem("debut", event.event.startStr);
-    //     sessionStorage.setItem("fin", event.event.endStr);
-
-
-
-    //     // setEvent({ title: event.event.title, description: event.event.extendedProps.description })
-    //     // updateFormModal()
-
-    // }
-
-    
-
-    
-   
 
     //Fetch event handler hook
-    const {loading, events} = useFetchEvent()
+    const { loading, events } = useFetchEvent()
 
     //post event handler
-    const {onSubmit,visible,setVisible,toggleModal,modal,handleSelect,onChange } = usePostEvent()
+    const { onSubmit, visible, setVisible, toggleModal, modal, handleSelect, onChange } = usePostEvent()
 
     //update dates from drapstop event
-    const {eventDragStop} = useUpdateFromDates();
+    const { eventDragStop } = useUpdateFromDates();
+    //Update from title and description 
+    const { event, updateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit } = useUpdateFromTitleAndDes();
 
-    const {event,updateEvent,OnChangeUpdate,updateFormModal,show,updateSubmit} = useUpdateFromTitleAndDes();
 
 
-    
     return (
 
-        
         <div className='position-relative'>
 
             <UpdateForm props={{
@@ -182,7 +140,7 @@ const Calendar = () => {
                     eventLongPressDelay={1}
                     editable={true}
                     eventDrop={eventDragStop}
-                    
+
 
                     businessHours={[ // specify an array instead
                         {
