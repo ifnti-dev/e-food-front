@@ -1,6 +1,6 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
+import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin, { EventLeaveArg, EventResizeDoneArg } from "@fullcalendar/interaction" // needed for dayClick
 import { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
@@ -408,8 +408,9 @@ const Calendar = () => {
                         right: 'dayGridWeek,dayGridDay' // user can switch between the two
                     }}
                     select={handleSelect}
-                    plugins={[dayGridPlugin, interactionPlugin]}
-                    initialView="dayGridWeek"
+                    plugins={[timeGridPlugin, interactionPlugin]}
+                    initialView="timeGridWeek"
+                    
                     // dateClick={handleDateClick}
                     selectable={true}
                     weekends={true}
