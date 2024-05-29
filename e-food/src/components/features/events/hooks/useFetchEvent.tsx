@@ -77,7 +77,7 @@ export function useFetchEvent() {
         fetchData()
 
 
-    }, [visible])
+    }, [visible==false])
 
     return {
         loading,

@@ -160,7 +160,6 @@ const Calendar = () => {
     const {loading, events} = useFetchEvent()
 
     //post event handler
-
     const {onSubmit,visible,setVisible,toggleModal,modal,handleSelect,onChange } = usePostEvent()
     
 

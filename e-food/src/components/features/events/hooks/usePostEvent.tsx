@@ -18,7 +18,7 @@ export function usePostEvent() {
     })
     
 // Context Event 
-    const { visible, setVisible,loading,setLoading } = useContext(EventContext);
+    const { visible, setVisible,loading,setLoading} = useContext(EventContext);
 
 
     const toggleModal = () => {
@@ -61,10 +61,11 @@ export function usePostEvent() {
 
             await postRestaurantEvents(preparedToPost);
 
-            setLoading(false)
-
             setVisible(!visible)
 
+            setLoading(false)
+
+          
 
             //FixMe: Add state error
 
