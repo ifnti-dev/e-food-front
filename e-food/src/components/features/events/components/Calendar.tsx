@@ -1,7 +1,7 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin, {  } from "@fullcalendar/interaction" // needed for dayClick
+import interactionPlugin, { EventLeaveArg, EventResizeDoneArg } from "@fullcalendar/interaction" // needed for dayClick
 import { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
 import { useEffect, useState } from 'react';
@@ -264,7 +264,7 @@ const Calendar = () => {
  
 
     // Dragable stop 
-    const eventDragStop = async (eventDrag: EventDropArg) => {
+    const eventDragStop = async (eventDrag: EventDropArg | EventResizeDoneArg) => {
     
         
         const preparedToPut: EventToUpadetType = {
@@ -308,6 +308,11 @@ const Calendar = () => {
 
     }
 
+
+        function handleDropOver(e:React.DragEvent) {
+            console.log(e.target);
+            
+        }
 
 
     return (
@@ -417,6 +422,8 @@ const Calendar = () => {
                     eventLongPressDelay={1}
                     editable={true}
                     eventDrop={eventDragStop}
+                    droppable={true}
+                    eventResize={eventDragStop}
                     
 
                     businessHours={[ // specify an array instead
@@ -438,8 +445,9 @@ const Calendar = () => {
 
                 />
             </div>
+            <div draggable>jskjdklj</div>
 
-
+            <div onDragOver={handleDropOver}>djkjkfjdk kld l</div>
 
         </div>
     )
