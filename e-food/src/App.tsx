@@ -8,7 +8,8 @@ import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
 import Calendar from './components/features/events/components/Calendar';
 import { EventListProvider } from './components/features/events/context/EventContext';
-import EventTable from './components/features/events/components/EventTable';
+// import EventTable from './components/features/events/components/EventTable';
+import AdvancedFilterDemo from './components/features/events/components/EventTable';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
       { path: '/', element: <Welcome /> },
       { path: '/liste', element: <UserTable /> },
       { path: '/events', element: <Calendar /> },
-      {path:'/events/lists',element: <EventTable />}
+      {path:'/events/lists',element: <AdvancedFilterDemo />}
     ],
 
   },
