@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import ReactDataTable from "../../../pages/ReactDatatable";
 import DateFilterForm from "../../../partials/DateFilterForm";
-import { columnDefs, columns, language, lengthMenu } from "../constants/constant";
+import { columnDefs, columns, customStyles, language, lengthMenu } from '../constants/constant';
 import { useFetchEvent } from "../hooks/useFetchEvent";
 import Spinner from "./Spinner";
 
@@ -32,6 +32,8 @@ console.log(events);
                 language={language} 
                 processing={true}
                 lengthMenu={lengthMenu}
+                
+                // customStyles={customStyles}
             />
             </div>
         </div>
