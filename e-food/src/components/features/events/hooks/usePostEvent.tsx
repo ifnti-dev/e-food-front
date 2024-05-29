@@ -14,7 +14,9 @@ export function usePostEvent() {
         description: '',
         start: '',
         end: '',
-        display: ''
+        display: '',
+        color:'',
+        textColor:''
     })
 
     // Context Event 
@@ -46,7 +48,10 @@ export function usePostEvent() {
 
     //onsubmit
     const onSubmit = async (event: { preventDefault: () => void; }) => {
+
         event.preventDefault();
+        console.log(eventsP.start);
+        
 
         setModal(!modal);
         const preparedToPost: EventToSend = {

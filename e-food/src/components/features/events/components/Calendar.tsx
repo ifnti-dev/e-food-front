@@ -77,11 +77,6 @@ const Calendar = () => {
 
                                 </div>
 
-                                <div className='float-left mb-5'>
-                                    <input type="time" name="startTime" id="" />
-                                    <input type="time" name="endTime" id="" />
-                                </div>
-
                                 <button className="btn btn-dark" type="submit" id="button-addon2">Ajouter</button>
 
 
@@ -95,15 +90,9 @@ const Calendar = () => {
 
 
             <div>
-                <FullCalendar
-                    eventTimeFormat={{ // like '14:30:00'
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit',
-                        meridiem: false
-                    }}
+                <FullCalendar         
                     displayEventTime={true}
-                    eventBorderColor='#123458'
+                    eventBorderColor='#f19828'
                     height={800}
                     locale={'fr'}
                     weekNumbers={false}
@@ -115,10 +104,8 @@ const Calendar = () => {
                         day: 'Jour',
                         list: 'list'
                     }}
-
                     fixedWeekCount={true}
-                    // titleRangeSeparator='\u2000'
-                    // footerToolbar={true}
+                  
                     headerToolbar={{
                         left: 'prev,next today',
                         center: 'title',
@@ -127,32 +114,30 @@ const Calendar = () => {
                     select={handleSelect}
                     plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin]}
                     initialView="timeGridWeek"
-                    // dateClick={handleDateClick}
                     selectable={true}
                     weekends={true}
                     events={events}
-                    eventColor='white'
-                    eventDisplay='inverse-background'
-                    eventBackgroundColor='#484c7f'
+                   
                     progressiveEventRendering={true}
                     eventClick={updateEvent}
                     eventLongPressDelay={1}
                     editable={true}
+                    eventColor='red'
                     eventDrop={eventDragStop}
 
                     eventResize={eventDragStop}
-                    businessHours={[ // specify an array instead
-                        {
-                            daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
-                            startTime: '08:00', // 8am
-                            endTime: '18:00' // 6pm
-                        },
-                        {
-                            daysOfWeek: [4, 5], // Thursday, Friday
-                            startTime: '10:00', // 10am
-                            endTime: '16:00' // 4pm
-                        }
-                    ]}
+                    // businessHours={[ // specify an array instead
+                    //     {
+                    //         daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
+                    //         startTime: '08:00', // 8am
+                    //         endTime: '18:00' // 6pm
+                    //     },
+                    //     {
+                    //         daysOfWeek: [4, 5], // Thursday, Friday
+                    //         startTime: '10:00', // 10am
+                    //         endTime: '16:00' // 4pm
+                    //     }
+                    // ]}
 
 
 

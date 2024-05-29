@@ -34,23 +34,28 @@ export function useFetchEvent() {
 
                     const dateFin: Date = new Date(event.date_fin);
 
-                    console.log(dateDebut);
                     
-
-
                     const yearD = dateDebut.getFullYear();
                     const monthD = String(dateDebut.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
                     const dayD = String(dateDebut.getDate()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
+                    const hoursD = String(dateDebut.getHours()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
+                    const minutesD = String(dateDebut.getMinutes()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
+                    const secondsD = String(dateDebut.getSeconds()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
 
-                    // Créer une chaîne de caractères au format 'YYYY-MM-DD'
-                    const formattedDateD = `${yearD}-${monthD}-${dayD}`;
+                    // // Créer une chaîne de caractères au format 'YYYY-MM-DD'
+                    const formattedDateD = `${yearD}-${monthD}-${dayD}T${hoursD}:${minutesD}:${secondsD}Z`;
+                    
 
                     const yearF = dateFin.getFullYear();
                     const monthF = String(dateFin.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
                     const dayF = String(dateFin.getDate()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
+                    const hoursF = String(dateFin.getHours()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
+                    const minutesF = String(dateFin.getMinutes()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
+                    const secondsF = String(dateFin.getSeconds()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
 
-                    // Créer une chaîne de caractères au format 'YYYY-MM-DD'
-                    const formattedDateF = `${yearF}-${monthF}-${dayF}`;
+
+                    // // Créer une chaîne de caractères au format 'YYYY-MM-DD'
+                    const formattedDateF = `${yearF}-${monthF}-${dayF}T${hoursF}:${minutesF}:${secondsF}Z`;
 
                     // Fullcalender objet
                     const eventFull: FullCalendarProps = {
@@ -59,7 +64,9 @@ export function useFetchEvent() {
                         start: formattedDateD,
                         end: formattedDateF,
                         description: event.description,
-                        display: "block"
+                        display: "auto",
+                        color:"#f19828",
+                        textColor:"black !important",
                     }
 
 
