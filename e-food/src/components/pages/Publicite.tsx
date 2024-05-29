@@ -40,7 +40,13 @@ function Publicite() {
                                     </h2>
                                     <div id={"ac"+index.toString()} className="accordion-collapse collapse " data-bs-parent="#accordion">
                                     <div className="accordion-body">
-                                            boutonsghyftyfffffffffffffffffffffffffffffffffffffffffffffffffffffff
+                                        <div className="d-flex justify-content-between">
+                                            <i className="bi bi-three-dots"></i>
+                                            <i className="bi bi-three-dots"></i>
+                                            <i className="bi bi-three-dots"></i>
+                                            <i className="bi bi-three-dots"></i>
+                                        </div>
+                                       
                                     </div>
                                     </div>
                                 </div>
