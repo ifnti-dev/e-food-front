@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
 
 :root {
   --fc-border-color: black;
@@ -19,6 +20,53 @@
   background-color: rgba(51, 50, 48, 0.151);
   z-index: 100000;
   color: #d38829;
+}
+
+
+.text-div {
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+  
+}
+
+.text-div:first-of-type {    
+  animation: showup 7s infinite;
+  color: #9e3636;
+}
+
+.text-div:last-of-type {
+  width:0px;
+  animation: reveal 7s infinite;
+}
+
+.text-div:last-of-type span {
+  margin-left:-355px;
+  animation: slidein 7s infinite;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+@keyframes showup {
+    0% {opacity:0;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    0% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:0px; }
+    100% { margin-left:0px; }
+}
+
+@keyframes reveal {
+    0% {opacity:0;width:0px;}
+    20% {opacity:1;width:0px;}
+    30% {width:355px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:355px;}
 }
 
 

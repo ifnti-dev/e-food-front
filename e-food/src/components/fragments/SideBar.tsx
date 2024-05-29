@@ -44,8 +44,8 @@ function SideBar() {
                                 <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Evenements</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
                             {/* <!-- Menu: Sub menu ul --> */}
                             <ul className= {splitLocation[1] === "events" ? "sub-menu collapse show" : "sub-menu collapse "} id="events-Components">
-                                <Link  to="/events"><a className={splitLocation[1] === "events" ? "ms-link active" : "ms-link"} href=""> <span>Créer un évenement</span></a></Link>
-                                {/* <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link> */}
+                                <Link  to="/events"><a className={splitLocation[1]+splitLocation[2] === "events" ? "ms-link active" : "ms-link"} href=""> <span>Créer un évenement</span></a></Link>
+                                <Link  to="/events/lists"><a className={splitLocation[2] === "lists" ? "ms-link active" : "ms-link"} href=""> <span>Liste des évènements</span></a></Link>
                                
                             </ul>
                         </li>

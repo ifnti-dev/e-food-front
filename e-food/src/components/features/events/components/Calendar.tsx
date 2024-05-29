@@ -26,9 +26,9 @@ const Calendar = () => {
     //update dates from drapstop event
     const { eventDragStop } = useUpdateFromDates();
     //Update from title and description 
-    const { event, updateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit,deleteEvent } = useUpdateFromTitleAndDes();
-  
- 
+    const { event, updateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, deleteEvent } = useUpdateFromTitleAndDes();
+
+
     return (
 
         <div className='position-relative'>
@@ -139,7 +139,7 @@ const Calendar = () => {
                     editable={true}
                     eventDrop={eventDragStop}
 
-                    eventResize={ eventDragStop }
+                    eventResize={eventDragStop}
                     businessHours={[ // specify an array instead
                         {
                             daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
@@ -161,6 +161,10 @@ const Calendar = () => {
             </div>
 
 
+            {/* <div className='text-div mt-3'>Escape</div> */}
+            <div className='text-div'>
+                <span>Gérer vos évènements !</span>
+            </div>
 
         </div>
     )
