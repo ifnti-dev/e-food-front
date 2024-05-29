@@ -2,28 +2,27 @@
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, {  } from "@fullcalendar/interaction" // needed for dayClick
-import { DateSelectArg, EventClickArg, EventDropArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
-import { useEffect, useState } from 'react';
-import { EventPost, EventToSend, EventToUpadetType, FullCalendarProps, SwalDeletType, SwalSuccess, UpdateFormType } from "../types/interfaces";
+import { SwalDeletType, SwalSuccess, } from "../types/interfaces";
 
 import Spinner from './Spinner';
 import { Success } from '../../../sweetalerts/Success';
-import { DeleteAlert } from '../../../sweetalerts/DeleteAlert';
 // import putRestaurantEvents from '../api/putEvent';
 import { useFetchEvent } from '../hooks/useFetchEvent';
 import { usePostEvent } from '../hooks/usePostEvent';
+import { useUpdateFromDates } from '../hooks/useUpdateFromdates';
+import { useUpdateFromTitleAndDes } from '../hooks/useUpdateFromTitleAndDes';
+import UpdateForm from './UpdateForm';
 
 
 const Calendar = () => {
 
    
 
-    const [isDeleteModal, setDeleteModal] = useState(0)
+    // const [isDeleteModal, setDeleteModal] = useState(0)
 
-    const [show, setShowUpdateModal] = useState(false)
 
-    const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
+    // const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
    
 
 
@@ -41,136 +40,45 @@ const Calendar = () => {
 
 
 
-
-
     /**
      * @param {EventClickArg} event
-     */
-    const updateEvent = (event: EventClickArg) => {
-        sessionStorage.setItem("code", event.event.id);
-        sessionStorage.setItem("debut", event.event.startStr);
-        sessionStorage.setItem("fin", event.event.endStr);
+    //  */
+    // const updateEvent = (event: EventClickArg) => {
+    //     sessionStorage.setItem("code", event.event.id);
+    //     sessionStorage.setItem("debut", event.event.startStr);
+    //     sessionStorage.setItem("fin", event.event.endStr);
 
 
 
-        setEvent({ title: event.event.title, description: event.event.extendedProps.description })
-        updateFormModal()
-
-    }
-
-    const updateFormModal = () => {
-        setShowUpdateModal(!show);
-    }
-
-    //Update event handler from title and description 
-    // const updateSubmit = async (object: UpdateFormType) => {
-    //     // Récupérer des données depuis sessionStorage
-    //     let code = sessionStorage.getItem("code");
-    //     let dD = sessionStorage.getItem("debut");
-    //     let dF = sessionStorage.getItem("fin");
-
-    //     if (code === null) {
-    //         code = "0"
-    //     }
-
-    //     const preparedToPut: EventToUpadetType = {
-    //         date_debut: dD,
-    //         date_fin: dF,
-    //         description: object.description?.toString(),
-    //         titre: object.title?.toString(),
-    //         id_restaurant: 1,
-    //         code: parseInt(code)
-    //     }
-
-    //     try {
-    //         setIsLoading(true);
-
-
-    //         await putRestaurantEvents(preparedToPut);
-
-
-    //         setIsLoading(false);
-    //         setShowUpdateModal(!show);
-    //         setVisible(!visible)
-
-
-    //     } catch (error) {
-
-
-    //         throw error;
-
-    //     }
-    //     finally {
-    //         sessionStorage.removeItem("code");
-    //         sessionStorage.removeItem("debut");
-    //         sessionStorage.removeItem("fin");
-    //     }
-
+    //     // setEvent({ title: event.event.title, description: event.event.extendedProps.description })
+    //     // updateFormModal()
 
     // }
 
- 
-
-    // // Dragable stop 
-    // const eventDragStop = async (eventDrag: EventDropArg) => {
     
-        
-    //     const preparedToPut: EventToUpadetType = {
-    //         date_debut:eventDrag.event.startStr,
-    //         date_fin: eventDrag.event.endStr,
-    //         description: eventDrag.event.extendedProps.description,
-    //         titre: eventDrag.event.title,
-    //         id_restaurant: 1,
-    //         code: parseInt(eventDrag.event.id)
-    //     }
 
-    //     try {
-    //         setIsLoading(true);
-
-    //         await putRestaurantEvents(preparedToPut);
-
-
-    //         setIsLoading(false);
-
-            
     
-          
-    //         setVisible(false)
-
-
-    //     } catch (error) {
-
-
-    //         throw error;
-
-    //     }
-         
-
-        
-    // }
-    //Field onChange
-    const OnChangeUpdate = (ev: {
-        target: { name: any; value: any; }
-    }) => {
-        setEvent({ ...event, [ev.target.name]: ev.target.value })
-
-    }
+   
 
     //Fetch event handler hook
     const {loading, events} = useFetchEvent()
 
     //post event handler
     const {onSubmit,visible,setVisible,toggleModal,modal,handleSelect,onChange } = usePostEvent()
+
+    //update dates from drapstop event
+    const {eventDragStop} = useUpdateFromDates();
+
+    const {event,updateEvent,OnChangeUpdate,updateFormModal,show,updateSubmit} = useUpdateFromTitleAndDes();
+
+
     
-
-
-
     return (
 
         
         <div className='position-relative'>
 
-            {/* <UpdateForm props={{
+            <UpdateForm props={{
                 title: event.title,
                 description: event.description
             }}
@@ -178,13 +86,13 @@ const Calendar = () => {
                 toggleModalUp={updateFormModal}
                 onSubmit={updateSubmit}
                 onChange={OnChangeUpdate}
-            /> */}
+            />
 
             {/* <!-- Modal Members--> */}
 
             <Success isVisible={visible} visible={setVisible} props={successProps} />
 
-            <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} props={deleteProps}  />
+            {/* <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} props={deleteProps}  /> */}
 
             {modal && <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
                 <div className="modal-dialog modal-dialog-centered modal-md">
@@ -273,7 +181,7 @@ const Calendar = () => {
                     eventClick={updateEvent}
                     eventLongPressDelay={1}
                     editable={true}
-                    // eventDrop={eventDragStop}
+                    eventDrop={eventDragStop}
                     
 
                     businessHours={[ // specify an array instead
