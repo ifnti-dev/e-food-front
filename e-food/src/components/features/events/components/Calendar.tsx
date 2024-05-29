@@ -13,6 +13,7 @@ import UpdateForm from './UpdateForm';
 import { successProps } from '../constants/constant';
 
 
+
 const Calendar = () => {
 
 
@@ -25,10 +26,9 @@ const Calendar = () => {
     //update dates from drapstop event
     const { eventDragStop } = useUpdateFromDates();
     //Update from title and description 
-    const { event, updateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit } = useUpdateFromTitleAndDes();
-
-
-
+    const { event, updateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit,deleteEvent } = useUpdateFromTitleAndDes();
+  
+ 
     return (
 
         <div className='position-relative'>
@@ -41,6 +41,7 @@ const Calendar = () => {
                 toggleModalUp={updateFormModal}
                 onSubmit={updateSubmit}
                 onChange={OnChangeUpdate}
+                removeEventById={deleteEvent}
             />
 
             {/* <!-- Modal Members--> */}
@@ -103,7 +104,7 @@ const Calendar = () => {
                     displayEventTime={true}
                     eventBorderColor='#123458'
                     height={800}
-                    locale={'fr'}                 
+                    locale={'fr'}
                     weekNumbers={false}
                     timeZone={'UTC'}
                     buttonText={{
@@ -138,7 +139,7 @@ const Calendar = () => {
                     editable={true}
                     eventDrop={eventDragStop}
 
-
+                    eventResize={ eventDragStop }
                     businessHours={[ // specify an array instead
                         {
                             daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday

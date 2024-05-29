@@ -3,6 +3,7 @@ import { EventToUpadeType } from "../types/interfaces";
 import putRestaurantEvents from "../api/putEvent";
 import { useContext } from "react";
 import { EventContext } from "../context/EventContext";
+import { EventResizeDoneArg } from "@fullcalendar/interaction/index.js";
 
 export function useUpdateFromDates() {
 
@@ -10,7 +11,7 @@ export function useUpdateFromDates() {
 
 
     // // Dragable stop 
-    const eventDragStop = async (eventDrag: EventDropArg) => {
+    const eventDragStop = async (eventDrag: EventDropArg | EventResizeDoneArg) => {
 
 
         const preparedToPut: EventToUpadeType = {

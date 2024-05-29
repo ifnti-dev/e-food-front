@@ -64,7 +64,6 @@ interface SwalDeletType {
 
 }
 
-
 interface FullCalendarProps {
     id: string;
     title: string;
@@ -80,5 +79,10 @@ interface UpdateFormType {
 
 }
 
+interface DeleteEventType{
+    id_restaurant:string;
+    code:string|undefined;
+}
 
-export type { EventProps, EventSelect, EventPost, FullCalendarProps, EventToSend, SwalSuccess, UpdateFormType, SwalDeletType, EventToUpadeType, ProposDatesType,};
+
+export type { EventProps, EventSelect, EventPost, FullCalendarProps, EventToSend, SwalSuccess, UpdateFormType, SwalDeletType, EventToUpadeType, ProposDatesType,DeleteEventType};
