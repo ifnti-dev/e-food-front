@@ -2,7 +2,7 @@ function Header() {
     return (
         <>
             <div className="header">
-                <nav className="navbar py-4">
+                <nav className="navbar py-4 shadow-sm">
                     <div className="container-xxl">
 
                         {/* <!-- header rightbar icon --> */}
