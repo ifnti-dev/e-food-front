@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboad from './components/layouts/Dashboard';
 import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
+import Login from './components/pages/LoginForm';
 const router = createBrowserRouter([
   {
     path:'/',
@@ -14,6 +15,12 @@ const router = createBrowserRouter([
       {path:'/', element:<Welcome/>},
       {path:'/liste', element:<UserTable/>}
     ],
+  },
+
+  {
+    path:'/e-food/auth/login',
+    element:<Login/>,
+    
   },
 
 ]);
