@@ -1,6 +1,5 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
-import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, { } from "@fullcalendar/interaction" // needed for dayClick
 import "../../../../App.css";
 import Spinner from './Spinner';
@@ -11,6 +10,8 @@ import { useUpdateFromDates } from '../hooks/useUpdateFromdates';
 import { useUpdateFromTitleAndDes } from '../hooks/useUpdateFromTitleAndDes';
 import UpdateForm from './UpdateForm';
 import { successProps } from '../constants/constant';
+import timeGridPlugin from '@fullcalendar/timegrid'
+import dayGridPlugin from '@fullcalendar/daygrid';
 
 
 
@@ -121,11 +122,11 @@ const Calendar = () => {
                     headerToolbar={{
                         left: 'prev,next today',
                         center: 'title',
-                        right: 'dayGridWeek,dayGridDay' // user can switch between the two
+                        right: 'dayGridMonth,timeGridWeek,timeGridDay' // user can switch between the two
                     }}
                     select={handleSelect}
-                    plugins={[dayGridPlugin, interactionPlugin]}
-                    initialView="dayGridWeek"
+                    plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin]}
+                    initialView="timeGridWeek"
                     // dateClick={handleDateClick}
                     selectable={true}
                     weekends={true}

@@ -34,6 +34,9 @@ export function useFetchEvent() {
 
                     const dateFin: Date = new Date(event.date_fin);
 
+                    console.log(dateDebut);
+                    
+
 
                     const yearD = dateDebut.getFullYear();
                     const monthD = String(dateDebut.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire

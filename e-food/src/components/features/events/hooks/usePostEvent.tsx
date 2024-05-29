@@ -7,7 +7,7 @@ import { DateSelectArg } from "@fullcalendar/core/index.js";
 export function usePostEvent() {
 
     const [modal, setModal] = useState(false)
-  
+
     const [eventsP, setEventsP] = useState<FullCalendarProps>({
         id: '',
         title: '',
@@ -16,9 +16,9 @@ export function usePostEvent() {
         end: '',
         display: ''
     })
-    
-// Context Event 
-    const { visible, setVisible,loading,setLoading} = useContext(EventContext);
+
+    // Context Event 
+    const { visible, setVisible, loading, setLoading } = useContext(EventContext);
 
 
     const toggleModal = () => {
@@ -27,6 +27,7 @@ export function usePostEvent() {
 
 
     const handleSelect = (select: DateSelectArg) => {
+        
 
         setEventsP({ ...eventsP, start: select.startStr, end: select.endStr })
 
@@ -65,7 +66,7 @@ export function usePostEvent() {
 
             setLoading(false)
 
-          
+
 
             //FixMe: Add state error
 
