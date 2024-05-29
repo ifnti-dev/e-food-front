@@ -1,7 +1,7 @@
 import { EventClickArg } from "@fullcalendar/core/index.js";
 import { useContext, useRef, useState } from "react";
 import { EventContext } from "../context/EventContext";
-import { DeleteEventType, EventToUpadeType, UpdateFormType } from "../types/interfaces";
+import { DeleteEventType, EventToUpadeType, FullCalendarProps, UpdateFormType } from "../types/interfaces";
 import putRestaurantEvents from "../api/putEvent";
 import deleteEventFromRestaurant from "../api/deleteEvent";
 
@@ -13,11 +13,15 @@ export function useUpdateFromTitleAndDes() {
     const debutRef = useRef<string>()
     const finRef = useRef<string>()
 
-    const { setLoading, setVisible, visible,removeEventById } = useContext(EventContext)
+    const { setLoading, setVisible, removeEventById } = useContext(EventContext)
     const [show, setShowUpdateModal] = useState(false)
-    const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
+    const [event, setEvent] = useState<UpdateFormType>({
+        title: '',
+        description: '',
+        
+    });
 
-    const updateEvent = (event: EventClickArg) => {
+    const handleUpdateEvent = (event: EventClickArg) => {
 
         codeRef.current = event.event.id;
         debutRef.current = event.event.startStr;
@@ -29,7 +33,7 @@ export function useUpdateFromTitleAndDes() {
 
     }
 
-    console.log(codeRef.current);
+   
 
 
     //Field onChange
@@ -49,7 +53,6 @@ export function useUpdateFromTitleAndDes() {
     const updateSubmit = async (object: UpdateFormType) => {
 
         //TODOS: remplace id restaurant
-
         const preparedToPut: EventToUpadeType = {
             date_debut: debutRef.current,
             date_fin: finRef.current,
@@ -59,6 +62,9 @@ export function useUpdateFromTitleAndDes() {
             code: codeRef.current
         }
 
+        
+        
+
         try {
             setLoading(true);
 
@@ -66,9 +72,13 @@ export function useUpdateFromTitleAndDes() {
 
             setLoading(false);
 
-            setShowUpdateModal(!show);
+            
 
-            setVisible(!visible)
+
+            setVisible(false)
+
+
+            setShowUpdateModal(!show);
 
             //FixMe: Set errors
         } catch (error) {
@@ -110,7 +120,7 @@ export function useUpdateFromTitleAndDes() {
 
     return {
         event,
-        updateEvent,
+        handleUpdateEvent,
         OnChangeUpdate,
         updateFormModal,
         show,

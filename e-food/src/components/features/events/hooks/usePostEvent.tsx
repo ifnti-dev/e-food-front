@@ -15,12 +15,12 @@ export function usePostEvent() {
         start: '',
         end: '',
         display: '',
-        color:'',
+        color:'#f19828',
         textColor:''
     })
 
     // Context Event 
-    const { visible, setVisible, loading, setLoading } = useContext(EventContext);
+    const { visible, setVisible, loading, setLoading,addEvent } = useContext(EventContext);
 
 
     const toggleModal = () => {
@@ -50,7 +50,7 @@ export function usePostEvent() {
     const onSubmit = async (event: { preventDefault: () => void; }) => {
 
         event.preventDefault();
-        console.log(eventsP.start);
+       
         
 
         setModal(!modal);
@@ -67,11 +67,11 @@ export function usePostEvent() {
 
             await postRestaurantEvents(preparedToPost);
 
-            setVisible(!visible)
+            // setVisible(!visible)
 
             setLoading(false)
 
-
+            addEvent(eventsP);
 
             //FixMe: Add state error
 

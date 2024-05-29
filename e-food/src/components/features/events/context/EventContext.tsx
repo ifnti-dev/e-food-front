@@ -18,7 +18,7 @@ export const EventListProvider = ({children}:{children:any}) => {
       
     
       const addEvent = (event:FullCalendarProps) => {
-        console.log(event);
+        
         setEvents([... events, event]);
       }
     

@@ -28,11 +28,7 @@ export function useUpdateFromDates() {
 
             await putRestaurantEvents(preparedToPut);
 
-
             setLoading(false);
-
-
-
 
             setVisible(false)
 

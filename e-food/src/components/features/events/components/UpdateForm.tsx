@@ -12,7 +12,6 @@ export default function UpdateForm({ props, onSubmit, show, toggleModalUp, onCha
     }
 
 
-
     if (show) {
         return <>
             <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
@@ -27,7 +26,7 @@ export default function UpdateForm({ props, onSubmit, show, toggleModalUp, onCha
                             <div className="modal-body mb-4">
                                 <div className="inviteby_title">
                                     <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Le titre" name='title' value={props.title?.toString()} onChange={onChange} />
+                                        <input type="text" className="form-control" placeholder="Le titre" name='title' value={props.title?.toString()} onChange={onChange} maxLength={30}/>
 
                                     </div>
                                 </div>

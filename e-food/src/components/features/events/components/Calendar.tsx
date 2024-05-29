@@ -27,7 +27,7 @@ const Calendar = () => {
     //update dates from drapstop event
     const { eventDragStop } = useUpdateFromDates();
     //Update from title and description 
-    const { event, updateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, deleteEvent } = useUpdateFromTitleAndDes();
+    const { event, handleUpdateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, deleteEvent } = useUpdateFromTitleAndDes();
 
 
     return (
@@ -90,7 +90,8 @@ const Calendar = () => {
 
 
             <div>
-                <FullCalendar         
+                <FullCalendar
+                    allDayText= {'Journée'}         
                     displayEventTime={true}
                     eventBorderColor='#f19828'
                     height={800}
@@ -119,7 +120,7 @@ const Calendar = () => {
                     events={events}
                    
                     progressiveEventRendering={true}
-                    eventClick={updateEvent}
+                    eventClick={handleUpdateEvent}
                     eventLongPressDelay={1}
                     editable={true}
                     eventColor='red'

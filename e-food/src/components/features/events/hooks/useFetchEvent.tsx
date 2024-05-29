@@ -6,7 +6,7 @@ import { EventContext } from "../context/EventContext";
 export function useFetchEvent() {
 
     
-    const { visible, events, updateEvents, loading,setLoading } = useContext(EventContext);
+    const {  events, updateEvents, loading,setLoading } = useContext(EventContext);
 
 
 
@@ -87,7 +87,7 @@ export function useFetchEvent() {
         fetchData()
 
 
-    }, [visible==false])
+    }, [])
 
     return {
         loading,

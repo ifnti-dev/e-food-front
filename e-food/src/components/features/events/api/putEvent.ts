@@ -7,6 +7,7 @@ const postEventUrl: string = "api/restaurant/events";
 const putRestaurantEvents = async (body: EventToUpadeType) => {
 
 
+
     try {
         const response: any = await instance.put(`${postEventUrl}/`, body = body,)
         
