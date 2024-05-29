@@ -3,11 +3,8 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin, { } from "@fullcalendar/interaction" // needed for dayClick
 import "../../../../App.css";
-import { SwalDeletType, SwalSuccess, } from "../types/interfaces";
-
 import Spinner from './Spinner';
 import { Success } from '../../../sweetalerts/Success';
-// import putRestaurantEvents from '../api/putEvent';
 import { useFetchEvent } from '../hooks/useFetchEvent';
 import { usePostEvent } from '../hooks/usePostEvent';
 import { useUpdateFromDates } from '../hooks/useUpdateFromdates';
@@ -106,7 +103,7 @@ const Calendar = () => {
                     displayEventTime={true}
                     eventBorderColor='#123458'
                     height={800}
-                    locale={'fr'}
+                    locale={'fr'}                 
                     weekNumbers={false}
                     timeZone={'UTC'}
                     buttonText={{
