@@ -27,12 +27,13 @@
   display:inline-block;
   overflow:hidden;
   white-space:nowrap;
+  color: #c00000;
   
 }
 
 .text-div:first-of-type {    
   animation: showup 7s infinite;
-  color: #9e3636;
+  
 }
 
 .text-div:last-of-type {

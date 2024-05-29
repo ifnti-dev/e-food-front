@@ -25,6 +25,7 @@ interface EventPost {
     description: string;
     date_fin: number;
     id_restaurant: number;
+    status: string;
 
 }
 

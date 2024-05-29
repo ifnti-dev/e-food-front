@@ -16,8 +16,8 @@ const router = createBrowserRouter([
     children: [
       { path: '/', element: <Welcome /> },
       { path: '/liste', element: <UserTable /> },
-      { path: '/events', element: <Calendar /> },
-      {path:'/events/lists',element: <EventTable />}
+      { path: '/manage/events', element: <Calendar /> },
+      {path:'/list/events',element: <EventTable />}
     ],
 
   },

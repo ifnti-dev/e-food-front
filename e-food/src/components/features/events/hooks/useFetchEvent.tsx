@@ -67,6 +67,7 @@ export function useFetchEvent() {
                         display: "auto",
                         color:"#f19828",
                         textColor:"black !important",
+                        
                     }
 
 

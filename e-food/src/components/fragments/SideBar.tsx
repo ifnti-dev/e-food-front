@@ -10,6 +10,9 @@ function SideBar() {
     //Javascript split method to get the name of the path in array
     const splitLocation = pathname.split("/");
 
+    console.log(splitLocation);
+    
+
     return (
         <>
             <div className="sidebar px-4 py-4 py-md-5 me-0">
@@ -44,8 +47,8 @@ function SideBar() {
                                 <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Evenements</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
                             {/* <!-- Menu: Sub menu ul --> */}
                             <ul className= {splitLocation[1] === "events" ? "sub-menu collapse show" : "sub-menu collapse "} id="events-Components">
-                                <Link  to="/events"><a className={splitLocation[1]+splitLocation[2] === "events" ? "ms-link active" : "ms-link"} href=""> <span>Créer un évenement</span></a></Link>
-                                <Link  to="/events/lists"><a className={splitLocation[2] === "lists" ? "ms-link active" : "ms-link"} href=""> <span>Liste des évènements</span></a></Link>
+                                <Link  to="/manage/events"><a className={splitLocation[1]+splitLocation[2] === "manageevents" ? "ms-link active" : "ms-link"} href=""> <span>Créer un évenement</span></a></Link>
+                                <Link  to="/list/events"><a className={splitLocation[1]+splitLocation[2] === "listevents" ? "ms-link active" : "ms-link"} href=""> <span>Liste des évènements</span></a></Link>
                                
                             </ul>
                         </li>
