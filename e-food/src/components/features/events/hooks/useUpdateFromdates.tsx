@@ -1,5 +1,5 @@
 import { EventDropArg } from "@fullcalendar/core/index.js";
-import { EventToUpadetType } from "../types/interfaces";
+import { EventToUpadeType } from "../types/interfaces";
 import putRestaurantEvents from "../api/putEvent";
 import { useContext } from "react";
 import { EventContext } from "../context/EventContext";
@@ -13,13 +13,13 @@ export function useUpdateFromDates() {
     const eventDragStop = async (eventDrag: EventDropArg) => {
 
 
-        const preparedToPut: EventToUpadetType = {
+        const preparedToPut: EventToUpadeType = {
             date_debut: eventDrag.event.startStr,
             date_fin: eventDrag.event.endStr,
             description: eventDrag.event.extendedProps.description,
             titre: eventDrag.event.title,
             id_restaurant: 1,
-            code: parseInt(eventDrag.event.id)
+            code: eventDrag.event.id,
         }
 
         try {

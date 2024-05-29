@@ -1,22 +1,30 @@
 import { EventClickArg } from "@fullcalendar/core/index.js";
 import { useContext, useRef, useState } from "react";
 import { EventContext } from "../context/EventContext";
-import {  UpdateFormType } from "../types/interfaces";
+import {   EventToUpadeType, UpdateFormType } from "../types/interfaces";
+import putRestaurantEvents from "../api/putEvent";
 
 
 export function useUpdateFromTitleAndDes(){
 
-    // const objet = useRef()
+    const codeRef = useRef<string>()
+    const debutRef = useRef<string>()
+    const finRef = useRef<string>()
 
-    const {setEvent,event,setLoading} = useContext(EventContext)
+    const {setLoading,setVisible,visible} = useContext(EventContext)
     const [show, setShowUpdateModal] = useState(false)
+    const [event, setEvent] = useState<UpdateFormType>({ title: "", description: '' });
+
 
 
     const updateEvent = (event: EventClickArg) => {
-        // sessionStorage.setItem("code", event.event.id);
-        // sessionStorage.setItem("debut", event.event.startStr);
-        // sessionStorage.setItem("fin", event.event.endStr);
-            console.log(12323);
+
+        codeRef.current = event.event.id;
+        debutRef.current = event.event.startStr;
+        finRef.current = event.event.endStr;
+        
+       
+        console.log(12323);
             
 
 
@@ -25,6 +33,9 @@ export function useUpdateFromTitleAndDes(){
         updateFormModal()
 
     }
+
+    console.log(codeRef.current);
+    
 
      //Field onChange
     const OnChangeUpdate = (ev: {
@@ -41,52 +52,42 @@ export function useUpdateFromTitleAndDes(){
 
     //Update event handler from title and description 
     const updateSubmit = async (object: UpdateFormType) => {
-        // Récupérer des données depuis sessionStorage
-    //     let code = sessionStorage.getItem("code");
-    //     let dD = sessionStorage.getItem("debut");
-    //     let dF = sessionStorage.getItem("fin");
-
-    //     if (code === null) {
-    //         code = "0"
-    //     }
-
-    //     const preparedToPut: EventToUpadetType = {
-    //         date_debut: dD,
-    //         date_fin: dF,
-    //         description: object.description?.toString(),
-    //         titre: object.title?.toString(),
-    //         id_restaurant: 1,
-    //         code: parseInt(code)
-    //     }
-
-    //     try {
-    //         setLoading(true);
-
-
-    //         await putRestaurantEvents(preparedToPut);
-
-
-    //         setIsLoading(false);
-    //         setShowUpdateModal(!show);
-    //         setVisible(!visible)
-
-
-    //     } catch (error) {
-
-
-    //         throw error;
-
-    //     }
-    //     finally {
-    //         sessionStorage.removeItem("code");
-    //         sessionStorage.removeItem("debut");
-    //         sessionStorage.removeItem("fin");
-    //     }
-
-
-    // }
+    
+       //TODOS: remplace id restaurant
         
+        const preparedToPut: EventToUpadeType = {
+            date_debut: debutRef.current,
+            date_fin: finRef.current,
+            description: object.description?.toString(),
+            titre: object.title?.toString(),
+            id_restaurant: 1,
+            code: codeRef.current
+        }
+
+        try {
+            setLoading(true);
+
+
+            await putRestaurantEvents(preparedToPut);
+
+
+            setLoading(false);
+            setShowUpdateModal(!show);
+            setVisible(!visible)
+
+        //FixMe: Set errors
+        } catch (error) {
+
+
+            throw error;
+
+        }
+       
+
+
     }
+        
+    
 
 
     

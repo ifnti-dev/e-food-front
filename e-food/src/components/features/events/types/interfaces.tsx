@@ -28,15 +28,17 @@ interface EventPost {
 
 }
 
-interface EventToUpadetType {
-    code: number;
-    date_debut: string | null;
+interface EventToUpadeType {
+    code: string|undefined ;
+    date_debut: string | null | undefined;
     titre: string | undefined;
     description: string | undefined;
-    date_fin: string | null;
+    date_fin: string | null| undefined;
     id_restaurant: number;
 
 }
+
+
 
 interface EventToSend {
 
@@ -79,4 +81,4 @@ interface UpdateFormType {
 }
 
 
-export type { EventProps, EventSelect, EventPost, FullCalendarProps, EventToSend, SwalSuccess, UpdateFormType, SwalDeletType, EventToUpadetType, ProposDatesType, };
+export type { EventProps, EventSelect, EventPost, FullCalendarProps, EventToSend, SwalSuccess, UpdateFormType, SwalDeletType, EventToUpadeType, ProposDatesType,};
