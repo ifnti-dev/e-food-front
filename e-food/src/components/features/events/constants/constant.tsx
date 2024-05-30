@@ -86,7 +86,10 @@ export const columns = [
   {
     data: "progress",
     title: "Progression",
-    
+    render:(data:{cusumme:number,total:number})=>{
+      console.log(data);
+      return '<progress value="' + data.cusumme + '" max="'+data.total+'"></progress>'
+    }
   },
   // {
   //   data: null,

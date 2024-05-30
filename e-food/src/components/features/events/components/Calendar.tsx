@@ -116,7 +116,7 @@ const Calendar = () => {
                     selectable={true}
                     weekends={true}
                     events={events}
-                  
+                  eventStartEditable={true}
                     progressiveEventRendering={true}
                     eventClick={handleUpdateEvent}
                     eventLongPressDelay={1}

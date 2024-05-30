@@ -2,6 +2,8 @@ import { useContext, useEffect, } from "react";
 import { EventPost, FullCalendarProps, } from "../types/interfaces";
 import getRestaurantEvents from "../api/getEvent";
 import { EventContext } from "../context/EventContext";
+import { datesDiff } from "../utils/diff_dates";
+
 
 export function useFetchEvent() {
 
@@ -60,6 +62,11 @@ export function useFetchEvent() {
 
                     let current = new Date();
 
+                    
+
+                    
+                    
+
                     if (current > dateFin) {
 
                         const eventFull: FullCalendarProps = {
@@ -80,6 +87,10 @@ export function useFetchEvent() {
 
                     } else {
 
+                        let nombreEffectue:number =  datesDiff(current,dateFin);
+                        let total:number =  datesDiff(dateDebut,dateFin);
+
+
                         const eventFull: FullCalendarProps = {
                             id: event.code.toString(),
                             title: event.titre,
@@ -90,9 +101,13 @@ export function useFetchEvent() {
                             color: "#f19828",
                             textColor: "black !important",
                             status: event.status,
-                            progress:{cusumme:1,total:3}
+                            progress:{cusumme:total,total:nombreEffectue}
 
                         }
+
+                       
+                        
+                        
 
                         events.push(eventFull);
 
