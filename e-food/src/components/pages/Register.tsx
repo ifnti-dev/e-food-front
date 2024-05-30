@@ -1,10 +1,10 @@
 // src/components/Register.tsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import authService from '../../services/authService';
-import './Login.css'
+import './Login.css';
 import { useNavigate } from 'react-router-dom';
 
-const navigate = useNavigate();
+
 interface FormData {
   username: string;
   password: string;
@@ -17,6 +17,31 @@ interface FormData {
   role:string
 
 }
+
+interface RoleDTO {
+  id: number;
+  libelle: string;
+}
+
+// const [roles, setRoles] = useState<RoleDTO[]>([]);
+
+
+
+// useEffect(() =>{
+//   const fetchRoles = async () => {
+//     try {
+      
+//       const response = await authService.getRole();
+//       console.log(response.data);
+//       setRoles(response.data);
+//     } catch (error) {
+//       console.error('Error fetching roles:', error);
+//     }
+//   };
+
+//   fetchRoles();
+// }, []);
+
 
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<FormData>({
@@ -31,24 +56,27 @@ const Register: React.FC = () => {
     role:''
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value
     });
   };
+const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await authService.register(formData);
+      navigate('/e-food/auth/login');
       console.log('User registered successfully:', response.data);
-      navigate('/e-food/auth/login')
     } catch (error) {
       console.error('Error registering user:', error);
     }
   };
+
+  
 
   return (
 
@@ -62,12 +90,12 @@ const Register: React.FC = () => {
         <div className="container">
           <div className="row">
             <div className="col-md-9 col-lg-8 mx-auto">
-              <h3 className="login-heading mb-4">Welcome back!</h3>
+              <h3 className="login-heading mb-4">Welcome !</h3>
 
               
               <div className="card mb-3">
                             <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
-                                <h6 className="mb-0 fw-bold ">Basic Form</h6> 
+                                <h6 className="mb-0 fw-bold "></h6> 
                             </div>
                             <div className="card-body">
                                 <form onSubmit={handleSubmit}>
@@ -112,11 +140,8 @@ const Register: React.FC = () => {
                                             <input className="form-control" type="file" id="formFileMultiple" multiple required/>
                                         </div>
                                       
-                                        <div className="col-md-12">
-                                            <label className="form-label">Add Note</label>
-                                            <textarea  className="form-control" id="addnote" ></textarea> 
-                                        </div>
-                                    </div>
+                                        
+                                      </div>
                                     
                                     <button type="submit" className="btn btn-secondary mt-4">Submit</button>
                                 </form>

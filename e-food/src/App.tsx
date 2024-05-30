@@ -7,6 +7,9 @@ import Dashboad from './components/layouts/Dashboard';
 import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
 import Login from './components/pages/LoginForm';
+import Register from './components/pages/Register';
+import UserList from './components/pages/UsersList';
+
 const router = createBrowserRouter([
   {
     path:'/',
@@ -22,6 +25,19 @@ const router = createBrowserRouter([
     element:<Login/>,
     
   },
+
+  {
+    path:'/e-food/auth/signup',
+    element:<Register/>,
+    
+  },
+
+  {
+    path:'/e-food/users',
+    element:<UserList/>,
+    
+  },
+
 
 ]);
 
