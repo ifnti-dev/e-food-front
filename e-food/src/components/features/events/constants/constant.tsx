@@ -83,6 +83,11 @@ export const columns = [
       return data;
     }
   },
+  {
+    data: "progress",
+    title: "Progression",
+    
+  },
   // {
   //   data: null,
   //   title: "Actions",

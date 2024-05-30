@@ -60,7 +60,6 @@ export function useFetchEvent() {
 
                     let current = new Date();
 
-
                     if (current > dateFin) {
 
                         const eventFull: FullCalendarProps = {
@@ -73,6 +72,7 @@ export function useFetchEvent() {
                             color: "red",
                             textColor: "black !important",
                             status: event.status,
+                            progress:{cusumme:1,total:3}
 
                         }
 
@@ -90,6 +90,7 @@ export function useFetchEvent() {
                             color: "#f19828",
                             textColor: "black !important",
                             status: event.status,
+                            progress:{cusumme:1,total:3}
 
                         }
 

@@ -1,6 +1,6 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
-import interactionPlugin, { } from "@fullcalendar/interaction" // needed for dayClick
+import interactionPlugin, { EventDragStartArg } from "@fullcalendar/interaction" // needed for dayClick
 import "../../../../App.css";
 import Spinner from './Spinner';
 import { useFetchEvent } from '../hooks/useFetchEvent';
@@ -116,7 +116,7 @@ const Calendar = () => {
                     selectable={true}
                     weekends={true}
                     events={events}
-                   
+                  
                     progressiveEventRendering={true}
                     eventClick={handleUpdateEvent}
                     eventLongPressDelay={1}

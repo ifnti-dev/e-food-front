@@ -7,11 +7,17 @@ import { EventResizeDoneArg } from "@fullcalendar/interaction/index.js";
 
 export function useUpdateFromDates() {
 
-    const { setVisible, setLoading,visible } = useContext(EventContext);
+    const { setVisible, setLoading, visible } = useContext(EventContext);
 
 
     // // Dragable stop 
     const eventDragStop = async (eventDrag: EventDropArg | EventResizeDoneArg) => {
+
+        let eventBackColor = eventDrag.event.backgroundColor;
+        
+        if (eventBackColor === 'red') {
+            return eventDrag.revert()
+        }
 
 
         const preparedToPut: EventToUpadeType = {

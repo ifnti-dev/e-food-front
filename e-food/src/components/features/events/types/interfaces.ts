@@ -75,6 +75,7 @@ interface FullCalendarProps {
     color: string;
     textColor:string;
     status:string;
+    progress:{cusumme:number,total:number}
 }
 
 interface UpdateFormType {

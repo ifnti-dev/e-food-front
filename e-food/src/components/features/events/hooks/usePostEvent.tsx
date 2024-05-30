@@ -17,7 +17,8 @@ export function usePostEvent() {
         display: '',
         color:'#f19828',
         textColor:'',
-        status:''
+        status:'',
+        progress:{cusumme:0,total:0}
     })
 
     // Context Event 
