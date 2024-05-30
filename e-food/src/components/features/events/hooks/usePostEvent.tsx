@@ -16,7 +16,8 @@ export function usePostEvent() {
         end: '',
         display: '',
         color:'#f19828',
-        textColor:''
+        textColor:'',
+        status:''
     })
 
     // Context Event 
@@ -67,7 +68,7 @@ export function usePostEvent() {
 
             await postRestaurantEvents(preparedToPost);
 
-            // setVisible(!visible)
+            setVisible(!visible)
 
             setLoading(false)
 

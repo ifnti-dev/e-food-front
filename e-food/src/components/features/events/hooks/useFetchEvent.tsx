@@ -1,13 +1,12 @@
-import { useContext, useEffect,  } from "react";
+import { useContext, useEffect, } from "react";
 import { EventPost, FullCalendarProps, } from "../types/interfaces";
 import getRestaurantEvents from "../api/getEvent";
 import { EventContext } from "../context/EventContext";
 
 export function useFetchEvent() {
 
-    
-    const {  events, updateEvents, loading,setLoading } = useContext(EventContext);
 
+    const { events, updateEvents, loading, setLoading,visible } = useContext(EventContext);
 
 
     useEffect(() => {
@@ -27,14 +26,13 @@ export function useFetchEvent() {
                 const allEvents = await getRestaurantEvents(1);
 
 
-
                 allEvents.map((event: (EventPost)) => {
 
                     const dateDebut: Date = new Date(event.date_debut);
 
                     const dateFin: Date = new Date(event.date_fin);
 
-                    
+
                     const yearD = dateDebut.getFullYear();
                     const monthD = String(dateDebut.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
                     const dayD = String(dateDebut.getDate()).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
@@ -44,7 +42,7 @@ export function useFetchEvent() {
 
                     // // Créer une chaîne de caractères au format 'YYYY-MM-DD'
                     const formattedDateD = `${yearD}-${monthD}-${dayD}T${hoursD}:${minutesD}:${secondsD}Z`;
-                    
+
 
                     const yearF = dateFin.getFullYear();
                     const monthF = String(dateFin.getMonth() + 1).padStart(2, '0'); // Ajoute un zéro devant si nécessaire
@@ -58,20 +56,49 @@ export function useFetchEvent() {
                     const formattedDateF = `${yearF}-${monthF}-${dayF}T${hoursF}:${minutesF}:${secondsF}Z`;
 
                     // Fullcalender objet
-                    const eventFull: FullCalendarProps = {
-                        id: event.code.toString(),
-                        title: event.titre,
-                        start: formattedDateD,
-                        end: formattedDateF,
-                        description: event.description,
-                        display: "auto",
-                        color:"#f19828",
-                        textColor:"black !important",
-                        
+
+
+                    let current = new Date();
+
+                    console.log(current);
+
+                    if (current > dateFin) {
+
+                        const eventFull: FullCalendarProps = {
+                            id: event.code.toString(),
+                            title: event.titre,
+                            start: formattedDateD,
+                            end: formattedDateF,
+                            description: event.description,
+                            display: "auto",
+                            color: "red",
+                            textColor: "black !important",
+                            status: event.status,
+
+                        }
+
+                        events.push(eventFull);
+
+                    } else {
+
+                        const eventFull: FullCalendarProps = {
+                            id: event.code.toString(),
+                            title: event.titre,
+                            start: formattedDateD,
+                            end: formattedDateF,
+                            description: event.description,
+                            display: "auto",
+                            color: "#f19828",
+                            textColor: "black !important",
+                            status: event.status,
+
+                        }
+
+                        events.push(eventFull);
+
                     }
 
 
-                    events.push(eventFull);
 
                 })
 
@@ -88,7 +115,7 @@ export function useFetchEvent() {
         fetchData()
 
 
-    }, [])
+    }, [visible==false])
 
     return {
         loading,

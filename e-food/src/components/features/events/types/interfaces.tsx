@@ -74,6 +74,7 @@ interface FullCalendarProps {
     display: string;
     color: string;
     textColor:string;
+    status:string;
 }
 
 interface UpdateFormType {

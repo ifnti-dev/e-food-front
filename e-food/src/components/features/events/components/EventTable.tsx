@@ -9,8 +9,7 @@ function EventTable() {
 
 
     const { loading, events } = useFetchEvent()
-    
-console.log(events);
+
 
     return(
         <>
@@ -28,7 +27,8 @@ console.log(events);
             <ReactDataTable 
                 data={events} 
                 columns={columns} 
-                columnDefs={columnDefs} 
+                columnDefs={columnDefs}
+                
                 language={language} 
                 processing={true}
                 lengthMenu={lengthMenu}

@@ -7,7 +7,7 @@ import { EventResizeDoneArg } from "@fullcalendar/interaction/index.js";
 
 export function useUpdateFromDates() {
 
-    const { setVisible, setLoading } = useContext(EventContext);
+    const { setVisible, setLoading,visible } = useContext(EventContext);
 
 
     // // Dragable stop 
@@ -30,7 +30,7 @@ export function useUpdateFromDates() {
 
             setLoading(false);
 
-            setVisible(false)
+            setVisible(!visible)
 
 
         } catch (error) {

@@ -13,7 +13,7 @@ export function useUpdateFromTitleAndDes() {
     const debutRef = useRef<string>()
     const finRef = useRef<string>()
 
-    const { setLoading, setVisible, removeEventById } = useContext(EventContext)
+    const { setLoading, setVisible, removeEventById,visible } = useContext(EventContext)
     const [show, setShowUpdateModal] = useState(false)
     const [event, setEvent] = useState<UpdateFormType>({
         title: '',
@@ -72,10 +72,7 @@ export function useUpdateFromTitleAndDes() {
 
             setLoading(false);
 
-            
-
-
-            setVisible(false)
+            setVisible(!visible)
 
 
             setShowUpdateModal(!show);
