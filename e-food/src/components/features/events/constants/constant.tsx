@@ -69,7 +69,7 @@ export const columns = [
   {
     data: "status",
     title: "Status",
-    render: (data: boolean, type: any) => {
+    render: (data: boolean, ) => {
 
       if (data == false) {
 

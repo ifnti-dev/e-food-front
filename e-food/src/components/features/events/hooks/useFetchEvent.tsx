@@ -60,7 +60,6 @@ export function useFetchEvent() {
 
                     let current = new Date();
 
-                    console.log(current);
 
                     if (current > dateFin) {
 

@@ -1,7 +1,7 @@
 import { EventClickArg } from "@fullcalendar/core/index.js";
 import { useContext, useRef, useState } from "react";
 import { EventContext } from "../context/EventContext";
-import { DeleteEventType, EventToUpadeType, FullCalendarProps, UpdateFormType } from "../types/interfaces";
+import { DeleteEventType, EventToUpadeType,  UpdateFormType } from "../types/interfaces";
 import putRestaurantEvents from "../api/putEvent";
 import deleteEventFromRestaurant from "../api/deleteEvent";
 

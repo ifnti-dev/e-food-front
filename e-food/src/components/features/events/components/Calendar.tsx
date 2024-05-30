@@ -3,13 +3,11 @@ import FullCalendar from '@fullcalendar/react'
 import interactionPlugin, { } from "@fullcalendar/interaction" // needed for dayClick
 import "../../../../App.css";
 import Spinner from './Spinner';
-import { Success } from '../../../sweetalerts/Success';
 import { useFetchEvent } from '../hooks/useFetchEvent';
 import { usePostEvent } from '../hooks/usePostEvent';
 import { useUpdateFromDates } from '../hooks/useUpdateFromdates';
 import { useUpdateFromTitleAndDes } from '../hooks/useUpdateFromTitleAndDes';
 import UpdateForm from './UpdateForm';
-import { successProps } from '../constants/constant';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid';
 
@@ -22,7 +20,7 @@ const Calendar = () => {
     const { loading, events } = useFetchEvent()
 
     //post event handler
-    const { onSubmit, visible, setVisible, toggleModal, modal, handleSelect, onChange } = usePostEvent()
+    const { onSubmit, toggleModal, modal, handleSelect, onChange } = usePostEvent()
 
     //update dates from drapstop event
     const { eventDragStop } = useUpdateFromDates();
@@ -47,7 +45,7 @@ const Calendar = () => {
 
             {/* <!-- Modal Members--> */}
 
-            <Success isVisible={visible} visible={setVisible} props={successProps} />
+            {/* <Success isVisible={visible} visible={setVisible} props={successProps} /> */}
 
             {/* <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} props={deleteProps}  /> */}
 
