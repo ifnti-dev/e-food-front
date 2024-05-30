@@ -3,6 +3,7 @@ import axios from "axios";
 import { ReadMore } from "../partials/ReadMore";
 import Popup from "reactjs-popup";
 // import { error } from "jquery";
+// import MyModal from "../partials/MyModal";
 
 import Spinner from "../features/events/components/Spinner";
 
@@ -13,8 +14,9 @@ const un_axios = axios.create({
 
 function Publicite() {
     const [publicites, setPublicites] = useState<any[]>([]);
-    const [formData, setFormData] = useState({restaurantId:1,titre:"",description:"",images:""});
+    const [formData, setFormData] = useState({restaurantId:1,titre:"",description:"",imagesIds:[]});
     const [isLoad, setIsLoad] = useState(false);
+    const [formDataEdit, setFormDataEdit] = useState({restaurantId:1,titre:"fgr",description:"15",imagesIds:[]})
 
 
 // récupération des entrées utilisateur
@@ -56,7 +58,23 @@ const handleOnChange = (e:any)=>{
         deletePub(id);
     }
   
+    const handleUpdate = async(id:number)=>{
 
+    }
+    
+    const handleEditOnChange = async(e:any)=>{
+      const {value, name} = e.target
+      setFormDataEdit((preve)=>{
+        return{
+          ...preve,
+          [name]:value
+        }
+      })
+    }
+    const handleEdit = (el:{restaurantId:1,titre:"",description:"",imagesIds:[]})=>{
+      setFormDataEdit(el)
+     
+    }
 
 
     useEffect(() => {
@@ -97,12 +115,12 @@ const handleOnChange = (e:any)=>{
             <div className="col-lg-4 d-none d-lg-block overflow-auto" style={{ maxHeight: "80vh" }}>
                     <div className="alert alert-secondary shadow-sm">
                         <h4 className="text-center">Ajouter une publicité</h4>
-                       <Form handleSubmit={handleSubmit } handleOnChange={handleOnChange}/>
+                       <Form handleSubmit={handleSubmit } handleOnChange={handleOnChange} rest={formData}/>
                     </div>
             </div>
         </div>   
         </>
-    )}else if(isLoad == false){
+    )}else if(!isLoad){
         return(
             <Spinner value={true} /> 
         )
@@ -114,33 +132,30 @@ const handleOnChange = (e:any)=>{
             <div className="row">
                 <div className="col-lg-8">
                     <div className="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4">
-                        {publicites.map((publicite, index) => (
-                            <div className="col shadow" key={index}>
-                                <div className="card rounded-4">
-                                    {/*  */}
-
-                                        <div id="carouselExampleControls" className="carousel slide " data-bs-ride="carousel" key={index}>
-                                            <div className="carousel-inner">
-                                                <div className="carousel-item active">
-                                                <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
-                                                </div>
-                                                <div className="carousel-item">
-                                                <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
-                                                </div>
-                                                <div className="carousel-item">
-                                                <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
-                                                </div>
-                                            </div>
-                                            <button key={"a"+index.toString()} className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                                                <span className="carousel-control-prev-icon" aria-hidden="true" key={"a"+index.toString()}></span>
-                                                <span className="visually-hidden" key={"a"+index.toString()}>Previous</span>
-                                            </button>
-                                            <button key={"b"+index.toString()} className="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                                                <span className="carousel-control-next-icon" aria-hidden="true" key={"b"+index.toString()}></span>
-                                                <span className="visually-hidden" key={"b"+index.toString()}>Next</span>
-                                            </button>
+                    {publicites.map((publicite, index) => (
+                        <div className="col shadow" key={publicite.id}>
+                            <div className="card rounded-4">
+                                <div id={`carouselExampleControls-${publicite.id}`} className="carousel slide " data-bs-ride="carousel">
+                                    <div className="carousel-inner">
+                                        <div className="carousel-item active">
+                                            <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
                                         </div>
-
+                                        <div className="carousel-item">
+                                            <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
+                                        </div>
+                                        <div className="carousel-item">
+                                            <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
+                                        </div>
+                                    </div>
+                                    <button className="carousel-control-prev" type="button" data-bs-target={`#carouselExampleControls-${publicite.id}`} data-bs-slide="prev">
+                                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span className="visually-hidden">Previous</span>
+                                    </button>
+                                    <button className="carousel-control-next" type="button" data-bs-target={`#carouselExampleControls-${publicite.id}`} data-bs-slide="next">
+                                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span className="visually-hidden">Next</span>
+                                    </button>
+                                </div>
 
                                     {/*  */}
 
@@ -159,6 +174,7 @@ const handleOnChange = (e:any)=>{
                                         
                                     </div>
                                     <div className="card-footer">
+                                 
                                         <div className="accordion" key={index}>
                                             <div className="accordion-item">
                                                 <h2 className="accordion-header">
@@ -169,15 +185,16 @@ const handleOnChange = (e:any)=>{
                                                 <div id={"ac" + index.toString()} className="accordion-collapse collapse" data-bs-parent="#accordion">
                                                     <div className="accordion-body">
                                                         <div className="d-flex justify-content-between" >
-                                                                <Popup key={"form"+index.toString()} modal trigger={<i className="bi bi-pen text-primary fs-5 mx-2" aria-hidden="true"></i>}>
-                                                                    <div className="alert alert-secondary p-4 shadow rounded">
+                                                                
+                                                                <Popup key={"form"+index.toString()} modal trigger={<i className="bi bi-pen text-primary fs-5" aria-hidden="true"  onClick={()=>handleEdit(publicite)}></i>}>
+                                                                    <div className="alert alert-secondary p-4 shadow rounded"  key={publicite.id}>
                                                                     <h4>Modifier cette publicité</h4>
-                                                                        <Form handleSubmit={handleSubmit } handleOnChange={handleOnChange}/>
+                                                                        <Form handleSubmit={handleUpdate } handleOnChange={handleEditOnChange} rest={formDataEdit}/>
                                                                     </div>
                                                                 </Popup>
 
-                                                                <Popup key={"delete"+index.toString()} modal nested  position="top left" trigger={<i className="bi bi-trash text-danger fs-5 mx-2" aria-hidden="true"></i>}>
-                                                                    <div className="alert alert-warning p-4 shadow ">
+                                                                <Popup key={publicite.id} modal nested  position="top left" trigger={<i className="bi bi-trash text-danger fs-5 mx-2" aria-hidden="true"></i>}>
+                                                                    <div className="alert alert-warning p-4 shadow "  key={publicite.id}>
                                                                     <h4>Êtes-vous sûr ?</h4>
                                                                     <div className="d-flex justify-content-betwenn p-2">
                                                                         <button className="btn btn-secondary">Non</button>
@@ -190,6 +207,7 @@ const handleOnChange = (e:any)=>{
                                                             {/* <i className="bi bi-trash text-danger fs-5 "  onClick={()=>handleDelete(publicite.id)}></i> */}
         
                                                             <i className="bi bi-three-dots fs-5" aria-hidden="true"></i>
+                                                            
                                                         </div>
                                                     </div>
                                                 </div>
@@ -206,7 +224,7 @@ const handleOnChange = (e:any)=>{
                 <div className="col-lg-4 d-none d-lg-block overflow-auto" style={{ maxHeight: "80vh" }}>
                     <div className="alert alert-secondary shadow-sm rounded">
                         <h4 className="text-center">Ajouter une publicité</h4>
-                       <Form handleSubmit={handleSubmit } handleOnChange={handleOnChange}/>
+                       <Form handleSubmit={handleSubmit } handleOnChange={handleOnChange} rest={formData}/>
                     </div>
                 </div>
             </div>
