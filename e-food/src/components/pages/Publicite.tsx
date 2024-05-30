@@ -8,6 +8,7 @@ import Popup from "reactjs-popup";
 import Spinner from "../features/events/components/Spinner";
 
 import Form from "../partials/Form";
+import MyModal from "../partials/MyModal";
 const un_axios = axios.create({
     baseURL:"http://localhost:8085/e-food/api/v1/publicites"
 });
@@ -141,10 +142,10 @@ const handleOnChange = (e:any)=>{
                                             <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
                                         </div>
                                         <div className="carousel-item">
-                                            <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
+                                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlf_KjJsN2sKswYMA2yk5dJvqg63XWVecU_w&s" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
                                         </div>
                                         <div className="carousel-item">
-                                            <img src="https://www.foodiesfeed.com/wp-content/uploads/2023/06/burger-with-melted-cheese.jpg" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
+                                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D" width={200} height={200} className="d-block w-100 rounded" alt="..."/>
                                         </div>
                                     </div>
                                     <button className="carousel-control-prev" type="button" data-bs-target={`#carouselExampleControls-${publicite.id}`} data-bs-slide="prev">
@@ -186,12 +187,14 @@ const handleOnChange = (e:any)=>{
                                                     <div className="accordion-body">
                                                         <div className="d-flex justify-content-between" >
                                                                 
-                                                                <Popup key={"form"+index.toString()} modal trigger={<i className="bi bi-pen text-primary fs-5" aria-hidden="true"  onClick={()=>handleEdit(publicite)}></i>}>
+                                                                {/* <Popup key={"form"+index.toString()} modal trigger={<i className="bi bi-pen text-primary fs-5" aria-hidden="true"  onClick={()=>handleEdit(publicite)}></i>}>
                                                                     <div className="alert alert-secondary p-4 shadow rounded"  key={publicite.id}>
                                                                     <h4>Modifier cette publicité</h4>
                                                                         <Form handleSubmit={handleUpdate } handleOnChange={handleEditOnChange} rest={formDataEdit}/>
                                                                     </div>
-                                                                </Popup>
+                                                                </Popup> */}
+                                                                
+                                                                <MyModal/>
 
                                                                 <Popup key={publicite.id} modal nested  position="top left" trigger={<i className="bi bi-trash text-danger fs-5 mx-2" aria-hidden="true"></i>}>
                                                                     <div className="alert alert-warning p-4 shadow "  key={publicite.id}>
