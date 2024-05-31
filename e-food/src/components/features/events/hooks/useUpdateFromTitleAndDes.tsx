@@ -1,7 +1,7 @@
 import { EventClickArg } from "@fullcalendar/core/index.js";
 import { useContext, useRef, useState } from "react";
 import { EventContext } from "../context/EventContext";
-import { DeleteEventType, EventToUpadeType,  UpdateFormType } from "../types/interfaces";
+import { DeleteEventType, EventToUpadeType, UpdateFormType } from "../types/interfaces";
 import putRestaurantEvents from "../api/putEvent";
 import deleteEventFromRestaurant from "../api/deleteEvent";
 
@@ -13,29 +13,30 @@ export function useUpdateFromTitleAndDes() {
     const debutRef = useRef<string>()
     const finRef = useRef<string>()
 
-    const { setLoading, setVisible, removeEventById,visible } = useContext(EventContext)
+    const { setLoading, setVisible, removeEventById, visible } = useContext(EventContext)
     const [show, setShowUpdateModal] = useState(false)
-    const [deleteModal,setDeleteModal] = useState(false)
+    const [deleteModal, setDeleteModal] = useState(false)
     const [event, setEvent] = useState<UpdateFormType>({
         title: '',
         description: '',
-        
+
     });
 
     const handleUpdateEvent = (event: EventClickArg) => {
 
-        const current:Date|null = new Date();
+        codeRef.current = event.event.id;
+
+        const current: Date | null = new Date();
 
         const startDate = new Date(event.event.startStr);
 
-        if (current > startDate ) {
-            
-            // setVisible(!visible);
+        if (current > startDate) {
 
-            return ;
+            setDeleteModal(true);
+            return;
         }
 
-        codeRef.current = event.event.id;
+        
         debutRef.current = event.event.startStr;
         finRef.current = event.event.endStr;
 
@@ -45,7 +46,7 @@ export function useUpdateFromTitleAndDes() {
 
     }
 
-   
+
 
 
     //Field onChange
@@ -74,8 +75,8 @@ export function useUpdateFromTitleAndDes() {
             code: codeRef.current
         }
 
-        
-        
+
+
 
         try {
             setLoading(true);
@@ -106,6 +107,9 @@ export function useUpdateFromTitleAndDes() {
             code: codeRef.current
         }
 
+        console.log(codeRef.current);
+        
+
         try {
 
             setLoading(true);
@@ -114,7 +118,7 @@ export function useUpdateFromTitleAndDes() {
 
             setLoading(false);
             //hidden modal
-            setShowUpdateModal(!show);
+            setShowUpdateModal(false);
 
             removeEventById(codeRef.current);
 
@@ -136,7 +140,8 @@ export function useUpdateFromTitleAndDes() {
         updateSubmit,
         deleteEvent,
         deleteModal,
-        setDeleteModal
+        setDeleteModal,
+        
     }
 
 }

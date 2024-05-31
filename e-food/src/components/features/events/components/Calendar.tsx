@@ -10,6 +10,8 @@ import { useUpdateFromTitleAndDes } from '../hooks/useUpdateFromTitleAndDes';
 import UpdateForm from './UpdateForm';
 import timeGridPlugin from '@fullcalendar/timegrid'
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { deleteProps } from '../constants/constant';
+import { DeleteAlert } from '../../../sweetalerts/DeleteAlert';
 
 
 
@@ -47,7 +49,7 @@ const Calendar = () => {
 
             {/* <Success isVisible={visible} visible={setVisible} props={successProps} /> */}
 
-            {/* <DeleteAlert visible={isDeleteModal} setVisible={setDeleteModal} props={deleteProps}  /> */}
+            <DeleteAlert visible={deleteModal} setVisible={setDeleteModal} props={deleteProps} handleDelete={deleteEvent}  />
 
             {modal && <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
                 <div className="modal-dialog modal-dialog-centered modal-md">

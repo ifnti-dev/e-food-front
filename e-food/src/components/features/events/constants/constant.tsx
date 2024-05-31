@@ -1,10 +1,19 @@
-import { SwalSuccess } from "../types/interfaces";
+import { SwalDeletType, SwalSuccess } from "../types/interfaces";
 
 
 export const successProps: SwalSuccess = {
   title: "Valide !",
   text: "Opération réussie !"
 }
+
+
+export const deleteProps: SwalDeletType = {
+  title: "Action non reversible !",
+  text: "Suppression de l'événement",
+  text_delete: "Opération déclinée",
+  text_success: "Opération réussie !"
+}
+
 
 
 export const language = {
