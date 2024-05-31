@@ -31,8 +31,15 @@ export function usePostEvent() {
 
 
     const handleSelect = (select: DateSelectArg) => {
-        
+        const current = new Date();
+        const startDate = new Date(select.startStr);
 
+        if (current > startDate) {
+            
+            
+            return ;
+        }
+        
         setEventsP({ ...eventsP, start: select.startStr, end: select.endStr })
 
         toggleModal();

@@ -15,6 +15,7 @@ export function useUpdateFromTitleAndDes() {
 
     const { setLoading, setVisible, removeEventById,visible } = useContext(EventContext)
     const [show, setShowUpdateModal] = useState(false)
+    const [deleteModal,setDeleteModal] = useState(false)
     const [event, setEvent] = useState<UpdateFormType>({
         title: '',
         description: '',
@@ -22,6 +23,17 @@ export function useUpdateFromTitleAndDes() {
     });
 
     const handleUpdateEvent = (event: EventClickArg) => {
+
+        const current:Date|null = new Date();
+
+        const startDate = new Date(event.event.startStr);
+
+        if (current > startDate ) {
+            
+            // setVisible(!visible);
+
+            return ;
+        }
 
         codeRef.current = event.event.id;
         debutRef.current = event.event.startStr;
@@ -122,7 +134,9 @@ export function useUpdateFromTitleAndDes() {
         updateFormModal,
         show,
         updateSubmit,
-        deleteEvent
+        deleteEvent,
+        deleteModal,
+        setDeleteModal
     }
 
 }

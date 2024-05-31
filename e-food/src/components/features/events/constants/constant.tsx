@@ -66,23 +66,23 @@ export const columns = [
 
     }
   },
-  {
-    data: "status",
-    title: "Status",
-    render: (data: boolean, ) => {
+  // {
+  //   data: "status",
+  //   title: "Status",
+  //   render: (data: boolean, ) => {
 
-      if (data == false) {
-
-
-        return `<span class="badge bg-success">En cours</span>`;
+  //     if (data == false) {
 
 
-      }
+  //       return `<span class="badge bg-success">En cours</span>`;
 
 
-      return data;
-    }
-  },
+  //     }
+
+
+  //     return data;
+  //   }
+  // },
   {
     data: "progress",
     title: "Progression",

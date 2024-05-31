@@ -25,7 +25,7 @@ const Calendar = () => {
     //update dates from drapstop event
     const { eventDragStop } = useUpdateFromDates();
     //Update from title and description 
-    const { event, handleUpdateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, deleteEvent } = useUpdateFromTitleAndDes();
+    const { event, handleUpdateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, deleteEvent,setDeleteModal,deleteModal } = useUpdateFromTitleAndDes();
 
 
     return (
@@ -89,7 +89,7 @@ const Calendar = () => {
 
             <div>
                 <FullCalendar
-                    allDayText= {'Journée'}         
+                    allDayText={'Journée'}
                     displayEventTime={true}
                     eventBorderColor='#f19828'
                     height={800}
@@ -104,19 +104,19 @@ const Calendar = () => {
                         list: 'list'
                     }}
                     fixedWeekCount={true}
-                  
+
                     headerToolbar={{
                         left: 'prev,next today',
                         center: 'title',
                         right: 'dayGridMonth,timeGridWeek,timeGridDay' // user can switch between the two
                     }}
                     select={handleSelect}
-                    plugins={[timeGridPlugin,dayGridPlugin, interactionPlugin]}
+                    plugins={[timeGridPlugin, dayGridPlugin, interactionPlugin]}
                     initialView="timeGridWeek"
                     selectable={true}
                     weekends={true}
                     events={events}
-                  eventStartEditable={true}
+                    eventStartEditable={true}
                     progressiveEventRendering={true}
                     eventClick={handleUpdateEvent}
                     eventLongPressDelay={1}
@@ -125,18 +125,18 @@ const Calendar = () => {
                     eventDrop={eventDragStop}
 
                     eventResize={eventDragStop}
-                    // businessHours={[ // specify an array instead
-                    //     {
-                    //         daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
-                    //         startTime: '08:00', // 8am
-                    //         endTime: '18:00' // 6pm
-                    //     },
-                    //     {
-                    //         daysOfWeek: [4, 5], // Thursday, Friday
-                    //         startTime: '10:00', // 10am
-                    //         endTime: '16:00' // 4pm
-                    //     }
-                    // ]}
+                // businessHours={[ // specify an array instead
+                //     {
+                //         daysOfWeek: [1, 2, 3], // Monday, Tuesday, Wednesday
+                //         startTime: '08:00', // 8am
+                //         endTime: '18:00' // 6pm
+                //     },
+                //     {
+                //         daysOfWeek: [4, 5], // Thursday, Friday
+                //         startTime: '10:00', // 10am
+                //         endTime: '16:00' // 4pm
+                //     }
+                // ]}
 
 
 
