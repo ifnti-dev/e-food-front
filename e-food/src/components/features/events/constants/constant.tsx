@@ -108,12 +108,6 @@ export const columnDefs = [
 
 export const lengthMenu = [10, 25, 50, 100, 150, 200, 300, 500];
 
-// const deleteProps: SwalDeletType = {
-//     title: "Action non reversible !",
-//     text: "Changement des dates de l'evénement",
-//     text_delete: "Changement non efféctué",
-//     text_success: "Opération réussie !"
-// }
 
 
 export const customStyles = {
