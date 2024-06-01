@@ -1,0 +1,32 @@
+.actions {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: space-between; /* Répartit uniformément les éléments sur la ligne */
+  align-items: center;
+  width: fit-content; /* Ajuste la largeur en fonction du contenu */
+  z-index: 999;
+}
+
+.actions svg {
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%; /* Affiche en forme de cercle */
+  padding: 8px; /* Ajoute de l'espace autour des icônes */
+  box-sizing: content-box; /* Ajuste la taille de la boîte pour exclure le rembourrage */
+  margin: 0 5px; /* Ajoute de l'espace entre les icônes */
+}
+
+.icon-red {
+  color: red;
+}
+
+.icon-blue {
+  color: blue;
+}
+
+.icon-green {
+  color: green;
+}
