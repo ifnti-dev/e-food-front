@@ -14,24 +14,18 @@ const PubliciteList = ({ publicites, isLoading }: { publicites: Publicite[], isL
            </Col>
          ))}
        </Row>
-        // <Spinner animation="border" role="status">
-        //   <span className="sr-only">Chargement...</span>
-        // </Spinner>
       ) : (
         <>
           {publicites.length === 0 ? (
-            <p>Server non disponible.</p>
+            <div className='text-center'>
+              <Spinner animation="border" role="status">
+              <span className="sr-only">Chargement...</span>
+            </Spinner>
+            </div>
+            
           ) : (
-            // <Row xs={1} sm={2} md={3} lg={4} xl={5}>
-            //   {publicites.map((publicite: Publicite, index: number) => (
-            //     <Col key={index}>
-            //       <PubliciteItem publicite={publicite} />
-            //     </Col>
-            //   ))}
-            // </Row>
-            <Spinner animation="border" role="status">
-            <span className="sr-only">Chargement...</span>
-          </Spinner>
+           
+           <p>Pas de publicité</p>
           )}
         </>
       )}

@@ -7,7 +7,7 @@
     justify-content: space-between; /* Répartit uniformément les éléments sur la ligne */
     align-items: center;
     width: fit-content; /* Ajuste la largeur en fonction du contenu */
-    z-index: 999;
+    z-index: 1;
   }
   
   .actions svg {

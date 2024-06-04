@@ -7,7 +7,7 @@ import Dashboad from './components/layouts/Dashboard';
 import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
 
-// import Publicite from './components/pages/Publicite';
+import Publicite from './components/pages/Publicite';
 import {Publicites} from './components/features/fayssol/components/publiciteComponents/Publicites';
 import Calendar from './components/features/events/components/Calendar';
 

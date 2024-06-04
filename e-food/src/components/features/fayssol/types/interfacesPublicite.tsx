@@ -19,5 +19,9 @@ interface PubliciteListProps {
     description:string,
   }
   
+  interface rest {restaurantId:number,
+    titre:string,
+    description:string,
+    imagesIds:never[]}
 
-export type {PubliciteItemProps, PubliciteListProps,PubToSend, Publicite}
+export type {PubliciteItemProps, PubliciteListProps,PubToSend, Publicite,rest}

@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import  getRestaurantPubs  from "../../dao/api/apiPublicite";
 // import { Publicite } from '../../types/interfacesPublicite'; 
 import {PubliciteList} from "./PubliciteList";
+import PubModal from "../partials/PubModal";
+import { handleSubmit, handleOnChange } from "../../dao/handle/handlePublicite";
 
 function Publicites(){
     const [publicites, setPublicites] = useState<any[]>([]);
-    // const [formData, setFormData] = useState({restaurantId:1,titre:"",description:"",imagesIds:[]});
+    const [formData, setFormData] = useState({restaurantId:1,titre:"",description:"",imagesIds:[]});
     const [isLoad, setIsLoad] = useState(false);
     // const [formDataEdit, setFormDataEdit] = useState({restaurantId:1,titre:"fgr",description:"15",imagesIds:[]})
 
@@ -26,19 +28,19 @@ function Publicites(){
                 console.log("main****");
                 
               console.log(allPub.data );
-              console.log("affichage publicites");
-              console.log(publicites);
-              
+             
               
               
             } else {
                 console.log("non status");
                 setIsLoad(true);
+                
             }
             
         } catch (error) {
             setIsLoad(true);
             console.log(error);
+            
         }
         console.log(isLoad);
         
@@ -47,6 +49,7 @@ function Publicites(){
 
     return(
         <>
+            <PubModal handleSubmit={handleSubmit} handleOnChange={handleOnChange}/>
             <PubliciteList  isLoading={isLoad} publicites={publicites}/>
         </>
     )
