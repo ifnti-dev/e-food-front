@@ -1,5 +1,4 @@
-// src/services/UserService.ts
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 
 export interface User {
   id: number;
@@ -17,8 +16,26 @@ export interface User {
 const API_URL = 'http://localhost:8085/e-food';
 
 const getUsers = async (): Promise<User[]> => {
-  const response = await axios.get(`${API_URL}/users`);
-  return response.data;
+  // Récupérer le token du localStorage
+  const token = localStorage.getItem('token');
+
+  if (!token) {
+    throw new Error('Token non trouvé dans le localStorage.');
+  }
+
+  // Configuration de la requête avec le token dans les headers
+  const config: AxiosRequestConfig = {
+    headers: {
+      Authorization: `Bearer ${token}`, // Ajoute le token dans le header Authorization
+    }
+  };
+
+  try {
+    const response = await axios.get(`${API_URL}/users`, config);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
 };
 
 export default { getUsers };

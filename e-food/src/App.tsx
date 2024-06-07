@@ -16,7 +16,7 @@ const router = createBrowserRouter([
     element:<Dashboad/>,
     children:[
       {path:'/', element:<Welcome/>},
-      {path:'/liste', element:<UserTable/>}
+      {path:'/e-food/users', element:<UserList/>}
     ],
   },
 
@@ -29,12 +29,6 @@ const router = createBrowserRouter([
   {
     path:'/e-food/auth/signup',
     element:<Register/>,
-    
-  },
-
-  {
-    path:'/e-food/users',
-    element:<UserList/>,
     
   },
 

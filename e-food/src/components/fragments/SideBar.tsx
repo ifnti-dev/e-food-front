@@ -25,7 +25,7 @@ function SideBar() {
                             <ul className="sub-menu collapse show" id="dashboard-Components">
                                 <Link to="/"><a className="ms-link active" href=""> <span>Home</span></a></Link>
                                 {/* <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link> */}
-                                <Link to="/"><a className="ms-link active" href=""> <span>Users</span></a></Link>
+                                <Link to="/e-food/users"><a className="ms-link active" href=""> <span>Users</span></a></Link>
                                
                             </ul>
                         </li>
