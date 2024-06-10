@@ -41,7 +41,7 @@ function SideBar() {
                             </ul>
                         </li>
                     </ul>
-                    <ul className="menu-list flex-grow-1 mt-2">
+                    <ul className="menu-list  mt-2">
                         <li className="collapsed">
                             <a className={splitLocation[1] === "events" ? "ms-link active" : "ms-link"}  data-bs-toggle="collapse" data-bs-target="#events-Components" href="/" >
                                 <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Evenements</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
@@ -53,6 +53,19 @@ function SideBar() {
                             </ul>
                         </li>
                     </ul>
+                    <ul className="menu-list flex-grow-1 mt-2">
+                        <li className="collapsed">
+                            <a className={splitLocation[1] === "commands" ? "ms-link active" : "ms-link"}  data-bs-toggle="collapse" data-bs-target="#commands-Components" href="/" >
+                                <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Commandes</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
+                            {/* <!-- Menu: Sub menu ul --> */}
+                            <ul className= {splitLocation[1] === "commands" ? "sub-menu collapse show" : "sub-menu collapse "} id="commands-Components">
+                                <Link  to="/list/commands"><a className={splitLocation[1]+splitLocation[2] === "listcommands" ? "ms-link active" : "ms-link"} href=""> <span>La liste des commandes</span></a></Link>
+                                {/* <Link  to="/list/events"><a className={splitLocation[1]+splitLocation[2] === "listevents" ? "ms-link active" : "ms-link"} href=""> <span>Liste des évènements</span></a></Link> */}
+                               
+                            </ul>
+                        </li>
+                    </ul>
+
 
                     {/* <!-- Theme: Switch Theme --> */}
                     <ul className="list-unstyled mb-0">

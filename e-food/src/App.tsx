@@ -1,7 +1,3 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Dashboad from './components/layouts/Dashboard';
 import Welcome from './components/pages/Welcome';
@@ -9,6 +5,7 @@ import UserTable from './components/pages/UserTable';
 import Calendar from './components/features/events/components/Calendar';
 import { EventListProvider } from './components/features/events/context/EventContext';
 import EventTable from './components/features/events/components/EventTable';
+import { CommandsList } from './components/features/commandes/components/CommandsList';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -17,7 +14,8 @@ const router = createBrowserRouter([
       { path: '/', element: <Welcome /> },
       { path: '/liste', element: <UserTable /> },
       { path: '/manage/events', element: <Calendar /> },
-      {path:'/list/events',element: <EventTable />}
+      {path:'/list/events',element: <EventTable />},
+      {path:'list/commands',element:<CommandsList></CommandsList>}
     ],
 
   },
