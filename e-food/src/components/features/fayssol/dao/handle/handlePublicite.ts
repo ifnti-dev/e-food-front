@@ -12,7 +12,6 @@ const handleOnChange = (e: any, setFormData:any) => {
 
 // fonction de soumission
 const handleSubmit = async (e: any, body:any, loder:any) => {
-
     e.preventDefault()
     const data = postPublicite(body);
     console.log(data);

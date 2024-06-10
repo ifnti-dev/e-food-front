@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import  getRestaurantPubs  from "../../dao/api/apiPublicite";
+import { postPublicite } from "../../dao/api/apiPublicite";
+
 // import { Publicite } from '../../types/interfacesPublicite'; 
 import {PubliciteList} from "./PubliciteList";
 import PubModal from "../partials/PubModal";
-import { handleSubmit, handleOnChange } from "../../dao/handle/handlePublicite";
+// import { handleSubmit, handleOnChange } from "../../dao/handle/handlePublicite";
 
 function Publicites(){
     const [publicites, setPublicites] = useState<any[]>([]);
@@ -46,6 +48,38 @@ function Publicites(){
         
     }    
 
+    // récupération des entrées utilisateur
+    const handleOnChange = (e:any) => {
+        e.preventDefault()
+        const { value, name } = e.target
+        setFormData((preve) => {
+            return {
+                ...preve,
+                [name]: value
+            }
+        })
+    }
+    
+    // fonction de soumission
+    const handleSubmit = async (e: any) => {
+        e.preventDefault()
+        const data = await postPublicite(formData);
+
+        if (data) {
+            // alert('Pub created!');
+            fetchData()
+           
+        }
+       
+    }
+    
+
+
+
+
+
+
+    
 
     return(
         <>

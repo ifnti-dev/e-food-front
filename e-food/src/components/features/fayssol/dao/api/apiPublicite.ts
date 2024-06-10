@@ -2,17 +2,21 @@ import un_axios from "../../utils/axios";
 import { PubToSend } from "../../types/interfacesPublicite";
 
 // POST:
-export const postPublicite:any = (body:PubToSend) =>{
-   
-        un_axios.post("", body=body).then(response =>{
-            return response.data;
-        }).catch(error =>{
-            console.log(error);
-            return error.status;
+export const postPublicite:any = async(body:PubToSend,e:any) =>{
+        e.preventDefault()
+        try {
+            const response:any = await un_axios.post("", body=body);
+            if(response){
+                // console.log("...........API");
+                
+                // console.log(response.data);
+                return response.data
+            }
             
-        });
-
-   
+        } catch (error) {
+            console.log(error);
+            
+        }
         
     }
 
