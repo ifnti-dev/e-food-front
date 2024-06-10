@@ -58,7 +58,7 @@ const PubliciteItem: React.FC<any> = ({ publicite }) => {
               overlay={<Tooltip id="tooltip-delete">Supprimer</Tooltip>}
             >
               {/* <FaTrash className="icon-red" /> */}
-              <DeleteModal/>
+              <DeleteModal pub_id={publicite.id}/>
             </OverlayTrigger>
             {publicite.etat === "published" ? (
               <OverlayTrigger

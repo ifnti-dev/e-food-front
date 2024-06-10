@@ -58,9 +58,9 @@ const getRestaurantPubs = async (restaurantId: number) => {
 // }
 
 // DELETE:
-export const deletePublicite = (pubId: number) => {
+export const deletePublicite = (pubId:number) => {
     
-    un_axios.get(`/${pubId}`).then(response => {
+    un_axios.delete(`/${pubId}`).then(response => {
         return response.data;
     }).catch(error => {
         console.log(error);

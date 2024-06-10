@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import { FaEdit, FaTrash } from 'react-icons/fa';
+import { deletePublicite } from '../../dao/api/apiPublicite';
 
-const DeleteModal = () => {
+const DeleteModal = (pub_id:{pub_id:number}) => {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  // const handleDelete = async(id:{id:number}) => {
+  //   await deletePublicite(id);
+  // }
 
   return (
     <div>
@@ -24,7 +29,7 @@ const DeleteModal = () => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="danger" onClick={handleClose}>
+          <Button variant="danger" onClick={()=>{}}>
             Delete
           </Button>
         </Modal.Footer>
