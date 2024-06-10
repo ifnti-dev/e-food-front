@@ -1,6 +1,10 @@
 import { UpdateFormType } from "../types/interfaces";
 
-export default function UpdateForm({ props, onSubmit, show, toggleModalUp, onChange, removeEventById }: { onChange: any, props: UpdateFormType, onSubmit: any, show: boolean, toggleModalUp: any, removeEventById: any }) {
+
+export default function UpdateForm({ props, onSubmit, show, toggleModalUp, onChange, removeEventById, errors, register }: { onChange: any, props: UpdateFormType, onSubmit: any, show: boolean, toggleModalUp: any, removeEventById: any, errors: any, register: any }) {
+
+
+
 
     function submit(e: any) {
         e.preventDefault()
@@ -26,16 +30,23 @@ export default function UpdateForm({ props, onSubmit, show, toggleModalUp, onCha
                             <div className="modal-body mb-4">
                                 <div className="inviteby_title">
                                     <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Le titre" name='title' value={props.title?.toString()} onChange={onChange} maxLength={30}/>
-
+                                        <input type="text" {...register("title", { required: true, maxLength: 30 })} className="form-control" placeholder="Le titre" name='title' value={props.title?.toString()} onChange={onChange} />
                                     </div>
+                                    {errors.title && errors.title.type === "required" && <span className=" mb-3 text-danger">Ce champ  est obligatoire</span>}
+                                    {errors.title && errors.title.type === "maxLength" && <span className=" mb-3 text-danger">Moins de 30 caractères</span>}
+
+
                                 </div>
 
                                 <div className="inviteby_description">
                                     <div className="input-group mb-3">
-                                        <textarea className='form-control' name="description" id="" placeholder='Une description...' value={props.description?.toString()} onChange={onChange} ></textarea>
+                                        <textarea className='form-control' {...register("description", { required: true })} name="description" placeholder='Une description...' value={props.description?.toString()} onChange={onChange} ></textarea>
+
+
 
                                     </div>
+                                    {errors.description && errors.description.type === "required" && <span className=" mb-3 text-danger">Ce champ est obligatoire</span>}
+
                                 </div>
 
                             </div>
@@ -56,7 +67,11 @@ export default function UpdateForm({ props, onSubmit, show, toggleModalUp, onCha
                 </div>
 
 
-            </div></>
+            </div>
+
+            {/* <UpdateFormV/> */}
+
+        </>
     } else {
         return <></>
     }

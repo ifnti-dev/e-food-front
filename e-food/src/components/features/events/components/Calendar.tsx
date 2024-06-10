@@ -22,12 +22,12 @@ const Calendar = () => {
     const { loading, events } = useFetchEvent()
 
     //post event handler
-    const { onSubmit, toggleModal, modal, handleSelect, onChange } = usePostEvent()
+    const { onSubmit, toggleModal, modal, handleSelect, onChange, registerPost,errorsPosts } = usePostEvent()
 
     //update dates from drapstop event
     const { eventDragStop } = useUpdateFromDates();
     //Update from title and description 
-    const { event, handleUpdateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, deleteEvent,setDeleteModal,deleteModal } = useUpdateFromTitleAndDes();
+    const { event, handleUpdateEvent, OnChangeUpdate, updateFormModal, show, updateSubmit, register, deleteEvent, setDeleteModal, deleteModal, errors } = useUpdateFromTitleAndDes();
 
 
     return (
@@ -36,20 +36,23 @@ const Calendar = () => {
 
             <UpdateForm props={{
                 title: event.title,
-                description: event.description
+                description: event.description,
+
             }}
                 show={show}
                 toggleModalUp={updateFormModal}
                 onSubmit={updateSubmit}
                 onChange={OnChangeUpdate}
                 removeEventById={deleteEvent}
+                errors={errors}
+                register={register}
             />
 
             {/* <!-- Modal Members--> */}
 
             {/* <Success isVisible={visible} visible={setVisible} props={successProps} /> */}
 
-            <DeleteAlert visible={deleteModal} setVisible={setDeleteModal} props={deleteProps} handleDelete={deleteEvent}  />
+            <DeleteAlert visible={deleteModal} setVisible={setDeleteModal} props={deleteProps} handleDelete={deleteEvent} />
 
             {modal && <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
                 <div className="modal-dialog modal-dialog-centered modal-md">
@@ -63,17 +66,19 @@ const Calendar = () => {
                             <div className="modal-body">
                                 <div className="inviteby_title">
                                     <div className="input-group mb-3">
-                                        <input type="text" className="form-control" placeholder="Le titre" name='title' onChange={onChange} value={events.title} />
+                                        <input type="text" className="form-control" {...registerPost('title', { required: true })} placeholder="Le titre" name='title' onChange={onChange} value={events.title} />
 
                                     </div>
+                                    {errorsPosts.title && errorsPosts.title.type === "required" && <span className=" mb-3 text-danger">Ce champ  est obligatoire</span>}
+
                                 </div>
 
                                 <div className="inviteby_description">
                                     <div className="input-group mb-3">
-                                        <textarea className='form-control' name="description" id="" placeholder='Une description...' onChange={onChange} value={events.description}></textarea>
+                                        <textarea className='form-control' {...registerPost('description', { required: true })} name="description"  placeholder='Une description...' onChange={onChange} value={events.description}></textarea>
 
                                     </div>
-
+                                    {errorsPosts.description && errorsPosts.description.type === "required" && <span className=" mb-3 text-danger">Ce champ  est obligatoire</span>}
 
                                 </div>
 

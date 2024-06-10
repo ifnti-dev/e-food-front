@@ -3,6 +3,8 @@ import { EventToSend, FullCalendarProps } from "../types/interfaces";
 import postRestaurantEvents from "../api/postEvent";
 import { EventContext } from "../context/EventContext";
 import { DateSelectArg } from "@fullcalendar/core/index.js";
+import { useForm } from "react-hook-form";
+import { FormValues } from "../types/types";
 
 export function usePostEvent() {
 
@@ -23,6 +25,8 @@ export function usePostEvent() {
 
     // Context Event 
     const { visible, setVisible, loading, setLoading,addEvent } = useContext(EventContext);
+    const { register, handleSubmit, formState: { errors } } = useForm();
+
 
 
     const toggleModal = () => {
@@ -56,12 +60,10 @@ export function usePostEvent() {
 
 
     //onsubmit
-    const onSubmit = async (event: { preventDefault: () => void; }) => {
+    const onSubmit = handleSubmit(async () => {
 
-        event.preventDefault();
+        // event.preventDefault();
        
-        
-
         setModal(!modal);
         const preparedToPost: EventToSend = {
             date_debut: eventsP.start,
@@ -90,7 +92,7 @@ export function usePostEvent() {
         }
 
 
-    }
+    })
 
     return {
         onSubmit,
@@ -101,8 +103,10 @@ export function usePostEvent() {
         pL: loading,
         toggleModal,
         handleSelect,
-        onChange
+        onChange,
+        registerPost:register,
+        errorsPosts:errors
     }
 
-
+    
 }
