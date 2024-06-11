@@ -15,31 +15,29 @@ export function usePostEvent() {
         start: '',
         end: '',
         display: '',
-        color:'#f19828',
-        textColor:'',
-        status:'',
-        progress:{cusumme:0,total:0}
+        color: '#f19828',
+        textColor: '',
+        status: '',
+        progress: { cusumme: 0, total: 0 }
     })
 
     // Context Event 
-    const { visible, setVisible, loading, setLoading,addEvent } = useContext(EventContext);
+    const { visible, setVisible, loading, setLoading, addEvent } = useContext(EventContext);
 
 
     const toggleModal = () => {
         setModal(!modal)
     }
-
-
     const handleSelect = (select: DateSelectArg) => {
         const current = new Date();
         const startDate = new Date(select.startStr);
 
         if (current > startDate) {
-            
-            
-            return ;
+
+
+            return;
         }
-        
+
         setEventsP({ ...eventsP, start: select.startStr, end: select.endStr })
 
         toggleModal();
@@ -59,8 +57,8 @@ export function usePostEvent() {
     const onSubmit = async (event: { preventDefault: () => void; }) => {
 
         event.preventDefault();
-       
-        
+
+
 
         setModal(!modal);
         const preparedToPost: EventToSend = {
