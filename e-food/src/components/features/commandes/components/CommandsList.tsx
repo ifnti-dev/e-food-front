@@ -1,8 +1,44 @@
 import { CommandInProgress } from "./CommandInProgress";
 import '../css/index.css';
+import { useRef, useState } from "react";
 
 
 export function CommandsList() {
+
+    const [dragging, setDragging] = useState<boolean>(false);
+    const [status, setStatus] = useState<string>('en cours');
+    const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
+
+    const enCoursRef = useRef<HTMLOListElement>(null);
+    const traitementRef = useRef<HTMLOListElement>(null);
+    const livraisonRef = useRef<HTMLDivElement>(null);
+    const livreRef = useRef<HTMLDivElement>(null);
+
+    const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+        setDragging(true);
+        if (e.currentTarget) {
+            e.dataTransfer.setData('text/plain', e.currentTarget.id);
+        }
+    };
+
+    const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLLIElement>, newStatus: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const droppedItemId = e.dataTransfer.getData('text/plain');
+        const droppedItem = document.getElementById(droppedItemId);
+        if (e.currentTarget && droppedItem) {
+            console.log(droppedItem.id);
+
+            e.currentTarget.appendChild(droppedItem);
+        }
+        setStatus(newStatus);
+        setDragging(false);
+    };
+
 
     return (
         <>
@@ -32,8 +68,57 @@ export function CommandsList() {
                                 <h6 className="fw-bold py-3 mb-0">In Progress</h6>
                                 <div className="progress_task">
                                     <div className="dd" data-plugin="nestable">
-                                        <ol className="dd-list">
-                                            <li className="dd-item" data-id="2">
+                                        <ol className="dd-list" >
+                                            <li className="dd-item" key={1} data-id="2" draggable id="23" onDragStart={handleDragStart}
+                                                onDragOver={(e) => e.preventDefault()} >
+                                                <div className="dd-handle">
+                                                    <div className="task-info d-flex align-items-center justify-content-between">
+                                                        <h6 className="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Website Design
+                                                        </h6>
+                                                        <div className="task-priority d-flex flex-column align-items-center justify-content-center">
+                                                            <div className="avatar-list avatar-list-stacked m-0">
+                                                                {/* <img className="avatar rounded-circle small-avt" src="assets/images/xs/avatar8.jpg" alt=""> */}
+                                                            </div>
+                                                            <span className="badge bg-success text-end mt-2">LOW</span>
+                                                        </div>
+                                                    </div>
+                                                    <p className="py-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
+                                                        nec scelerisque massa.</p>
+                                                    <div className="tikit-info row g-3 align-items-center">
+                                                        <div className="col-sm">
+                                                            <ul className="d-flex list-unstyled align-items-center flex-wrap">
+                                                                <li className="me-2">
+                                                                    <div className="d-flex align-items-center">
+                                                                        <i className="icofont-flag"></i>
+                                                                        <span className="ms-1">12 Feb</span>
+                                                                    </div>
+                                                                </li>
+                                                                <li className="me-2">
+                                                                    <div className="d-flex align-items-center">
+
+                                                                        <i className="icofont-ui-text-chat"></i>
+                                                                        <span className="ms-1">3</span>
+
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <div className="d-flex align-items-center">
+                                                                        <i className="icofont-paper-clip"></i>
+                                                                        <span className="ms-1">4</span>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                        <div className="col-sm text-end">
+
+                                                            <div className="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> Practice to Perfect </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </li>
+                                            <li className="dd-item" key={3} data-id="5" draggable id="12" onDragStart={handleDragStart}
+                                                onDragOver={(e) => e.preventDefault()} >
                                                 <div className="dd-handle">
                                                     <div className="task-info d-flex align-items-center justify-content-between">
                                                         <h6 className="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Website Design
@@ -82,7 +167,8 @@ export function CommandsList() {
                                             </li>
 
 
-                                            <li className="dd-item" data-id="5">
+                                            <li className="dd-item" key={2} data-id="5" draggable id="12" onDragStart={handleDragStart}
+                                                onDragOver={(e) => e.preventDefault()} >
                                                 <div className="dd-handle">
                                                     <div className="task-info d-flex align-items-center justify-content-between">
                                                         <h6 className="light-success-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Quality Assurance
@@ -134,7 +220,7 @@ export function CommandsList() {
                                 </div>
                             </div>
 
-                            <CommandInProgress />
+                            <CommandInProgress refTraitement={traitementRef} onDragOver={handleDragOver} onDrop={(e:any) => handleDrop(e, 'traitement')} />
 
                         </div>
 

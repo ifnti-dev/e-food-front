@@ -1,12 +1,15 @@
-export function CommandInProgress() {
+export function CommandInProgress({refTraitement,onDragOver,onDrop}:{refTraitement:any,onDragOver:any,onDrop:any}) {
+
+
+
     return (
         <>
             <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-12 mt-xxl-4 mt-xl-4 mt-lg-4 mt-md-0 mt-sm-0 mt-0">
-                <h6 className="fw-bold py-3 mb-0">Needs Review</h6>
+                <h6 className="fw-bold py-3 mb-0">Traitement</h6>
                 <div className="review_task">
-                    <div className="dd" data-plugin="nestable">
-                        <ol className="dd-list">
-                            <li className="dd-item" data-id="3">
+                    <div className="dd  d-inline-block w-100" data-plugin="nestable" style={{backgroundColor:'lightblue'}}>
+                        <ol className="dd-list " ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} style={{minHeight:1000}}>
+                            <li className="dd-item" data-id="3" >
                                 <div className="dd-handle">
                                     <div className="task-info d-flex align-items-center justify-content-between">
                                         <h6 className="light-success-bg py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Quality Assurance

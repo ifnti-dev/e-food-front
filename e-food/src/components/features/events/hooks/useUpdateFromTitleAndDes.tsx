@@ -5,8 +5,9 @@ import { DeleteEventType, EventToUpadeType, UpdateFormType } from "../types/inte
 import putRestaurantEvents from "../api/putEvent";
 
 import deleteEventFromRestaurant from "../api/deleteEvent";
-import { useForm } from "react-hook-form";
+
 import { FormValues } from "../types/types";
+import { useForm } from 'react-hook-form';
 
 
 
