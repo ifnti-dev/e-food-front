@@ -5,7 +5,7 @@ import UserTable from './components/pages/UserTable';
 import Calendar from './components/features/events/components/Calendar';
 import { EventListProvider } from './components/features/events/context/EventContext';
 import EventTable from './components/features/events/components/EventTable';
-import { CommandsList } from './components/features/commandes/components/CommandsList';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
       { path: '/liste', element: <UserTable /> },
       { path: '/manage/events', element: <Calendar /> },
       {path:'/list/events',element: <EventTable />},
-      {path:'list/commands',element:<CommandsList></CommandsList>}
+      {path:'list/commands',element:<MainCommand/>}
     ],
 
   },
