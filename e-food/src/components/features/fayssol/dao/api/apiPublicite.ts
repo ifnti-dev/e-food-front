@@ -3,7 +3,7 @@ import { PubToSend } from "../../types/interfacesPublicite";
 
 // POST:
 export const postPublicite:any = async(body:PubToSend,e:any) =>{
-        e.preventDefault()
+        e.preventDefault();
         try {
             const response:any = await un_axios.post("", body=body);
             if(response){
@@ -58,16 +58,27 @@ const getRestaurantPubs = async (restaurantId: number) => {
 // }
 
 // DELETE:
-export const deletePublicite = (pubId:number) => {
+// export const deletePublicite = (pubId:number) => {
     
-    un_axios.delete(`/${pubId}`).then(response => {
-        return response.data;
-    }).catch(error => {
-        console.log(error);
-        return error.status;
+//     un_axios.delete(`/${pubId}`).then(response => {
+//         return response.data;
+//     }).catch(error => {
+//         console.log(error);
+//         return error.status;
         
-    });
+//     });
     
-}
+// }
+export const deletePublicite = async (pubId: number) => {
+    try {
+      const response = await un_axios.delete(`/${pubId}`);
+      console.log(response.data);
+      
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      
+    }
+  };
 
 export default getRestaurantPubs;

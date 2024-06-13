@@ -10,7 +10,7 @@ const PubliciteList = ({ publicites, isLoading }: { publicites: Publicite[], isL
          <Row xs={1} sm={2} md={3} lg={4} xl={5}>
          {publicites.map((publicite: Publicite, index: number) => (
            <Col key={index}>
-             <PubliciteItem publicite={publicite} />
+             <PubliciteItem publicite={publicite} key={publicite.id}/>
            </Col>
          ))}
        </Row>
@@ -19,8 +19,8 @@ const PubliciteList = ({ publicites, isLoading }: { publicites: Publicite[], isL
           {publicites.length === 0 ? (
             <div className='text-center'>
               <Spinner animation="border" role="status">
-              <span className="sr-only">Chargement...</span>
-            </Spinner>
+                  <span className="sr-only">Chargement...</span>
+              </Spinner>
             </div>
             
           ) : (

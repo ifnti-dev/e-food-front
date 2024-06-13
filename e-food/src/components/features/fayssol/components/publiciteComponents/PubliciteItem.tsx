@@ -5,16 +5,31 @@ import { PubliciteItemProps } from '../../types/interfacesPublicite';
 import './PubliciteItem.css'; // Import du fichier de style pour les personnalisations supplémentaires
 import EditionModal from '../partials/EditionModal';
 import DeleteModal from '../partials/DeleteModal';
+import { useHoverContext } from '../../context/HoverContext';
+import { useModalContext } from "../../context/ModalContext";
 
-const PubliciteItem: React.FC<any> = ({ publicite }) => {
-  const [isHovered, setIsHovered] = useState(false);
+const PubliciteItem: React.FC<any> = ({ publicite, index }) => {
+  const { isHovered, setIsHovered } = useHoverContext();
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const {modal, setModal} = useModalContext();
+
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    // setHoveredIndex(index);
+    // setIsHovered(true);
+    if (!modal) { // Activer le système de survol uniquement si le modal n'est pas ouvert
+      setHoveredIndex(index);
+      setIsHovered(true);
+    }
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    // setHoveredIndex(null);
+    // setIsHovered(false);
+    if (!modal) { // Activer le système de survol uniquement si le modal n'est pas ouvert
+       setHoveredIndex(null);
+       setIsHovered(false);
+    }
   };
 
   return (
@@ -22,7 +37,7 @@ const PubliciteItem: React.FC<any> = ({ publicite }) => {
       <Card
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
-        className={publicite.etat === 'published' ? 'published' : ''}
+        className={`${publicite.etat === 'published' ? 'published' : ''} ${hoveredIndex === index ? 'hovered' : ''}`}
       >
         <Carousel>
           {/* {publicite.images.map((image:any, index:any) => ( */}
@@ -44,7 +59,7 @@ const PubliciteItem: React.FC<any> = ({ publicite }) => {
           <Card.Title>{publicite.titre}</Card.Title>
           <Card.Text>{publicite.description}</Card.Text>
         </Card.Body>
-        {isHovered && (
+        {isHovered && hoveredIndex === index && (
           <div className="actions">
             <OverlayTrigger
               placement="bottom"

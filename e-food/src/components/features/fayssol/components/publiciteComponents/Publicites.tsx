@@ -63,10 +63,12 @@ function Publicites(){
     // fonction de soumission
     const handleSubmit = async (e: any) => {
         e.preventDefault()
+        
         const data = await postPublicite(formData);
-
+        console.log(data);
+        
         if (data) {
-            // alert('Pub created!');
+             alert('Pub created!');
             fetchData()
            
         }

@@ -2,16 +2,31 @@ import { useState,useEffect, useContext } from "react";
 import Modal from "./Modal";
 import './modal.css';
 import Form from "./Form";
-import HoverContext from "../../context/HoverContextTypes";
-import { HoverProvider } from "../../context/HoverProvider";
+import { useHoverContext } from '../../context/HoverContext';
+import { useModalContext } from "../../context/ModalContext";
 
 function PubModal({handleSubmit, handleOnChange}:{handleSubmit:any, handleOnChange:any} ) {
-  const [modal, setModal] = useState<boolean>(false);
-  const [isHovered,handleMouseEnter, handleMouseLeave] = useContext(HoverContext);
+  // const [modal, setModal] = useState<boolean>(false);
+  const {modal, setModal} = useModalContext();
+
+
+  // const [isHovered, setIsHovered] = useState<boolean>(false);
+  const { isHovered, setIsHovered } = useHoverContext();
+
+
+  // const handleMouseEnter = () => {
+  //   setIsHovered(true);
+  // };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+
 
   const toggleModal = () => {
     setModal((prevState) => !prevState);
-    if(modal == true){
+    if(modal == false){
       handleMouseLeave();
       console.log("isHovered " + isHovered);
       
@@ -39,7 +54,7 @@ function PubModal({handleSubmit, handleOnChange}:{handleSubmit:any, handleOnChan
         {/* <i className="bi bi-pen text-primary fs-5" aria-hidden="true"  onClick={()=>handleEdit(publicite)}></i> */}
         {/* </button> */}
       {/* </div> */}
-        <HoverProvider>
+        
           <Modal isOpen={modal}>
             <div className="modale" style={{zIndex:2000}}>
               <span onClick={toggleModal} className="closeX">X</span>
@@ -50,7 +65,7 @@ function PubModal({handleSubmit, handleOnChange}:{handleSubmit:any, handleOnChan
               <button className="modal-btn close" onClick={toggleModal}>Close</button> */}
             </div>
           </Modal>
-        </HoverProvider>
+       
     {/* </div> */}
     </>
    
