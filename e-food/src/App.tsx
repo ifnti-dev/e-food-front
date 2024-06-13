@@ -5,6 +5,7 @@ import UserTable from './components/pages/UserTable';
 import Calendar from './components/features/events/components/Calendar';
 import { EventListProvider } from './components/features/events/context/EventContext';
 import EventTable from './components/features/events/components/EventTable';
+import MainCommand from './components/features/commandes/components/main/MainCommand'
 
 const router = createBrowserRouter([
   {

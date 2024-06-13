@@ -1,45 +1,48 @@
-import React from 'react';
-import '../css/index.css';
+
+import '../../css/index.css';
 import { useRef, useState } from "react";
-import CommandsInProcessing from '../CommandsInProcessing';
+import CommandsInProcessing from '../commands_from_status/CommandsInProcessing';
+import CommandsInProgress from '../commands_from_status/CommandsInProgress';
+import CommandsInDelivery from '../commands_from_status/CommandsInDelivery'
 
 
-const [dragging, setDragging] = useState<boolean>(false);
-const [status, setStatus] = useState<string>('en cours');
-const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
 
-const enCoursRef = useRef<HTMLOListElement>(null);
-const traitementRef = useRef<HTMLOListElement>(null);
-const livraisonRef = useRef<HTMLDivElement>(null);
-const livreRef = useRef<HTMLDivElement>(null);
-
-const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
-    setDragging(true);
-    if (e.currentTarget) {
-        e.dataTransfer.setData('text/plain', e.currentTarget.id);
-    }
-};
-
-const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
-    e.preventDefault();
-};
-
-const handleDrop = (e: React.DragEvent<HTMLLIElement>, newStatus: string) => {
-    e.preventDefault();
-    e.stopPropagation();
-    const droppedItemId = e.dataTransfer.getData('text/plain');
-    const droppedItem = document.getElementById(droppedItemId);
-    if (e.currentTarget && droppedItem) {
-        console.log(droppedItem.id);
-
-        e.currentTarget.appendChild(droppedItem);
-    }
-    setStatus(newStatus);
-    setDragging(false);
-};
 
 export default function MainCommand() {
 
+    const [dragging, setDragging] = useState<boolean>(false);
+    const [status, setStatus] = useState<string>('en cours');
+    const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
+    
+    const enCoursRef = useRef<HTMLOListElement>(null);
+    const traitementRef = useRef<HTMLOListElement>(null);
+    const livraisonRef = useRef<HTMLOListElement>(null);
+    const livreRef = useRef<HTMLDivElement>(null);
+    
+    const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+        setDragging(true);
+        if (e.currentTarget) {
+            e.dataTransfer.setData('text/plain', e.currentTarget.id);
+        }
+    };
+    
+    const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault();
+    };
+    
+    const handleDrop = (e: React.DragEvent<HTMLLIElement>, newStatus: string) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const droppedItemId = e.dataTransfer.getData('text/plain');
+        const droppedItem = document.getElementById(droppedItemId);
+        if (e.currentTarget && droppedItem) {
+            console.log(droppedItem.id);
+    
+            e.currentTarget.appendChild(droppedItem);
+        }
+        setStatus(newStatus);
+        setDragging(false);
+    };
 
     return (
         <>
@@ -62,10 +65,14 @@ export default function MainCommand() {
                     </div>
 
 
-                    <div className="tab-content">
+                    <div className="tab-content ">
                         <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
 
+                            <CommandsInProgress handleDragStart={handleDragStart} />
+
                             <CommandsInProcessing refTraitement={traitementRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'traitement')} />
+
+                            <CommandsInDelivery refDelivery={livraisonRef}  onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'livraison')}/>
 
 
                         </div>

@@ -1,16 +1,13 @@
 
-export function CommandsInProgress({handleDragStart}:{handleDragStart:any}) {
 
+export default function CommandsInProgress({handleDragStart}:{handleDragStart:any}) {
 
     return (
         <>
-
-
-            <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
-
+            
                 <div className="col-xxl-4 col-xl-4 col-lg-4 col-md-12 mt-xxl-4 mt-xl-4 mt-lg-4 mt-md-4 mt-sm-4 mt-4">
                     <h6 className="fw-bold py-3 mb-0">En cours</h6>
-                    <div className="progress_task">
+                    <div className="progress_task border rounded border-success-subtle">
                         <div className="dd" data-plugin="nestable">
                             <ol className="dd-list" >
                                 <li className="dd-item" key={1} draggable id="23" onDragStart={handleDragStart}
@@ -165,7 +162,7 @@ export function CommandsInProgress({handleDragStart}:{handleDragStart:any}) {
                 </div>
 
 
-            </div>
+           
 
 
 
