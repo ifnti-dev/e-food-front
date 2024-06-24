@@ -13,17 +13,26 @@ type MenuProps = {
 
 const MenuCard = (props: MenuProps) => {
   const handleDelete = (menuId: number) => {
-    deleteMenu(menuId);
+    const confirmDelete = confirm("Supprimer le menu ?");
+    if (confirmDelete) {
+      deleteMenu(menuId);
+      location.reload();
+    }
   };
 
   return (
     <>
       <div className="bg-white col-md-3 col-lg-2 mx-2 my-3 rounded-3 menu-card py-2">
-        <button className="close">
+        <button
+          className="close"
+          onClick={() => {
+            handleDelete(props.id);
+          }}
+        >
           <i className="bi bi-trash-fill"></i>
         </button>
 
-        <button className="update" >
+        <button className="update">
           <i className="bi bi-pencil-square"></i>
         </button>
 

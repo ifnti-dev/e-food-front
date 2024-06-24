@@ -79,7 +79,7 @@ const Menus = () => {
         setMenus(response.menus);
       }
     });
-  });
+  }, []);
 
   return (
     <>
