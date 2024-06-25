@@ -1,35 +1,48 @@
 
 import '../../css/index.css';
-import { useRef, useState } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import CommandsInProcessing from '../commands_from_status/CommandsInProcessing';
 import CommandsInProgress from '../commands_from_status/CommandsInProgress';
 import CommandsInDelivery from '../commands_from_status/CommandsInDelivery'
+import Spinner from '../../../events/components/Spinner';
+// const Details = lazy(() => import('../details_command/Details'))
+import useAnimate from "../../hooks/useAnimate";
+import { AnimatePresence } from 'framer-motion';
+
+const Details = lazy(() => delayForDemo(import('../details_command/Details')))
 
 
-
+function delayForDemo(promise: any) {
+    return new Promise(resolve => {
+        setTimeout(resolve, 2000);
+    }).then(() => promise);
+}
 
 export default function MainCommand() {
+    const [show, setShow] = useState(false);
+
+    const { parent } = useAnimate();
 
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('en cours');
     const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
-    
+
     const enCoursRef = useRef<HTMLOListElement>(null);
     const traitementRef = useRef<HTMLOListElement>(null);
     const livraisonRef = useRef<HTMLOListElement>(null);
     const livreRef = useRef<HTMLDivElement>(null);
-    
+
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
         setDragging(true);
         if (e.currentTarget) {
             e.dataTransfer.setData('text/plain', e.currentTarget.id);
         }
     };
-    
+
     const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
         e.preventDefault();
     };
-    
+
     const handleDrop = (e: React.DragEvent<HTMLLIElement>, newStatus: string) => {
         e.preventDefault();
         e.stopPropagation();
@@ -37,16 +50,36 @@ export default function MainCommand() {
         const droppedItem = document.getElementById(droppedItemId);
         if (e.currentTarget && droppedItem) {
             console.log(droppedItem.id);
-    
+
             e.currentTarget.appendChild(droppedItem);
         }
         setStatus(newStatus);
         setDragging(false);
     };
 
+
+    function delayForDemo(promise: any) {
+        return new Promise(resolve => {
+            setTimeout(resolve, 2000);
+        }).then(() => promise);
+    }
+
+
+    const togleShow = ()=>{
+        console.log(123);
+        
+        setShow(true);
+    }
+
+    const togleHide = ()=>{
+        console.log(123);
+        
+        setShow(false);
+    }
+
     return (
         <>
-            <div className="body d-flex py-lg-3 py-md-2">
+            <div className="body d-flex py-lg-3 py-md-2 position-relative ">
                 <div className="container-xxl">
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
@@ -68,11 +101,11 @@ export default function MainCommand() {
                     <div className="tab-content ">
                         <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
 
-                            <CommandsInProgress handleDragStart={handleDragStart} />
+                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} />
 
                             <CommandsInProcessing refTraitement={traitementRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'traitement')} />
 
-                            <CommandsInDelivery refDelivery={livraisonRef}  onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'livraison')}/>
+                            <CommandsInDelivery refDelivery={livraisonRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'livraison')} />
 
 
                         </div>
@@ -86,6 +119,17 @@ export default function MainCommand() {
                     </div>
 
                 </div>
+
+
+                
+                <Suspense fallback={<Spinner value={true} />}>
+    
+                    <AnimatePresence>
+                        <Details togle={togleHide} show={show}/>
+                        </AnimatePresence>
+                </Suspense>
+
+
 
             </div>
 
