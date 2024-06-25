@@ -8,7 +8,7 @@ export default function CommandsInProcessing({refTraitement,onDragOver,onDrop}:{
                 <h6 className="fw-bold py-3 mb-0"> En Traitement</h6>
                 <div className="review_task border rounded">
                     <div className="dd  d-inline-block w-100 " data-plugin="nestable" >
-                        <ol className="dd-list vh-100" ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} style={{minHeight:1000}}>
+                        <ol className="dd-list " ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} >
                             
                         </ol>
                     </div>

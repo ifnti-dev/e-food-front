@@ -21,6 +21,7 @@
     "framer-motion": "^11.2.12",
     "gsap": "^3.12.5",
     "jquery": "^3.7.1",
+    "popmotion": "^11.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.51.5",

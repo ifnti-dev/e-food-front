@@ -5,23 +5,24 @@ import CommandsInProcessing from '../commands_from_status/CommandsInProcessing';
 import CommandsInProgress from '../commands_from_status/CommandsInProgress';
 import CommandsInDelivery from '../commands_from_status/CommandsInDelivery'
 import Spinner from '../../../events/components/Spinner';
-// const Details = lazy(() => import('../details_command/Details'))
+const Details = lazy(() => import('../details_command/Details'))
 import useAnimate from "../../hooks/useAnimate";
 import { AnimatePresence } from 'framer-motion';
 
-const Details = lazy(() => delayForDemo(import('../details_command/Details')))
+// const Details = lazy(() => delayForDemo(import('../details_command/Details')))
 
 
-function delayForDemo(promise: any) {
-    return new Promise(resolve => {
-        setTimeout(resolve, 2000);
-    }).then(() => promise);
-}
+// function delayForDemo(promise: any) {
+//     return new Promise(resolve => {
+//         setTimeout(resolve, 2000);
+//     }).then(() => promise);
+// }
 
 export default function MainCommand() {
     const [show, setShow] = useState(false);
+    const [showCommand,setShowCommand] = useState(true);
 
-    const { parent } = useAnimate();
+    // const { parent } = useAnimate();
 
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('en cours');
@@ -58,11 +59,7 @@ export default function MainCommand() {
     };
 
 
-    function delayForDemo(promise: any) {
-        return new Promise(resolve => {
-            setTimeout(resolve, 2000);
-        }).then(() => promise);
-    }
+  
 
 
     const togleShow = ()=>{
@@ -77,9 +74,11 @@ export default function MainCommand() {
         setShow(false);
     }
 
+
+
     return (
         <>
-            <div className="body d-flex py-lg-3 py-md-2 position-relative ">
+            <div className=" d-flex py-lg-3 py-md-2  d-flex align-items-center justify-content-center" >
                 <div className="container-xxl">
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
@@ -125,7 +124,7 @@ export default function MainCommand() {
                 <Suspense fallback={<Spinner value={true} />}>
     
                     <AnimatePresence>
-                        <Details togle={togleHide} show={show}/>
+                        <Details togle={togleHide} show={show} />
                         </AnimatePresence>
                 </Suspense>
 
