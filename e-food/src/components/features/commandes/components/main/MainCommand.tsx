@@ -78,7 +78,7 @@ export default function MainCommand() {
 
     return (
         <>
-            <div className=" d-flex py-lg-3 py-md-2  d-flex align-items-center justify-content-center" >
+            <div className=" d-flex py-lg-3 py-md-2" >
                 <div className="container-xxl">
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
