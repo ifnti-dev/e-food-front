@@ -1,6 +1,8 @@
+import { PropsCommandType } from "../../types/interfaces";
+import CommandList from "../orders/CommandList";
 
 
-export default function CommandsInProcessing({refTraitement,onDragOver,onDrop}:{refTraitement:any,onDragOver:any,onDrop:any}) {
+export default function CommandsInProcessing({refTraitement,onDragOver,onDrop ,data ,togle, handleDragStart }:{refTraitement:any,onDragOver:any,onDrop:any ,data:PropsCommandType[], togle:any,handleDragStart:any }) {
 
     return (
         <>
@@ -9,7 +11,9 @@ export default function CommandsInProcessing({refTraitement,onDragOver,onDrop}:{
                 <div className="review_task border rounded">
                     <div className="dd  d-inline-block w-100 " data-plugin="nestable" >
                         <ol className="dd-list " ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} >
-                            
+
+                        <CommandList handleDragStart={handleDragStart} data={data} togle={togle}/>
+
                         </ol>
                     </div>
                 </div>

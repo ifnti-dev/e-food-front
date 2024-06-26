@@ -10,6 +10,7 @@ const Details = lazy(() => import('../details_command/Details'))
 import { AnimatePresence } from 'framer-motion';
 import { ComandListProvider, CommandContext } from '../../context/ComandContext';
 import { useFetchCommandsByStatus } from '../../hooks/useFetchCommandsByStatus';
+import { PropsCommandType } from '../../types/interfaces';
 
 
 // const Details = lazy(() => delayForDemo(import('../details_command/Details')))
@@ -89,15 +90,16 @@ export default function MainCommand() {
 
         const {cachedData} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
 
+
         return cachedData;
 
     }
 
     const EN_COURS_COMMANDS = fetchEnCours();
-    // const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
+    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
 
-    console.log(EN_COURS_COMMANDS);
-    // console.log(EN_TRAITEMENT_COMMANDS);
+    // console.log(EN_COURS_COMMANDS);
+    console.log(EN_TRAITEMENT_COMMANDS);
     
     
   
@@ -132,7 +134,7 @@ export default function MainCommand() {
 
                             <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS}/>
 
-                            <CommandsInProcessing refTraitement={traitementRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'traitement')} />
+                            <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'traitement')} data={EN_TRAITEMENT_COMMANDS} />
 
                             <CommandsInDelivery refDelivery={livraisonRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'livraison')} />
 

@@ -2,7 +2,8 @@
 interface PropsCommandType {
     montant: number,
     id: string,
-    client:Client
+    client:Client,
+
 }
 
 type Client = {
