@@ -130,7 +130,7 @@ export default function MainCommand() {
                     <div className="tab-content ">
                         <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
 
-                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} />
+                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS}/>
 
                             <CommandsInProcessing refTraitement={traitementRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'traitement')} />
 

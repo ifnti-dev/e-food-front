@@ -34,8 +34,13 @@ export default function Details({togle,show}:{togle:any,show:boolean}) {
     }, [isPresent, safeToRemove]);
 
 
+
+
     
     if (show) {
+
+        console.log(22);
+        
         
         return (
 
@@ -52,7 +57,7 @@ export default function Details({togle,show}:{togle:any,show:boolean}) {
                 <div className="card-header py-3 d-flex justify-content-between bg-transparent border-bottom-0">
                     <h6 className="mb-0 fw-bold ">Upcomming Interviews</h6>
                 </div>
-                <div className="card-body   text-center" style={{ zIndex: 1000,maxHeight:800,overflow:"scroll" }}>
+                <div className="card-body height-status text-center" style={{ zIndex: 1000}}>
                     {/* <div className='placeholder-glow'>
                         <span className="placeholder col-6"></span>
                         <span className="placeholder w-75"></span>
