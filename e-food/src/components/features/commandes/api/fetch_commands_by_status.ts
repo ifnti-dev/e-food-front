@@ -5,14 +5,14 @@ const url: string = "api/client/order/all";
 
 const fetchCommandsByStatus = async (data:ParamCommandStatusType)=>{
 
-    const response: any = await instance.get(`${url}?page=${data.page}&size=${data.size}`,{ params: {"status":data.status}});
+    const response: any = await instance.get(`${url}?page=${data.page}&size=${data.size}&status=${data.status}`,);
 
 
     try {
         if (response.status != 200) {
             throw new Error(response.status)
         }
-        console.log(response.data);
+        // console.log(response.data);
         
         
         return response.data.content;

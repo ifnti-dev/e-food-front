@@ -6,8 +6,11 @@ import CommandsInProgress from '../commands_from_status/CommandsInProgress';
 import CommandsInDelivery from '../commands_from_status/CommandsInDelivery'
 import Spinner from '../../../events/components/Spinner';
 const Details = lazy(() => import('../details_command/Details'))
-import useAnimate from "../../hooks/useAnimate";
+
 import { AnimatePresence } from 'framer-motion';
+import { ComandListProvider, CommandContext } from '../../context/ComandContext';
+import { useFetchCommandsByStatus } from '../../hooks/useFetchCommandsByStatus';
+
 
 // const Details = lazy(() => delayForDemo(import('../details_command/Details')))
 
@@ -20,18 +23,18 @@ import { AnimatePresence } from 'framer-motion';
 
 export default function MainCommand() {
     const [show, setShow] = useState(false);
-    const [showCommand,setShowCommand] = useState(true);
+    // const [showCommand,setShowCommand] = useState(true);
 
     // const { parent } = useAnimate();
 
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('en cours');
-    const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
+    // const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
 
-    const enCoursRef = useRef<HTMLOListElement>(null);
+    // const enCoursRef = useRef<HTMLOListElement>(null);
     const traitementRef = useRef<HTMLOListElement>(null);
     const livraisonRef = useRef<HTMLOListElement>(null);
-    const livreRef = useRef<HTMLDivElement>(null);
+    // const livreRef = useRef<HTMLDivElement>(null);
 
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
         setDragging(true);
@@ -74,11 +77,38 @@ export default function MainCommand() {
         setShow(false);
     }
 
+    const fetchEnCours = ()=>{
 
+        const {commands} = useFetchCommandsByStatus({status:"EN_COURS",page:0,size:10});
+
+        return commands;
+
+    }
+
+    const fetchEnTraitement = ()=>{
+
+        const {commands} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
+
+        return commands;
+
+    }
+
+    const EN_COURS_COMMANDS = fetchEnCours();
+    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
+
+    console.log(EN_COURS_COMMANDS);
+    console.log(EN_TRAITEMENT_COMMANDS);
+    
+    
+  
+
+        
 
     return (
-        <>
-            <div className=" d-flex py-lg-3 py-md-2" >
+
+        <CommandContext.Consumer>
+           
+        {value =>  <div className=" d-flex py-lg-3 py-md-2" >
                 <div className="container-xxl">
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
@@ -130,8 +160,8 @@ export default function MainCommand() {
 
 
 
-            </div>
-
-        </>
+            </div>}
+        
+        </CommandContext.Consumer>
     )
 }
