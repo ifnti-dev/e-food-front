@@ -88,10 +88,10 @@ export default function MainCommand() {
 
     const fetchEnTraitement = ()=>{
 
-        const {cachedData} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
+        const {cachedDataEnTratement} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
 
 
-        return cachedData;
+        return cachedDataEnTratement;
 
     }
 

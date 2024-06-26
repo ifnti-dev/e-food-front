@@ -6,6 +6,7 @@ import fetchCommandsByStatus from "../api/fetch_commands_by_status";
 export function useFetchCommandsByStatus(data:ParamCommandStatusType) {
 
     const { commands, loading,setLoading,updateCommands } = useContext(CommandContext);
+    const {commandsEnTraitement,updateCommandsEnTraitement} = useContext(CommandContext);
 
     useEffect(() => { 
 
@@ -13,9 +14,22 @@ export function useFetchCommandsByStatus(data:ParamCommandStatusType) {
             try {
                 setLoading(true);
 
-                const commands = await fetchCommandsByStatus(data);
+                if (data.status == "EN_COURS") {
+                    
+                    const commands = await fetchCommandsByStatus(data);
+                    updateCommands(commands);
+                }
 
-                updateCommands(commands);
+                if (data.status == "EN_TRAITEMENT") {
+
+
+                    const commands = await fetchCommandsByStatus(data);
+                    updateCommandsEnTraitement(commands);
+
+                    
+                }
+
+
 
                 setLoading(false);
 
@@ -32,9 +46,11 @@ export function useFetchCommandsByStatus(data:ParamCommandStatusType) {
     },[]);
 
     const cachedData = useMemo(() => commands, [commands]);
+    const cachedDataEnTratement =  useMemo(() => commandsEnTraitement, [commandsEnTraitement]);
 
     return {
         cachedData,
-        loading
+        loading,
+        cachedDataEnTratement
     }
 }
