@@ -53,7 +53,7 @@ export default function MainCommand() {
         const droppedItemId = e.dataTransfer.getData('text/plain');
         const droppedItem = document.getElementById(droppedItemId);
         if (e.currentTarget && droppedItem) {
-            console.log(droppedItem.id);
+        
 
             e.currentTarget.appendChild(droppedItem);
         }
@@ -66,38 +66,38 @@ export default function MainCommand() {
 
 
     const togleShow = ()=>{
-        console.log(123);
+       
         
         setShow(true);
     }
 
     const togleHide = ()=>{
-        console.log(123);
+
         
         setShow(false);
     }
 
     const fetchEnCours = ()=>{
 
-        const {commands} = useFetchCommandsByStatus({status:"EN_COURS",page:0,size:10});
+        const {cachedData} = useFetchCommandsByStatus({status:"EN_COURS",page:0,size:10});
 
-        return commands;
+        return cachedData;
 
     }
 
     const fetchEnTraitement = ()=>{
 
-        const {commands} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
+        const {cachedData} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
 
-        return commands;
+        return cachedData;
 
     }
 
     const EN_COURS_COMMANDS = fetchEnCours();
-    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
+    // const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
 
     console.log(EN_COURS_COMMANDS);
-    console.log(EN_TRAITEMENT_COMMANDS);
+    // console.log(EN_TRAITEMENT_COMMANDS);
     
     
   

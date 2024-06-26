@@ -124,7 +124,7 @@ export function useUpdateFromTitleAndDes() {
             code: codeRef.current
         }
 
-        console.log(codeRef.current);
+   
 
 
         try {

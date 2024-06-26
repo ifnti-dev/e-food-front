@@ -12,7 +12,8 @@ const fetchCommandsByStatus = async (data:ParamCommandStatusType)=>{
         if (response.status != 200) {
             throw new Error(response.status)
         }
-        // console.log(response.data);
+       
+
         
         
         return response.data.content;

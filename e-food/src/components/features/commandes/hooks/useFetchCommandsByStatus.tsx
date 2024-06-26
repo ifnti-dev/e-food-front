@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useMemo } from "react";
 import { CommandContext } from "../context/ComandContext";
 import { ParamCommandStatusType } from "../types/interfaces";
 import fetchCommandsByStatus from "../api/fetch_commands_by_status";
@@ -11,13 +11,13 @@ export function useFetchCommandsByStatus(data:ParamCommandStatusType) {
 
         async function fetchData() {
             try {
-                // setLoading(true);
+                setLoading(true);
 
                 const commands = await fetchCommandsByStatus(data);
 
                 updateCommands(commands);
 
-                // setLoading(false);
+                setLoading(false);
 
             } catch (error) {
 
@@ -29,11 +29,12 @@ export function useFetchCommandsByStatus(data:ParamCommandStatusType) {
 
         fetchData();
 
-    },[data.status]);
+    },[]);
 
+    const cachedData = useMemo(() => commands, [commands]);
 
     return {
-        commands,
+        cachedData,
         loading
     }
 }
