@@ -1,6 +1,6 @@
 
 import { DeleteEventType } from "../types/interfaces";
-import instance from "../utils/axios"
+import instance from "../../../utils/axios"
 
 const deleteEventUrl: string = "api/restaurant/events";
 

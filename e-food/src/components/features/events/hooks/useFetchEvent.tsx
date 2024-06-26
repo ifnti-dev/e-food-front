@@ -2,7 +2,7 @@ import { useContext, useEffect, } from "react";
 import { EventPost, FullCalendarProps, } from "../types/interfaces";
 import getRestaurantEvents from "../api/getEvent";
 import { EventContext } from "../context/EventContext";
-import { datesDiff } from "../utils/diff_dates";
+import { datesDiff } from "../../../utils/diff_dates";
 
 
 export function useFetchEvent() {
