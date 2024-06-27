@@ -20,7 +20,8 @@ interface ParamCommandStatusType{
 
 interface UpdateStatusType{
     id:string,
-    status:string
+    status:string,
+    idClient:number
 }
 
 

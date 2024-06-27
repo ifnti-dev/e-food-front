@@ -1,19 +1,25 @@
-import {  UpdateStatusType } from "../types/interfaces";
+import { UpdateStatusType } from "../types/interfaces";
 import instance from "../../../utils/axios";
 
 const putUrl: string = "api/client/order/status";
 
 // POST /api/restaurant/events
-const putRestaurantEvents = async (body: UpdateStatusType) => {
+const putCommandStatus = async (body: UpdateStatusType) => {
 
     try {
-        const response: any = await instance.put(`${putUrl}/`, body = body,)
-        
-        if (response.status != 200) {
-            throw new Error("Network in not available")
+
+        if (body.id != '') {
+            
+            const response: any = await instance.put(`${putUrl}/`, body = body,)
+
+
+            if (response.status != 200) {
+                throw new Error("Network in not available")
+            }
         }
-        return  {
-            ok:true
+
+        return {
+            ok: true
         };
 
 
@@ -22,4 +28,4 @@ const putRestaurantEvents = async (body: UpdateStatusType) => {
     }
 }
 
-export default putRestaurantEvents;
+export default putCommandStatus;

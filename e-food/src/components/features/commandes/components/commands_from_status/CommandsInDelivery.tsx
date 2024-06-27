@@ -7,7 +7,7 @@ export default function CommandsInDelivery({ refDelivery, onDragOver, onDrop }: 
                 <h6 className="fw-bold py-3 mb-0"> En Livraison</h6>
                 <div className="completed_task border rounded">
                     <div className="dd  d-inline-block w-100 " data-plugin="nestable" >
-                        <ol className="dd-list " ref={refDelivery} onDragOver={onDragOver} onDrop={onDrop} style={{ minHeight: 150 }}>
+                        <ol className="dd-list " ref={refDelivery} onDragOver={onDragOver} onDrop={onDrop} style={{ minHeight: 200 }}>
 
                         </ol>
                     </div>

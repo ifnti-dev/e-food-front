@@ -8,9 +8,10 @@ import Spinner from '../../../events/components/Spinner';
 const Details = lazy(() => import('../details_command/Details'))
 
 import { AnimatePresence } from 'framer-motion';
-import { ComandListProvider, CommandContext } from '../../context/ComandContext';
+import {  CommandContext } from '../../context/ComandContext';
 import { useFetchCommandsByStatus } from '../../hooks/useFetchCommandsByStatus';
-import { PropsCommandType } from '../../types/interfaces';
+import { UpdateStatusType } from '../../types/interfaces';
+import useUpdateCommandStatus from '../../hooks/useUpdateCommandStatus';
 
 
 // const Details = lazy(() => delayForDemo(import('../details_command/Details')))
@@ -28,14 +29,22 @@ export default function MainCommand() {
 
     // const { parent } = useAnimate();
 
+
     const [dragging, setDragging] = useState<boolean>(false);
-    const [status, setStatus] = useState<string>('en cours');
+    const [status, setStatus] = useState<string>('EN_COURS');
+    const [id,setId] = useState("");
     // const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
 
     // const enCoursRef = useRef<HTMLOListElement>(null);
     const traitementRef = useRef<HTMLOListElement>(null);
     const livraisonRef = useRef<HTMLOListElement>(null);
     // const livreRef = useRef<HTMLDivElement>(null);
+
+
+    useUpdateCommandStatus({id:id,status:status,idClient:1});
+
+  
+    
 
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
         setDragging(true);
@@ -45,6 +54,7 @@ export default function MainCommand() {
     };
 
     const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+        
         e.preventDefault();
     };
 
@@ -53,12 +63,20 @@ export default function MainCommand() {
         e.stopPropagation();
         const droppedItemId = e.dataTransfer.getData('text/plain');
         const droppedItem = document.getElementById(droppedItemId);
+
+        console.log(droppedItemId);
+        
         if (e.currentTarget && droppedItem) {
         
 
             e.currentTarget.appendChild(droppedItem);
         }
+
+
+       
+
         setStatus(newStatus);
+        setId(droppedItemId);
         setDragging(false);
     };
 
@@ -98,7 +116,7 @@ export default function MainCommand() {
     const EN_COURS_COMMANDS = fetchEnCours();
     const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
 
-    // console.log(EN_COURS_COMMANDS);
+    console.log(EN_COURS_COMMANDS);
     console.log(EN_TRAITEMENT_COMMANDS);
     
     
@@ -134,9 +152,9 @@ export default function MainCommand() {
 
                             <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS}/>
 
-                            <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'traitement')} data={EN_TRAITEMENT_COMMANDS} />
+                            <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_TRAITEMENT')} data={EN_TRAITEMENT_COMMANDS} />
 
-                            <CommandsInDelivery refDelivery={livraisonRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'livraison')} />
+                            <CommandsInDelivery refDelivery={livraisonRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_LIVRAISON')} />
 
 
                         </div>
