@@ -18,5 +18,10 @@ interface ParamCommandStatusType{
     size:number|null
 }
 
+interface UpdateStatusType{
+    id:string,
+    status:string
+}
 
-export type {PropsCommandType,ParamCommandStatusType}
+
+export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType}
