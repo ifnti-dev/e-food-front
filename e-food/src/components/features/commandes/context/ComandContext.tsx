@@ -40,6 +40,8 @@ export const ComandListProvider = ({children}:{children:any}) => {
   
       const removeCommandById = (id:string) => {
         const newCommands = commands.filter((command:PropsCommandType) => command.id !== id);
+        
+        
         setCommands(newCommands);
       }
 

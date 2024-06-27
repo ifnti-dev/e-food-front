@@ -5,8 +5,8 @@ import putCommandStatus from "../api/putCommandStatus";
 
 export default function useUpdateCommandStatus(param: UpdateStatusType) {
 
-    const { commands, loading, setLoading, updateCommands } = useContext(CommandContext);
-    const { commandsEnTraitement, updateCommandsEnTraitement } = useContext(CommandContext);
+    const { commands, loading, setLoading,  } = useContext(CommandContext);
+    const { commandsEnTraitement,  } = useContext(CommandContext);
 
 
     async function update() {

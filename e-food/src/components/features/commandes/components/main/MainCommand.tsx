@@ -1,6 +1,6 @@
 
 import '../../css/index.css';
-import { lazy, Suspense, useRef, useState } from "react";
+import { lazy, Suspense, useContext, useRef, useState } from "react";
 import CommandsInProcessing from '../commands_from_status/CommandsInProcessing';
 import CommandsInProgress from '../commands_from_status/CommandsInProgress';
 import CommandsInDelivery from '../commands_from_status/CommandsInDelivery'
@@ -29,7 +29,7 @@ export default function MainCommand() {
 
     // const { parent } = useAnimate();
 
-
+  
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('EN_COURS');
     const [id,setId] = useState("");
@@ -47,6 +47,10 @@ export default function MainCommand() {
     
 
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
+
+        
+        
+        
         setDragging(true);
         if (e.currentTarget) {
             e.dataTransfer.setData('text/plain', e.currentTarget.id);
@@ -64,17 +68,12 @@ export default function MainCommand() {
         const droppedItemId = e.dataTransfer.getData('text/plain');
         const droppedItem = document.getElementById(droppedItemId);
 
-        console.log(droppedItemId);
         
         if (e.currentTarget && droppedItem) {
         
 
             e.currentTarget.appendChild(droppedItem);
         }
-
-
-       
-
         setStatus(newStatus);
         setId(droppedItemId);
         setDragging(false);
