@@ -10,7 +10,7 @@ export default function CommandLi({ order ,handleDragStart,togle , }: { order: P
                 onDragOver={(e) => e.preventDefault()} >
                 <div className="dd-handle " onClick={togle}>
                     <div className="task-info d-flex align-items-center justify-content-between">
-                        <h6 className="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">Website Design
+                        <h6 className="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">11
                         </h6>
                         <div className="task-priority d-flex flex-column align-items-center justify-content-center">
                             <div className="avatar-list avatar-list-stacked m-0">

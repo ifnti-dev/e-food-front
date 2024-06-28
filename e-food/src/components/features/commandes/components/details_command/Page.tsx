@@ -50,12 +50,12 @@ export const Example = () => {
   };
 
   return (
-    <div className="mb-2 position-relative">
+    <div className="mb-2 position-relative ">
       <AnimatePresence initial={false} custom={direction}>
 
-        <div >
+        <div className="rounded-2 border-1 bg-light shadow-lg" >
         <motion.img
-        className="rounded-2"
+        className=" rounded-top-2 " style={{borderTopRightRadius:5,borderTopLeftRadius:5 }}
           key={page}
           src={images[imageIndex]}
           custom={direction}
@@ -80,14 +80,33 @@ export const Example = () => {
             }
           }}
         />
+        <p className="text-black-20 m-2  pb-2 text-start fs fw-bold">Hodo</p>
+
+        <hr className=" hr  mx-2 m-0 mb-2" style={{backgroundColor:"grey",height:2}}/>
+
+        <div className=" d-flex  justify-content-between px-4 pb-3">
+
+           <div className="  p-2 w-25 border-1 border-black">
+            <i className="icofont-home fs-5 bi bi-house-fill"></i>
+            <p>dfdfdf</p>
+           </div>
+           <div className="  p-2 w-25">
+            <p>dfdf</p>
+            <p>dfdfdf</p>
+           </div>
+           <div className="   p-2 w-25">
+            <p>dfdf</p>
+            <p>dfdfdf</p>
+           </div>
+        </div>
         </div>
       </AnimatePresence>
-      <div className="next" onClick={() => paginate(1)}>
+      {/* <div className="next" onClick={() => paginate(1)}>
         {"‣"}
       </div>
       <div className="prev" onClick={() => paginate(-1)}>
         {"‣"}
-      </div>
+      </div> */}
     </div>
   );
 };

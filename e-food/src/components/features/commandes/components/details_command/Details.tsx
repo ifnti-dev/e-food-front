@@ -46,9 +46,7 @@ export default function Details({togle,show}:{togle:any,show:boolean}) {
 
             <>
             
-
-
-            <div ref={ref} className="card pb-4 end-0  w-50 fade-in-right shadow-lg position-relative" >
+            <div ref={ref} className="card pb-4 end-0  w-50 fade-in-right shadow-lg position-relative " >
 
             {/* <motion.div className="progress-bar" style={{ scaleX,pathLength: scrollYProgress }} /> */}
     

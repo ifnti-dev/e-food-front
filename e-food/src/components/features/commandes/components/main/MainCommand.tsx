@@ -113,15 +113,7 @@ export default function MainCommand() {
     }
 
     const EN_COURS_COMMANDS = fetchEnCours();
-    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
-
-    console.log(EN_COURS_COMMANDS);
-    console.log(EN_TRAITEMENT_COMMANDS);
-    
-    
-  
-
-        
+    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();      
 
     return (
 
