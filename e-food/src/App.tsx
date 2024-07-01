@@ -26,6 +26,7 @@ const router = createBrowserRouter([
       { path: "/events", element: <Calendar /> },
       { path: "/menus", element: <Menus /> },
       { path: "/create-menu", element: <MenuCreate /> },
+
     ],
   },
 ]);
