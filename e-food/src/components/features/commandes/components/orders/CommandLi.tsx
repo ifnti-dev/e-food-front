@@ -8,7 +8,7 @@ export default function CommandLi({ order ,handleDragStart,togle , }: { order: P
         <>
             <li className="dd-item " key={order.id} draggable id={order.id} onDragStart={handleDragStart}
                 onDragOver={(e) => e.preventDefault()} >
-                <div className="dd-handle " onClick={togle}>
+                <div className="dd-handle " onClick={() =>togle(order.id)}>
                     <div className="task-info d-flex align-items-center justify-content-between">
                         <h6 className="bg-lightgreen py-1 px-2 rounded-1 d-inline-block fw-bold small-14 mb-0">11
                         </h6>

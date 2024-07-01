@@ -8,9 +8,9 @@ import Spinner from '../../../events/components/Spinner';
 const Details = lazy(() => import('../details_command/Details'))
 
 import { AnimatePresence } from 'framer-motion';
-import {  CommandContext } from '../../context/ComandContext';
+import { CommandContext } from '../../context/ComandContext';
 import { useFetchCommandsByStatus } from '../../hooks/useFetchCommandsByStatus';
-import { UpdateStatusType } from '../../types/interfaces';
+
 import useUpdateCommandStatus from '../../hooks/useUpdateCommandStatus';
 
 
@@ -29,28 +29,26 @@ export default function MainCommand() {
 
     // const { parent } = useAnimate();
 
-  
+    const [data,setData] = useState("");
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('EN_COURS');
-    const [id,setId] = useState("");
+    const [id, setId] = useState("");
+
+    // const [idCmd,setIdCommande] = useState(0);
     // const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
 
-    // const enCoursRef = useRef<HTMLOListElement>(null);
     const traitementRef = useRef<HTMLOListElement>(null);
     const livraisonRef = useRef<HTMLOListElement>(null);
     // const livreRef = useRef<HTMLDivElement>(null);
 
 
-    useUpdateCommandStatus({id:id,status:status,idClient:1});
+    useUpdateCommandStatus({ id: id, status: status, idClient: 1 });
 
-  
-    
+
+
 
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
 
-        
-        
-        
         setDragging(true);
         if (e.currentTarget) {
             e.dataTransfer.setData('text/plain', e.currentTarget.id);
@@ -58,7 +56,7 @@ export default function MainCommand() {
     };
 
     const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
-        
+
         e.preventDefault();
     };
 
@@ -68,9 +66,9 @@ export default function MainCommand() {
         const droppedItemId = e.dataTransfer.getData('text/plain');
         const droppedItem = document.getElementById(droppedItemId);
 
-        
+
         if (e.currentTarget && droppedItem) {
-        
+
 
             e.currentTarget.appendChild(droppedItem);
         }
@@ -80,32 +78,41 @@ export default function MainCommand() {
     };
 
 
-  
+    const retrieveMenus = function updateCommandeId(id: string) {
+       setData(id);
+        // console.log(command.current);
+
+    }
 
 
-    const togleShow = ()=>{
-       
+    const togleShow = (id: string) => {
         
+
+            console.log(id);
+            
+            retrieveMenus(id);
+        
+
         setShow(true);
     }
 
-    const togleHide = ()=>{
+    const togleHide = () => {
 
-        
+
         setShow(false);
     }
 
-    const fetchEnCours = ()=>{
+    const fetchEnCours = () => {
 
-        const {cachedData} = useFetchCommandsByStatus({status:"EN_COURS",page:0,size:10});
+        const { cachedData } = useFetchCommandsByStatus({ status: "EN_COURS", page: 0, size: 10 });
 
         return cachedData;
 
     }
 
-    const fetchEnTraitement = ()=>{
+    const fetchEnTraitement = () => {
 
-        const {cachedDataEnTratement} = useFetchCommandsByStatus({status:"EN_TRAITEMENT",page:0,size:10});
+        const { cachedDataEnTratement } = useFetchCommandsByStatus({ status: "EN_TRAITEMENT", page: 0, size: 10 });
 
 
         return cachedDataEnTratement;
@@ -113,13 +120,13 @@ export default function MainCommand() {
     }
 
     const EN_COURS_COMMANDS = fetchEnCours();
-    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();      
+    const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
 
     return (
 
         <CommandContext.Consumer>
-           
-        {value =>  <div className=" d-flex py-lg-3 py-md-2" >
+
+            {value => <div className=" d-flex py-lg-3 py-md-2" >
                 <div className="container-xxl">
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
@@ -141,7 +148,7 @@ export default function MainCommand() {
                     <div className="tab-content ">
                         <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
 
-                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS}/>
+                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS} />
 
                             <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_TRAITEMENT')} data={EN_TRAITEMENT_COMMANDS} />
 
@@ -161,18 +168,18 @@ export default function MainCommand() {
                 </div>
 
 
-                
+
                 <Suspense fallback={<Spinner value={true} />}>
-    
+
                     <AnimatePresence>
-                        <Details togle={togleHide} show={show} />
-                        </AnimatePresence>
+                        {show && <Details togle={togleHide}  data={data} />}
+                    </AnimatePresence>
                 </Suspense>
 
 
 
             </div>}
-        
+
         </CommandContext.Consumer>
     )
 }

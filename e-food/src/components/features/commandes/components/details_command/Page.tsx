@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
-import  {images}  from "./image-data";
+import { images } from "./image-data";
 
 const variants = {
   enter: (direction: number) => {
@@ -54,53 +54,80 @@ export const Example = () => {
       <AnimatePresence initial={false} custom={direction}>
 
         <div className="rounded-2 border-1 bg-light shadow-lg" >
-        <motion.img
-        className=" rounded-top-2 " style={{borderTopRightRadius:5,borderTopLeftRadius:5 }}
-          key={page}
-          src={images[imageIndex]}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          transition={{
-            x: { type: "spring", stiffness: 300, damping: 30 },
-            opacity: { duration: 0.2 }
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
-            const swipe = swipePower(offset.x, velocity.x);
+          <motion.img
+            className=" rounded-top-2 " style={{ borderTopRightRadius: 5, borderTopLeftRadius: 5 }}
+            key={page}
+            src={images[imageIndex]}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{
+              x: { type: "spring", stiffness: 300, damping: 30 },
+              opacity: { duration: 0.2 }
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = swipePower(offset.x, velocity.x);
 
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(1);
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(-1);
-            }
-          }}
-        />
-        <p className="text-black-20 m-2  pb-2 text-start fs fw-bold">Hodo</p>
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1);
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1);
+              }
+            }}
+          />
+          <p className="text-black-20 m-2 px-1 text-start fs fw-bold">Hodo</p>
 
-        <hr className=" hr  mx-2 m-0 mb-2" style={{backgroundColor:"grey",height:2}}/>
+          <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} />
 
-        <div className=" d-flex  justify-content-between px-4 pb-3">
+          <div className=" d-flex  justify-content-between flex-sm-wrap px-4">
 
-           <div className="  p-2 w-25 border-1 border-black">
-            <i className="icofont-home fs-5 bi bi-house-fill"></i>
-            <p>dfdfdf</p>
-           </div>
-           <div className="  p-2 w-25">
-            <p>dfdf</p>
-            <p>dfdfdf</p>
-           </div>
-           <div className="   p-2 w-25">
-            <p>dfdf</p>
-            <p>dfdfdf</p>
-           </div>
+            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25 border-1 border-black">
+              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+              <p>dfdfdf</p>
+            </div>
+            <div className=" card-comp d-flex flex-column align-content-center justify-content-center p-2 w-25">
+              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+              <p>dfdfdf</p>
+            </div>
+            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25">
+              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+              <p>dfdfdf</p>
+            </div>
+
+            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25">
+              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+              <p>dfdfdf</p>
+            </div>
+            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25">
+              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+              <p>dfdfdf</p>
+            </div>
+          </div>
+
+          {/* <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} /> */}
+          <div className="accordion" id="accordionExample">
+           
+            <div className="accordion-item border-0 m-2 px-1">
+              <h2 className="accordion-header">
+                <button className="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Infos concercant la livraison
+                </button>
+              </h2>
+              <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div className="accordion-body">
+                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                </div>
+              </div>
+            </div>
+           
+          </div>
         </div>
-        </div>
-      </AnimatePresence>
+      </AnimatePresence> 
       {/* <div className="next" onClick={() => paginate(1)}>
         {"‣"}
       </div>
