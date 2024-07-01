@@ -8,8 +8,7 @@ import Welcome from './components/pages/Welcome';
 import UserTable from './components/pages/UserTable';
 
 import Publicite from './components/pages/Publicite';
-
-
+import {Publicites} from './components/features/fayssol/components/publiciteComponents/Publicites';
 import Calendar from './components/features/events/components/Calendar';
 
 const router = createBrowserRouter([
@@ -20,10 +19,10 @@ const router = createBrowserRouter([
       {path:'/', element:<Welcome/>},
       {path:'/liste', element:<UserTable/>},
 
-      {path:'/pub',element:<Publicite/>},
+      {path:'/pub',element:<Publicites/>},
 
       {path:'/events', element:<Calendar/>},
-
+     
     ],
     
   },
