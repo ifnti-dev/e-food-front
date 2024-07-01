@@ -5,7 +5,7 @@ interface EventSelect {
    
 }
 
-interface ShowModal{
+interface ShowModal {
     modal:boolean;
     setModal:React.Dispatch<React.SetStateAction<boolean>>;
 }
