@@ -3,6 +3,7 @@ import ReactDataTable from "./ReactDatatable";
 import DateFilterForm from "../partials/DateFilterForm";
 // import ActionComponent from "../partials/ActionComponent";
 
+//const action = () => <ActionComponent/>
 
 const data = [
   {
@@ -182,6 +183,7 @@ const UserTable = () => {
             />
             </div>
         </div>
+        {/* {data.map(e => <div>{e.action}</div>)} */}
     </>
   ) 
  
