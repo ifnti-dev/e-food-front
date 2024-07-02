@@ -1,16 +1,13 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
-import interactionPlugin, { EventDragStopArg } from "@fullcalendar/interaction" // needed for dayClick
-import { DateSelectArg, EventClickArg } from '@fullcalendar/core/index.js'
+import interactionPlugin, {  } from "@fullcalendar/interaction" // needed for dayClick
 import "../../../../App.css";
-import { useEffect, useState } from 'react';
-import { EventPost, EventToSend, FullCalendarProps, SwalSuccess, UpdateFormType } from "../types/interfaces";
 
-import getRestaurantEvents from '../api/getEvent';
-import postRestaurantEvents from '../api/postEvent';
+
+
 import Spinner from './Spinner';
-import { Success } from '../../../sweetalerts/Success';
+
 import UpdateForm from './UpdateForm';
 import { DeleteAlert } from '../../../sweetalerts/DeleteAlert';
 import { usePostEvent } from '../hooks/usePostEvent';
@@ -25,6 +22,9 @@ const Calendar = () => {
 
     //Fetch event handler hook
     const { loading, events } = useFetchEvent()
+
+    console.log(events);
+    
 
     //post event handler
     const { onSubmit, toggleModal, modal, handleSelect, onChange, registerPost, errorsPosts } = usePostEvent()

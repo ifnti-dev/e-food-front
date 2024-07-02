@@ -16,6 +16,8 @@ export function useFetchEvent() {
 
         let events: FullCalendarProps[] = [];
 
+        
+
         async function fetchData() {
             try {
 
