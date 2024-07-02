@@ -86,24 +86,24 @@ export const Example = () => {
 
           <div className=" d-flex  justify-content-between flex-sm-wrap px-4">
 
-            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25 border-1 border-black">
+            <div className=" card-comp  text-center p-2 w-25 border-1 border-black">
               <i className="icofont-home fs-5 bi bi-house-fill"></i>
               <p>dfdfdf</p>
             </div>
-            <div className=" card-comp d-flex flex-column align-content-center justify-content-center p-2 w-25">
+            <div className=" card-comp text-center p-2 w-25">
               <i className="icofont-home fs-5 bi bi-house-fill"></i>
               <p>dfdfdf</p>
             </div>
-            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25">
+            <div className=" card-comp text-center  p-2 w-25">
               <i className="icofont-home fs-5 bi bi-house-fill"></i>
               <p>dfdfdf</p>
             </div>
 
-            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25">
+            <div className=" card-comp text-center  p-2 w-25">
               <i className="icofont-home fs-5 bi bi-house-fill"></i>
               <p>dfdfdf</p>
             </div>
-            <div className=" card-comp d-flex flex-column align-content-center justify-content-center  p-2 w-25">
+            <div className=" card-comp text-center  p-2 w-25">
               <i className="icofont-home fs-5 bi bi-house-fill"></i>
               <p>dfdfdf</p>
             </div>

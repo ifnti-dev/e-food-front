@@ -1,18 +1,21 @@
-import { useEffect,  } from "react";
-import { ParamCommandStatusType } from "../types/interfaces";
+import {  useEffect, useState,  } from "react";
 import fetchMenuCommande from "../api/fetchMenuCommande";
 
 export function useFetchMenusCommande(id:string) {
 
-    
-    let data:any;
-
+    const [menus, setMenus] = useState();
+   
     useEffect(() => { 
 
         async function fetchData() {
+            
+            
             try {
                
-                data = fetchMenuCommande(id);
+               const menus = await fetchMenuCommande(id);
+
+                setMenus(menus);
+              
 
             } catch (error) {
 
@@ -22,18 +25,18 @@ export function useFetchMenusCommande(id:string) {
             }
         }
 
-        fetchData();
-
-    },[]);
+        
+fetchData();
+    },[id]);
 
     // const cachedData = useMemo(() => commands, [commands]);
     // const cachedDataEnTratement =  useMemo(() => commandsEnTraitement, [commandsEnTraitement]);
 
-    console.log(data);
+
     
 
-    return {
-        data,
-      
+    return{
+        menus
     }
+
 }

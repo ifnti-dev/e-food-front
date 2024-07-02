@@ -21,8 +21,13 @@ interface ParamCommandStatusType{
 interface UpdateStatusType{
     id:string,
     status:string,
-    idClient:number
+}
+
+interface MenuInterface{
+    id:string,
+    temps_preparation:string,
+    prix:number
 }
 
 
-export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType}
+export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType,MenuInterface}

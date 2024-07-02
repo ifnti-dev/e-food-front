@@ -12,6 +12,7 @@ import { CommandContext } from '../../context/ComandContext';
 import { useFetchCommandsByStatus } from '../../hooks/useFetchCommandsByStatus';
 
 import useUpdateCommandStatus from '../../hooks/useUpdateCommandStatus';
+import { useFetchMenusCommande } from '../../hooks/useFetchMenusCommande';
 
 
 // const Details = lazy(() => delayForDemo(import('../details_command/Details')))
@@ -29,12 +30,12 @@ export default function MainCommand() {
 
     // const { parent } = useAnimate();
 
-    const [data,setData] = useState("");
+
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('EN_COURS');
     const [id, setId] = useState("");
 
-    // const [idCmd,setIdCommande] = useState(0);
+    const [idCmd,setIdCommande] = useState("");
     // const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
 
     const traitementRef = useRef<HTMLOListElement>(null);
@@ -42,7 +43,7 @@ export default function MainCommand() {
     // const livreRef = useRef<HTMLDivElement>(null);
 
 
-    useUpdateCommandStatus({ id: id, status: status, idClient: 1 });
+    useUpdateCommandStatus({ id: id, status: status});
 
 
 
@@ -78,22 +79,22 @@ export default function MainCommand() {
     };
 
 
-    const retrieveMenus = function updateCommandeId(id: string) {
-       setData(id);
+
+       
         // console.log(command.current);
 
-    }
+        const menus:any = useFetchMenusCommande(idCmd);
+
+       console.log(menus);
+    
 
 
     const togleShow = (id: string) => {
         
 
-            console.log(id);
-            
-            retrieveMenus(id);
-        
-
         setShow(true);
+        
+        setIdCommande(id);
     }
 
     const togleHide = () => {
@@ -172,7 +173,7 @@ export default function MainCommand() {
                 <Suspense fallback={<Spinner value={true} />}>
 
                     <AnimatePresence>
-                        {show && <Details togle={togleHide}  data={data} />}
+                        {show && <Details togle={togleHide}  menus={menus} />}
                     </AnimatePresence>
                 </Suspense>
 

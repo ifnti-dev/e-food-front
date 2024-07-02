@@ -6,10 +6,9 @@ import { Example } from './Page';
 
 
 
-export default function Details({togle,data}:{togle:any,data:any}) {
+export default function Details({togle,menus}:{togle:any,menus:any}) {
 
 
-     console.log(data);
      
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -33,7 +32,6 @@ export default function Details({togle,data}:{togle:any,data:any}) {
             });
         }
     }, [isPresent, safeToRemove]);
-
 
         
         return (
@@ -59,12 +57,12 @@ export default function Details({togle,data}:{togle:any,data:any}) {
     
                   
 
-                    {/* <Example/>
+                    <Example/>
                     
 
                     <Example/>
 
-                    <Example/>  */}
+                    <Example/> 
                     
     
                 </div>
