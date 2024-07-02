@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import HeadDetails from './Head';
 import { usePresence, useScroll, useSpring } from 'framer-motion';
 import { gsap } from "gsap";
-import { Menu } from './Menu';
 import MenusList from './MenusList';
 
 

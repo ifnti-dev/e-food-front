@@ -30,8 +30,11 @@ const router = createBrowserRouter([
       { path: "/liste", element: <UserTable /> },
 
       //{ path: "/pub", element: <Publicite /> },
+      {path:'/list/events',element: <EventTable />},
+      {path:'list/commands',element:<MainCommand/>},
 
-      { path: "/events", element: <Calendar /> },
+
+      { path: "/manage/events", element: <Calendar /> },
       { path: "/menus", element: <Menus /> },
       { path: "/create-menu", element: <MenuCreate /> },      
       {path:'/e-food/users', element:<UserList/>},
