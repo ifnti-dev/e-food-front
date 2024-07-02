@@ -48,7 +48,7 @@ export default function CommandLi({ order ,handleDragStart,togle , }: { order: P
                         </div>
                         <div className="col-sm text-end">
 
-                            <div className="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> Practice to Perfect </div>
+                            <div className="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> 12h </div>
                         </div>
                     </div>
                 </div>
