@@ -65,6 +65,23 @@ li{
     cursor: pointer;
     border-radius: 10px;
 }
+
+.skeleton{
+  transition-property: width, opacity;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+  transition-delay: 500ms;
+
+  animation: openModal 0.4s ease-out forwards;
+
+}
+
+@keyframes openModal {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(0);   }
+}
+
+
   
   
   

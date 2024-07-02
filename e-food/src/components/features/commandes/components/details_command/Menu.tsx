@@ -3,6 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import { images } from "./image-data";
+import { MenuInterface } from "../../types/interfaces";
 
 const variants = {
   enter: (direction: number) => {
@@ -36,7 +37,7 @@ const swipePower = (offset: number, velocity: number) => {
   return Math.abs(offset) * velocity;
 };
 
-export const Example = () => {
+export const Menu = ({menu}:{menu:MenuInterface}) => {
   const [[page, direction], setPage] = useState([0, 0]);
 
   // We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
@@ -50,10 +51,10 @@ export const Example = () => {
   };
 
   return (
-    <div className="mb-2 position-relative ">
+    <div className="mb-2 position-relative skeleton">
       <AnimatePresence initial={false} custom={direction}>
 
-        <div className="rounded-2 border-1 bg-light shadow-lg" >
+        <div className="rounded-2 border-1  shadow-lg" >
           <motion.img
             className=" rounded-top-2 " style={{ borderTopRightRadius: 5, borderTopLeftRadius: 5 }}
             key={page}
@@ -80,7 +81,7 @@ export const Example = () => {
               }
             }}
           />
-          <p className="text-black-20 m-2 px-1 text-start fs fw-bold">Hodo</p>
+          <p className="text-black-20 m-2 px-1 text-start fs fw-bold">{menu.nom}  <span className=" ps-3 text-danger">{menu.prix } CFA</span> </p>
 
           <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} />
 
@@ -110,15 +111,15 @@ export const Example = () => {
           </div>
 
           {/* <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} /> */}
-          <div className="accordion" id="accordionExample">
+          <div className="accordion mb-4" id="accordionMenu">
            
             <div className="accordion-item border-0 m-2 px-1">
               <h2 className="accordion-header">
-                <button className="accordion-button collapsed p-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                <button className="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                   Infos concercant la livraison
                 </button>
               </h2>
-              <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionExample">
+              <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionMenu">
                 <div className="accordion-body">
                   <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
                 </div>

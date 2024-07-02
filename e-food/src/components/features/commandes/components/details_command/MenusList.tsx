@@ -1,11 +1,14 @@
 import { MenuInterface } from "../../types/interfaces";
-import { Example } from "./Page";
+import { Menu } from "./Menu";
 
 export default function MenusList({menus}:{menus:MenuInterface[]}){
 
+    console.log(menus);
+    
+
     return (
         <>
-        {menus.map(menu => <Example/>)}
+        {menus.map(menu => <Menu menu={menu}/>)}
         </>
     )
 }

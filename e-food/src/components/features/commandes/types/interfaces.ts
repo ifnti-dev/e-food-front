@@ -26,7 +26,8 @@ interface UpdateStatusType{
 interface MenuInterface{
     id:string,
     temps_preparation:string,
-    prix:number
+    prix:number,
+    nom:string|null
 }
 
 

@@ -3,7 +3,6 @@ import { PropsCommandType } from "../../types/interfaces";
 export default function CommandLi({ order ,handleDragStart,togle , }: { order: PropsCommandType,handleDragStart:any,togle:any }) {
 
 
-
     return (
         <>
             <li className="dd-item " key={order.id} draggable id={order.id} onDragStart={handleDragStart}

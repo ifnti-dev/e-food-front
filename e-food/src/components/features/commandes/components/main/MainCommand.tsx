@@ -83,7 +83,7 @@ export default function MainCommand() {
        
         // console.log(command.current);
 
-        const menus:any = useFetchMenusCommande(idCmd);
+        const {menus,skeleton} = useFetchMenusCommande(idCmd);
 
        console.log(menus);
     
@@ -173,7 +173,7 @@ export default function MainCommand() {
                 <Suspense fallback={<Spinner value={true} />}>
 
                     <AnimatePresence>
-                        {show && <Details togle={togleHide}  menus={menus} />}
+                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton}/>}
                     </AnimatePresence>
                 </Suspense>
 
