@@ -41,6 +41,16 @@
   animation: reveal 7s infinite;
 }
 
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  margin: auto;
+}
+
 .text-div:last-of-type span {
   margin-left:-355px;
   animation: slidein 7s infinite;
@@ -69,6 +79,8 @@
     80% {opacity:1;}
     100% {opacity:0;width:355px;}
 }
+
+
 
 
 
