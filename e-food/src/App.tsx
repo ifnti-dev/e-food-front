@@ -1,8 +1,14 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Dashboad from './components/layouts/Dashboard';
-import Welcome from './components/pages/Welcome';
-import UserTable from './components/pages/UserTable';
-import Calendar from './components/features/events/components/Calendar';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Dashboad from "./components/layouts/Dashboard";
+import Welcome from "./components/pages/Welcome";
+import UserTable from "./components/pages/UserTable";
+
+// import Publicite from "./components/pages/Publicite";
+
+import Calendar from "./components/features/events/components/Calendar";
+import MenuCreate from "./components/pages/Menus/create";
+import Menus from "./components/pages/Menus";
+
 import { EventListProvider } from './components/features/events/context/EventContext';
 import EventTable from './components/features/events/components/EventTable';
 import MainCommand from './components/features/commandes/components/main/MainCommand'
@@ -25,18 +31,12 @@ const router = createBrowserRouter([
 
 ]);
 
-
 function App() {
   return (
     <>
-      <ComandListProvider >
-
-        <EventListProvider>
-          <RouterProvider router={router} />
-        </EventListProvider>
-      </ComandListProvider>
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
 export default App;

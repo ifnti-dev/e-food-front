@@ -23,6 +23,8 @@ export default function Details({ togle, menus, skeleton }: { togle: any, menus:
 
     });
 
+    
+
     const [isPresent, safeToRemove] = usePresence();
 
     useEffect(() => {

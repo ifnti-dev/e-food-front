@@ -1,19 +1,23 @@
 // import FullCalendar from '@fullcalendar/react'
 import FullCalendar from '@fullcalendar/react'
-import interactionPlugin  from "@fullcalendar/interaction" // needed for dayClick
+import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin, { EventDragStopArg } from "@fullcalendar/interaction" // needed for dayClick
+import { DateSelectArg, EventClickArg } from '@fullcalendar/core/index.js'
 import "../../../../App.css";
+import { useEffect, useState } from 'react';
+import { EventPost, EventToSend, FullCalendarProps, SwalSuccess, UpdateFormType } from "../types/interfaces";
+
+import getRestaurantEvents from '../api/getEvent';
+import postRestaurantEvents from '../api/postEvent';
 import Spinner from './Spinner';
-import { useFetchEvent } from '../hooks/useFetchEvent';
+import { Success } from '../../../sweetalerts/Success';
+import UpdateForm from './UpdateForm';
+import { DeleteAlert } from '../../../sweetalerts/DeleteAlert';
 import { usePostEvent } from '../hooks/usePostEvent';
+import { useFetchEvent } from '../hooks/useFetchEvent';
 import { useUpdateFromDates } from '../hooks/useUpdateFromdates';
 import { useUpdateFromTitleAndDes } from '../hooks/useUpdateFromTitleAndDes';
-import UpdateForm from './UpdateForm';
-import timeGridPlugin from '@fullcalendar/timegrid'
-import dayGridPlugin from '@fullcalendar/daygrid';
-import { deleteProps } from '../constants/constant';
-import { DeleteAlert } from '../../../sweetalerts/DeleteAlert';
-
-
+import timeGridPlugin from '@fullcalendar/timegrid';
 
 
 const Calendar = () => {
@@ -53,7 +57,7 @@ const Calendar = () => {
 
                 {/* <Success isVisible={visible} visible={setVisible} props={successProps} /> */}
 
-                <DeleteAlert visible={deleteModal} setVisible={setDeleteModal} props={deleteProps} handleDelete={deleteEvent} />
+                <DeleteAlert visible={deleteModal} setVisible={setDeleteModal} />
 
                 {modal && <div className="modal overlay fade show d-block" id="addUser" tabIndex={-1} aria-labelledby="addUserLabel" aria-hidden="true" role='dialog' >
                     <div className="modal-dialog modal-dialog-centered modal-md">

@@ -3,7 +3,7 @@ import { Menu } from "./Menu";
 
 export default function MenusList({menus}:{menus:MenuInterface[]}){
 
-    console.log(menus);
+    
     
 
     return (

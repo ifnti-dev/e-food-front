@@ -1,36 +1,32 @@
 import { useEffect } from "react";
 import swal from "sweetalert";
-import { SwalDeletType } from "../features/events/types/interfaces";
 
-export function DeleteAlert({ visible,setVisible,props,handleDelete}: { visible: boolean,setVisible:React.Dispatch<React.SetStateAction<boolean>> ,props:SwalDeletType,handleDelete:any}) {
+export function DeleteAlert({ visible,setVisible }: { visible: boolean,setVisible:React.Dispatch<React.SetStateAction<boolean>> }) {
 
     useEffect(() => {
 
         const DeleteAlert = async ()=>{
             swal({
-                title: props.title,
-                text: props.text,
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
                 icon: "warning",
                 buttons: [true,"ok"],
                 dangerMode: true,
             })
                 .then((willDelete) => {
                     if (willDelete) {
-                        swal(props.text_success, {
+                        swal("Poof! Your imaginary file has been deleted!", {
                             icon: "success",
                         });
-
-                        handleDelete()
-                        
-                        setVisible(false)
+                        setVisible(!visible)
                     } else {
-                        swal(props.text_delete);
-                        setVisible(false)
+                        swal("Your imaginary file is safe!");
+                        setVisible(!visible)
                     }
                 });
         }
 
-        if (visible == true) {
+        if (visible) {
             DeleteAlert()
         }
        
