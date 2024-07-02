@@ -69,6 +69,16 @@
   transition: ease-in transfom 0.8s;
 }
 
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  margin: auto;
+}
+
 .menu-card {
   position: relative;
   box-shadow: #c5c5c5 0px 8px 2px 4px;
@@ -142,3 +152,4 @@
   padding: 8px 12px;
   border-radius: 100px;
 }
+
