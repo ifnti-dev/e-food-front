@@ -1,9 +1,10 @@
 import {  useEffect, useState,  } from "react";
 import fetchMenuCommande from "../api/fetchMenuCommande";
+import { MenuInterface } from "../types/interfaces";
 
 export function useFetchMenusCommande(id:string) {
 
-    const [menus, setMenus] = useState();
+    const [menus, setMenus] = useState<MenuInterface[]>();
    
     useEffect(() => { 
 

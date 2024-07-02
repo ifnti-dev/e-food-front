@@ -3,6 +3,7 @@ import HeadDetails from './Head';
 import { usePresence, useScroll, useSpring } from 'framer-motion';
 import { gsap } from "gsap";
 import { Example } from './Page';
+import MenusList from './MenusList';
 
 
 
@@ -57,12 +58,14 @@ export default function Details({togle,menus}:{togle:any,menus:any}) {
     
                   
 
-                    <Example/>
+                    {/* <Example/>
                     
 
                     <Example/>
 
-                    <Example/> 
+                    <Example/>  */}
+
+                    <MenusList menus={menus}/>
                     
     
                 </div>
