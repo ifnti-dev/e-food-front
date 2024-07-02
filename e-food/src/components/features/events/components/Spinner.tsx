@@ -7,7 +7,7 @@ function Spinner({value}: {value: boolean} ) {
 
                 <div className="text-center spinner">
                     <div className="spinner-border" role="status">
-                        <span className="visually-hidden">Loading...</span>
+                        <span className="visually-hidden" >Loading...</span>
                     </div>
                 </div>
             </>)
