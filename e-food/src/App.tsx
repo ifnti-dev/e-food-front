@@ -9,6 +9,8 @@ import UserTable from './components/pages/UserTable';
 import Login from './components/pages/LoginForm';
 import Register from './components/pages/Register';
 import UserList from './components/pages/UsersList';
+import Rest from './components/pages/Rest';
+import RestaurantUI from './components/pages/RestaurantUI';
 
 const router = createBrowserRouter([
   {
@@ -16,7 +18,18 @@ const router = createBrowserRouter([
     element:<Dashboad/>,
     children:[
       {path:'/', element:<Welcome/>},
-      {path:'/e-food/users', element:<UserList/>}
+      
+      {path:'/e-food/users', element:<UserList/>},
+
+      {
+        path:'/e-food/restaurants/ListeRestaurant',
+        element:<Rest/>,
+      },
+
+      {
+        path:'/e-food/restaurants/ListeRestauran',
+        element:<RestaurantUI/>,
+      }
     ],
   },
 

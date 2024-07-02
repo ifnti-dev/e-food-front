@@ -24,11 +24,20 @@ function SideBar() {
                             {/* <!-- Menu: Sub menu ul --> */}
                             <ul className="sub-menu collapse show" id="dashboard-Components">
                                 <Link to="/"><a className="ms-link active" href=""> <span>Home</span></a></Link>
-                                {/* <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link> */}
-                                <Link to="/e-food/users"><a className="ms-link active" href=""> <span>Users</span></a></Link>
-                               
+                                {/* <Link to="/liste"><a className="ms-link active" href=""> <span>Liste Users</span></a></Link> */}                               
                             </ul>
                         </li>
+
+                        <li className="collapsed">
+                        <Link to="/e-food/users"><a className="ms-link" href=""><i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Users</span></a></Link>
+
+                        </li>
+
+                        <li className="collapsed">
+                        <Link to="/e-food/restaurants/ListeRestaurant"><a className="ms-link " href=""><i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Restaurants</span></a></Link>
+
+                        </li>
+                        
                     </ul>
 
                     {/* <!-- Theme: Switch Theme --> */}

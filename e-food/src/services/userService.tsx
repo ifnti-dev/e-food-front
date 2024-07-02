@@ -76,24 +76,25 @@ const getUsers = async (): Promise<User[]> => {
     console.log(response.data);
 
     // Fetch roles for each user
-    // const usersWithRoles = await Promise.all(users.map(async user => {
-    //   const role = await getRoleById(user.role_id, config);
+    const usersWithRoles = await Promise.all(users.map(async user => {
+    const role = await getRoleById(user.role_id, config);
       
       
-    //   console.log(role);
-    // }));
+    console.log(role);
+
+     }));
 
   try {
     const response = await axios.get(`${API_URL}/users`, config);
     const users = response.data as User[];
 
     // Fetch roles for each user
-    // const usersWithRoles = await Promise.all(users.map(async user => {
-    //   const role = await getRoleById(user.role_id, config);
+    const usersWithRoles = await Promise.all(users.map(async user => {
+    const role = await getRoleById(user.role_id, config);
       
       
-    //   return { ...user, role };
-    // }));
+       return { ...user, role };
+     }));
 
     return users;
   } catch (error) {
@@ -115,7 +116,7 @@ const addUser = async (user: User): Promise<User> => {
   };
 
   try {
-    const response = await axios.post(`${API_URL}/auth/signup`, user, config);
+    const response = await axios.post(`${API_URL}/users/create`, user, config);
     return response.data;
   } catch (error) {
     throw error;

@@ -20,8 +20,6 @@ const UserList: React.FC = () => {
   });
   const [roles, setRoles] = useState<Role[]>([]);
 
-  
-
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -123,6 +121,11 @@ const UserList: React.FC = () => {
     return <p>{error}</p>;
   }
 
+  const getRoleLibelle = (roleId: number) => {
+    const role = roles.find(role => role.id === roleId);
+    return role ? role.libelle : 'Unknown Role';
+  };
+
   return (
     <>
       <div className="card mb-3">
@@ -157,7 +160,7 @@ const UserList: React.FC = () => {
                   <td>{user.nom}</td>
                   <td>{user.prenom}</td>
                   <td>{user.email}</td>
-                  <td></td>
+                  <td>{getRoleLibelle(user.role_id)}</td>
                   <td>{user.telephone}</td>
                   <td>{user.adresse}</td>
                   <td><span className="badge bg-info">Active</span></td>
@@ -192,7 +195,7 @@ const UserList: React.FC = () => {
                 <p>Email: {currentUser.email}</p>
                 <p>Contact: {currentUser.telephone}</p>
                 <p>Adresse: {currentUser.adresse}</p>
-                <p>Rôle: </p>
+                <p>Rôle: {getRoleLibelle(currentUser.role_id)}</p>
               </div>
               <div className="modal-footer">
                 <button type="button" className="btn btn-secondary" onClick={() => setShowModal(null)}>Fermer</button>
@@ -259,19 +262,19 @@ const UserList: React.FC = () => {
                             ))}
                           </select>
                         </div>
-                        <div className="col-md-6">
+                        {/* <div className="col-md-6">
                           <label className="form-label">File Upload</label>
                           <input className="form-control" type="file" id="formFileMultiple" />
-                        </div>
+                        </div> */}
                       </div>
+                      <div className='d-flex justify-content-end'>
                       <button type="submit" className="btn btn-secondary mt-4">Submit</button>
+                      </div>
                     </form>
                   </div>
                 </div>
               </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(null)}>Fermer</button>
-              </div>
+              
             </div>
           </div>
         </div>
