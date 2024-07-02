@@ -14,7 +14,7 @@ import Rest from './components/pages/Rest';
 import RestaurantUI from './components/pages/RestaurantUI';
 
 
-import Publicite from "./components/pages/Publicite";
+//import Publicite from "./components/pages/Publicite";
 
 import Calendar from "./components/features/events/components/Calendar";
 import MenuCreate from "./components/pages/Menus/create";
@@ -28,7 +28,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Welcome /> },
       { path: "/liste", element: <UserTable /> },
 
-      { path: "/pub", element: <Publicite /> },
+      //{ path: "/pub", element: <Publicite /> },
 
       { path: "/events", element: <Calendar /> },
       { path: "/menus", element: <Menus /> },
