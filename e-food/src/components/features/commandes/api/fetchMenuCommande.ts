@@ -23,7 +23,4 @@ const fetchMenuCommande = async (id:string)=>{
 
 
 
-
-
-
 export default fetchMenuCommande;
