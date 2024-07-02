@@ -13,9 +13,6 @@ const fetchCommandsByStatus = async (data:ParamCommandStatusType)=>{
             throw new Error(response.status)
         }
        
-
-        
-        
         return response.data.content;
 
         
