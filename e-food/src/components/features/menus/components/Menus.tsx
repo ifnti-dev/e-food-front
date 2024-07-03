@@ -29,7 +29,7 @@ const Menus: React.FC = () => {
         'https://st.depositphotos.com/1799455/4320/i/950/depositphotos_43200637-stock-photo-sushi-salmon-and-tuna-sushi.jpg',
         'https://st2.depositphotos.com/1027720/7836/i/950/depositphotos_78364128-stock-photo-japanese-sukiyaki-dish.jpg',
       ],
-      price: 20,
+      price: 60,
     },
     // Ajoute d'autres menus si nécessaire
     {
@@ -42,7 +42,7 @@ const Menus: React.FC = () => {
           'https://st.depositphotos.com/1799455/4320/i/950/depositphotos_43200637-stock-photo-sushi-salmon-and-tuna-sushi.jpg',
           'https://st2.depositphotos.com/1027720/7836/i/950/depositphotos_78364128-stock-photo-japanese-sukiyaki-dish.jpg',
         ],
-        price: 20,
+        price: 25,
       },
       {
         id: 4,
@@ -54,7 +54,7 @@ const Menus: React.FC = () => {
           'https://st.depositphotos.com/1799455/4320/i/950/depositphotos_43200637-stock-photo-sushi-salmon-and-tuna-sushi.jpg',
           'https://st2.depositphotos.com/1027720/7836/i/950/depositphotos_78364128-stock-photo-japanese-sukiyaki-dish.jpg',
         ],
-        price: 20,
+        price: 120,
       },
       {
         id: 5,
@@ -66,7 +66,7 @@ const Menus: React.FC = () => {
           'https://st.depositphotos.com/1799455/4320/i/950/depositphotos_43200637-stock-photo-sushi-salmon-and-tuna-sushi.jpg',
           'https://st2.depositphotos.com/1027720/7836/i/950/depositphotos_78364128-stock-photo-japanese-sukiyaki-dish.jpg',
         ],
-        price: 20,
+        price: 150,
       },
       {
         id: 6,
@@ -79,6 +79,18 @@ const Menus: React.FC = () => {
           'https://st2.depositphotos.com/1027720/7836/i/950/depositphotos_78364128-stock-photo-japanese-sukiyaki-dish.jpg',
         ],
         price: 20,
+      },
+      {
+        id: 7,
+        name: 'Menu Végétarien',
+        status: 'Épuisé',
+        preparationTime: '25 minutes',
+        elements: ['Entrée', 'Plat principal', 'Dessert'],
+        images: [
+          
+          'https://st2.depositphotos.com/1027720/7836/i/950/depositphotos_78364128-stock-photo-japanese-sukiyaki-dish.jpg',
+        ],
+        price: 200,
       },
   ];
 

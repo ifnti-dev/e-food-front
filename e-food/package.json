@@ -16,6 +16,7 @@
     "@fullcalendar/react": "^6.1.11",
     "@fullcalendar/timegrid": "^6.1.11",
     "@redux-devtools/extension": "^3.3.0",
+    "@reduxjs/toolkit": "^2.2.6",
     "@types/sweetalert": "^2.0.4",
     "axios": "^1.7.2",
     "bootstrap": "^5.3.3",

@@ -2,17 +2,11 @@ import React, { useState } from 'react';
 import { Card, Carousel, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { FaEdit, FaTrash, FaEyeSlash, FaEye } from 'react-icons/fa';
 import './MenuCard.css'; // Assure-toi d'importer correctement ton fichier de styles
+import './Menu';
+import { Menu } from './Menu';
 
 interface MenuCardProps {
-  menu: {
-    id: number;
-    name: string;
-    status: string;
-    preparationTime: string;
-    elements: string[];
-    images: string[];
-    price: number;
-  };
+  menu: Menu;
 }
 
 const MenuCard: React.FC<MenuCardProps> = ({ menu }) => {
@@ -39,7 +33,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ menu }) => {
         className='bg-light bg-gradient'
       >
           <div className="price-badge">{menu.price} €</div>
-        <Carousel className='bg-primary'>
+        <Carousel className='bg-body'>
           {menu.images.map((image, index) => (
             <Carousel.Item key={index}>
               <div className="carousel-image-wrapper">
@@ -64,7 +58,7 @@ const MenuCard: React.FC<MenuCardProps> = ({ menu }) => {
             <strong>Éléments:</strong> {menu.elements.join(', ')}
           </Card.Text>
           <Card.Text>
-            <strong>Prix:</strong> {menu.price} €
+            {/* <strong>Prix:</strong> {menu.price} € */}
           </Card.Text>
         </Card.Body>
         {hovered && (
