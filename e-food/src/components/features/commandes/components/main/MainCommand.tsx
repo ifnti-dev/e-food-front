@@ -40,7 +40,7 @@ export default function MainCommand() {
 
     const traitementRef = useRef<HTMLOListElement>(null);
     const livraisonRef = useRef<HTMLOListElement>(null);
-    // const livreRef = useRef<HTMLDivElement>(null);
+    // const divRef = useRef<HTMLDivElement>(null);
 
 
     useUpdateCommandStatus({ id: id, status: status});
@@ -127,7 +127,7 @@ export default function MainCommand() {
 
         <CommandContext.Consumer>
 
-            {value => <div className=" d-flex py-lg-3 py-md-2" >
+            {value => <div className=" d-flex py-lg-3 py-md-2"  >
                 <div className="container-xxl">
                     <div className="row align-items-center">
                         <div className="border-0 mb-4">
@@ -173,7 +173,7 @@ export default function MainCommand() {
                 <Suspense fallback={<Spinner value={true} />}>
 
                     <AnimatePresence>
-                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton}/>}
+                        {show && <Details togle={togleHide}  menus={menus!} skeleton={skeleton}/>}
                     </AnimatePresence>
                 </Suspense>
 

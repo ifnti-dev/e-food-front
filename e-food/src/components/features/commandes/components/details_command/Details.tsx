@@ -3,12 +3,17 @@ import HeadDetails from './Head';
 import { usePresence, useScroll, useSpring } from 'framer-motion';
 import { gsap } from "gsap";
 import MenusList from './MenusList';
+import { MenuInterface } from '../../types/interfaces';
 
 
 
-export default function Details({ togle, menus, skeleton }: { togle: any, menus: any, skeleton: boolean }) {
+export default function Details({ togle, menus, skeleton}: { togle: any, menus: MenuInterface[], skeleton: boolean}) {
 
 
+    let total = menus.reduce((previousValue, currentValue) => {
+        
+        return previousValue + parseInt(currentValue.temps_preparation) ;
+      }, 0);
 
     const ref = useRef(null);
     const { scrollYProgress } = useScroll({
@@ -44,7 +49,7 @@ export default function Details({ togle, menus, skeleton }: { togle: any, menus:
 
                 {/* <motion.div className="progress-bar" style={{ scaleX,pathLength: scrollYProgress }} /> */}
 
-                <HeadDetails setShow={togle} />
+                <HeadDetails setShow={togle} total={total}/>
 
 
                 <div className="card-header py-3  border-bottom-0">
@@ -67,7 +72,7 @@ export default function Details({ togle, menus, skeleton }: { togle: any, menus:
 
                     <Menu/>  */}
 
-                    <MenusList menus={menus} />
+                    <MenusList menus={menus!} />
 
 
                 </div>

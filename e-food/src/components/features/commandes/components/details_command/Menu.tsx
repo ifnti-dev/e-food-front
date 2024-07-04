@@ -83,9 +83,9 @@ export const Menu = ({menu}:{menu:MenuInterface}) => {
           />
           <p className="text-black-20 m-2 px-1 text-start fs fw-bold">{menu.nom}  <span className=" ps-3 text-danger">{menu.prix } CFA</span> </p>
 
-          <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} />
+          <hr className=" hr  mx-2 m-0 mb-3" style={{ backgroundColor: "grey", height: 2 }} />
 
-          <div className=" d-flex  justify-content-between flex-sm-wrap px-4">
+          <div className=" d-flex  justify-content-between flex-sm-wrap px-4 pb-3">
 
             <div className=" card-comp  text-center p-2 w-25 border-1 border-black">
               <i className="icofont-home fs-5 bi bi-house-fill"></i>
@@ -111,22 +111,7 @@ export const Menu = ({menu}:{menu:MenuInterface}) => {
           </div>
 
           {/* <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} /> */}
-          <div className="accordion mb-4" id="accordionMenu">
-           
-            <div className="accordion-item border-0 m-2 px-1">
-              <h2 className="accordion-header">
-                <button className="accordion-button collapsed p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                  Infos concercant la livraison
-                </button>
-              </h2>
-              <div id="collapseTwo" className="accordion-collapse collapse" data-bs-parent="#accordionMenu">
-                <div className="accordion-body">
-                  <strong>This is the second item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
-                </div>
-              </div>
-            </div>
-           
-          </div>
+        
         </div>
       </AnimatePresence> 
       {/* <div className="next" onClick={() => paginate(1)}>
