@@ -2,7 +2,7 @@ import { PropsCommandType } from "../../types/interfaces";
 import CommandList from "../orders/CommandList";
 
 
-export default function CommandsInProgress({handleDragStart,togle ,data}:{handleDragStart:any,togle:any,data:PropsCommandType[]}) {
+export default function CommandsInProgress({handleDragStart,togle ,data,status}:{status :string,handleDragStart:any,togle:any,data:PropsCommandType[]}) {
 
     return (
         <>
@@ -12,7 +12,7 @@ export default function CommandsInProgress({handleDragStart,togle ,data}:{handle
                     <div className="progress_task border rounded border-success-subtle height-status ">
                         <div className="dd" data-plugin="nestable">
                             <ol className="dd-list" >
-                                <CommandList handleDragStart={handleDragStart} data={data} togle={togle}/>
+                                <CommandList handleDragStart={handleDragStart} data={data} togle={togle} status={status} />
                             </ol>
                         </div>
                     </div>

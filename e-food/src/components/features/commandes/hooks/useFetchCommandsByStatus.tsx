@@ -5,7 +5,7 @@ import fetchCommandsByStatus from "../api/fetch_commands_by_status";
 
 export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
 
-    const { commands, loading, setLoading, addCommands } = useContext(CommandContext);
+    const { commands, loading, setLoading, updateCommands } = useContext(CommandContext);
     const { commandsEnTraitement, updateCommandsEnTraitement } = useContext(CommandContext);
 
    
@@ -21,7 +21,7 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
 
                     const commands = await fetchCommandsByStatus(data);
 
-                    addCommands(commands);
+                    updateCommands(commands);
                 }
 
                 if (data.status == "EN_TRAITEMENT") {

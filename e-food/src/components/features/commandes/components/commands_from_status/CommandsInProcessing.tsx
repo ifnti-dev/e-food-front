@@ -2,7 +2,7 @@ import { PropsCommandType } from "../../types/interfaces";
 import CommandList from "../orders/CommandList";
 
 
-export default function CommandsInProcessing({refTraitement,onDragOver,onDrop ,data ,togle, handleDragStart }:{refTraitement:any,onDragOver:any,onDrop:any ,data:PropsCommandType[], togle:any,handleDragStart:any }) {
+export default function CommandsInProcessing({refTraitement,onDragOver,onDrop ,data ,togle, handleDragStart,status }:{status :string,refTraitement:any,onDragOver:any,onDrop:any ,data:PropsCommandType[], togle:any,handleDragStart:any }) {
 
     return (
         <>
@@ -12,7 +12,7 @@ export default function CommandsInProcessing({refTraitement,onDragOver,onDrop ,d
                     <div className="dd  d-inline-block w-100 " data-plugin="nestable" >
                         <ol className="dd-list " ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} >
 
-                        <CommandList handleDragStart={handleDragStart} data={data} togle={togle}/>
+                        <CommandList handleDragStart={handleDragStart} data={data} togle={togle} status={status} />
 
                         </ol>
                     </div>
