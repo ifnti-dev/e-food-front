@@ -2,14 +2,16 @@
 interface PropsCommandType {
     montant: number,
     id: string,
-    client:Client,
+    date:number,
+    nom:string,
+    prenom:string
 
 }
 
-type Client = {
-    nom:string,
-    prenom:string
-} 
+// type Client = {
+//     nom:string,
+//     prenom:string
+// } 
 
 
 interface ParamCommandStatusType{

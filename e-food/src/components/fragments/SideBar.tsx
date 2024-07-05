@@ -14,6 +14,7 @@ function SideBar() {
 
   return (
     <>
+  
       <div className="sidebar px-4 py-4 py-md-5 me-0">
         <div className="d-flex flex-column h-100">
           <a href="#" className="mb-0 brand-icon">
@@ -70,7 +71,7 @@ function SideBar() {
           <ul className="menu-list  mt-2">
             <li className="collapsed">
               <a className={splitLocation[1] === "events" ? "ms-link active" : "ms-link"} data-bs-toggle="collapse" data-bs-target="#events-Components" href="/" >
-                <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Evenements</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
+                <i className="icofont-home fs-5 bi bi-house-fill"></i>{" "} <span>Evenements</span>{" "} <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
               {/* <!-- Menu: Sub menu ul --> */}
               <ul className={splitLocation[1] === "events" ? "sub-menu collapse show" : "sub-menu collapse "} id="events-Components">
                 <Link to="/manage/events"><a className={splitLocation[1] + splitLocation[2] === "manageevents" ? "ms-link active" : "ms-link"} href=""> <span>Créer un évenement</span></a></Link>
@@ -82,7 +83,7 @@ function SideBar() {
           <ul className="menu-list flex-grow-1 mt-2">
             <li className="collapsed">
               <a className={splitLocation[1] === "commands" ? "ms-link active" : "ms-link"} data-bs-toggle="collapse" data-bs-target="#commands-Components" href="/" >
-                <i className="icofont-home fs-5 bi bi-house-fill"></i> <span>Commandes</span> <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
+                <i className="icofont-home fs-5 bi bi-house-fill"></i>{" "} <span>Commandes</span>{" "} <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
               {/* <!-- Menu: Sub menu ul --> */}
               <ul className={splitLocation[1] === "commands" ? "sub-menu collapse show" : "sub-menu collapse "} id="commands-Components">
                 <Link to="/list/commands"><a className={splitLocation[1] + splitLocation[2] === "listcommands" ? "ms-link active" : "ms-link"} href=""> <span>La liste des commandes</span></a></Link>
