@@ -1,21 +1,19 @@
-import { EventToSend } from "../types/interfaces";
+import { EventToUpadeType } from "../types/interfaces";
 import instance from "../../../utils/axios";
 
 const postEventUrl: string = "api/restaurant/events";
 
 // POST /api/restaurant/events
-const postRestaurantEvents = async (body: EventToSend) => {
-    const response: any = await instance.post(`${postEventUrl}/`, body = body,)
+const putRestaurantEvents = async (body: EventToUpadeType) => {
 
 
-    
 
     try {
+        const response: any = await instance.put(`${postEventUrl}/`, body = body,)
+        
         if (response.status != 200) {
             throw new Error("Network in not available")
         }
-
-
         return;
 
 
@@ -24,4 +22,4 @@ const postRestaurantEvents = async (body: EventToSend) => {
     }
 }
 
-export default postRestaurantEvents;
+export default putRestaurantEvents;

@@ -1,7 +1,3 @@
-// import { useState } from 'react'
-// import reactLogo from './assets/react.svg'
-// import viteLogo from '/vite.svg'
-// import './App.css'
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Dashboad from "./components/layouts/Dashboard";
@@ -14,23 +10,29 @@ import Rest from './components/pages/Rest';
 import RestaurantUI from './components/pages/RestaurantUI';
 
 
-//import Publicite from "./components/pages/Publicite";
+//// import Publicite from "./components/pages/Publicite";
 
 import Calendar from "./components/features/events/components/Calendar";
 import MenuCreate from "./components/pages/Menus/create";
 import Menus from "./components/pages/Menus";
 
+import EventTable from './components/features/events/components/EventTable';
+import MainCommand from './components/features/commandes/components/main/MainCommand'
+
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Dashboad />,
     children: [
       { path: "/", element: <Welcome /> },
       { path: "/liste", element: <UserTable /> },
 
       //{ path: "/pub", element: <Publicite /> },
+      {path:'/list/events',element: <EventTable />},
+      {path:'list/commands',element:<MainCommand/>},
 
-      { path: "/events", element: <Calendar /> },
+
+      { path: "/manage/events", element: <Calendar /> },
       { path: "/menus", element: <Menus /> },
       { path: "/create-menu", element: <MenuCreate /> },      
       {path:'/e-food/users', element:<UserList/>},
@@ -46,6 +48,7 @@ const router = createBrowserRouter([
       }
 
     ],
+
   },
         
   {
