@@ -11,7 +11,7 @@ export default function useUpdateCommandStatus(param: UpdateStatusType) {
 
     async function update() {
         
-        const response:{ok:boolean} = await putCommandStatus(param);
+         await putCommandStatus(param);
 
     }
 

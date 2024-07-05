@@ -4,8 +4,11 @@ import { MenuInterface } from "../types/interfaces";
 
 export function useFetchMenusCommande(id: string) {
 
-    const [menus, setMenus] = useState<MenuInterface[]>();
+    const [menus, setMenus] = useState<MenuInterface[]>([]);
     const [skeleton, setSkeleton] = useState(false);
+  
+    console.log("out");
+    
 
 
     useEffect(() => {
@@ -14,17 +17,16 @@ export function useFetchMenusCommande(id: string) {
 
             if (id != '') {
                 
+                console.log("in");
+                
+                
                 try {
 
                     setSkeleton(true);
                     
                     const menus = await fetchMenuCommande(id);
     
-                    setMenus(menus);
-
-                    setTimeout(() => {
-                        
-                    }, 2000);
+                    setMenus(menus);           
     
                     setSkeleton(false)
 
@@ -41,7 +43,8 @@ export function useFetchMenusCommande(id: string) {
 
 
         fetchData();
-    }, [id]);
+
+    },[id]);
 
     // const cachedData = useMemo(() => commands, [commands]);
     // const cachedDataEnTratement =  useMemo(() => commandsEnTraitement, [commandsEnTraitement]);

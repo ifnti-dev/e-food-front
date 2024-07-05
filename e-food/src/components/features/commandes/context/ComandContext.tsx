@@ -20,6 +20,8 @@ export const ComandListProvider = ({children}:{children:any}) => {
     const updateCommandsEnTraitement = (commands:PropsCommandType[]) => {
       setCommandsEnTraitement(commands)
       }
+
+
       
     
       const removeCommandEnTraitementById = (id:string) => {
@@ -36,6 +38,11 @@ export const ComandListProvider = ({children}:{children:any}) => {
       const updateCommands = (commands:PropsCommandType[]) => {
         setCommands(commands)
       }
+
+
+      const addCommands = (commandInComm:PropsCommandType[]) => {
+        setCommands([...commands,...commandInComm])
+      }
       
   
       const removeCommandById = (id:string) => {
@@ -46,7 +53,7 @@ export const ComandListProvider = ({children}:{children:any}) => {
       }
 
     return (
-        <CommandContext.Provider value={{ commands,addCommandEnTraitement,removeCommandById, updateCommands,loading,setLoading ,updateCommandsEnTraitement, removeCommandEnTraitementById,commandsEnTraitement }}>
+        <CommandContext.Provider value={{addCommands, commands,addCommandEnTraitement,removeCommandById, updateCommands,loading,setLoading ,updateCommandsEnTraitement, removeCommandEnTraitementById,commandsEnTraitement }}>
           {children}
         </CommandContext.Provider>
       );

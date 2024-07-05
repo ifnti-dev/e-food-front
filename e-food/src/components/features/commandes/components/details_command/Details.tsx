@@ -10,9 +10,11 @@ import { MenuInterface } from '../../types/interfaces';
 export default function Details({ togle, menus, skeleton}: { togle: any, menus: MenuInterface[], skeleton: boolean}) {
 
 
+
     let total = menus.reduce((previousValue, currentValue) => {
         
         return previousValue + parseInt(currentValue.temps_preparation) ;
+
       }, 0);
 
     const ref = useRef(null);

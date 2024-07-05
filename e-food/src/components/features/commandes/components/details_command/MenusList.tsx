@@ -5,7 +5,7 @@ export default function MenusList({menus}:{menus:MenuInterface[]}){
 
     return (
         <>
-        {menus.map(menu => <Menu menu={menu} />)}
+        {menus.map(menu => <Menu menu={menu} key={menu.id} />)}
         </>
     )
 }

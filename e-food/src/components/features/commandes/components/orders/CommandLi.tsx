@@ -12,8 +12,8 @@ export default function CommandLi({ order, handleDragStart, togle, }: { order: P
                 <div className="dd-handle " onClick={() => togle(order.id)}>
                     <div className="task-info d-flex align-items-center justify-content-between">
 
-                        <div className="avatar-list avatar-list-stacked d-flex align-items-center justify-content-between">
-                            <h3 className="avatar rounded-circle text-center text-capitalize" >{order.nom.substring(0, 2)}</h3>
+                        <div className="avatar-list avatar-list-stacked ">
+                            <span className="avatar rounded-circle text-center text-capitalize">{order.nom.substring(0, 2)}</span>
 
                         </div>
                         <div>
