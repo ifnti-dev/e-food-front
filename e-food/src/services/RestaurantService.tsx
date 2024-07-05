@@ -11,21 +11,22 @@ const api = axios.create({
   },
 });
 
-export const getAllRestaurants = async (): Promise<Restaurant[]> => {
-  try {
-
-    const token = localStorage.getItem('token');
+const getConfig = (): AxiosRequestConfig => {
+  const token = localStorage.getItem('token');
   if (!token) {
     throw new Error('Token non trouvé dans le localStorage.');
   }
-
-  const config: AxiosRequestConfig = {
+  return {
     headers: {
       Authorization: `Bearer ${token}`,
-    }
+    },
   };
+};
 
-    const response = await api.get('/ListeRestaurant',config);
+export const getAllRestaurants = async (): Promise<Restaurant[]> => {
+  try {
+    const config = getConfig();
+    const response = await api.get('/ListeRestaurant', config);
     return response.data;
   } catch (error) {
     console.error('Error fetching restaurants:', error);
@@ -33,44 +34,22 @@ export const getAllRestaurants = async (): Promise<Restaurant[]> => {
   }
 };
 
-export const createRestaurant = async (formData: FormData) => {
+export const createRestaurant = async (restaurantData: Restaurant): Promise<Restaurant> => {
   try {
-
-    const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('Token non trouvé dans le localStorage.');
-  }
-
-  const config: AxiosRequestConfig = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  };
-    const response = await api.post('/SaveRestaurant', formData, config);
-
+    const config = getConfig();
+    const response = await api.post('/SaveRestaurant', restaurantData, config);
     return response.data;
-
   } catch (error) {
     console.error('Error creating restaurant:', error);
     throw error;
   }
 };
 
-export const updateRestaurant = async (code: number, restaurantData: Restaurant): Promise<void> => {
+export const updateRestaurant = async (code: number, restaurantData: Restaurant): Promise<Restaurant> => {
   try {
-
-    const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('Token non trouvé dans le localStorage.');
-  }
-
-  const config: AxiosRequestConfig = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  };
-
-    await api.put(`/updateRestaurant/${code}`, restaurantData,config);
+    const config = getConfig();
+    const response = await api.put(`/updateRestaurant/${code}`, restaurantData, config);
+    return response.data;
   } catch (error) {
     console.error('Error updating restaurant:', error);
     throw error;
@@ -79,19 +58,8 @@ export const updateRestaurant = async (code: number, restaurantData: Restaurant)
 
 export const deleteRestaurant = async (code: number): Promise<void> => {
   try {
-
-    const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('Token non trouvé dans le localStorage.');
-  }
-
-  const config: AxiosRequestConfig = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  };
-
-    await api.delete(`/deleteRestaurant/${code}`,config);
+    const config = getConfig();
+    await api.delete(`/deleteRestaurant/${code}`, config);
   } catch (error) {
     console.error('Error deleting restaurant:', error);
     throw error;
@@ -100,19 +68,8 @@ export const deleteRestaurant = async (code: number): Promise<void> => {
 
 export const getRestaurantById = async (code: number): Promise<Restaurant> => {
   try {
-
-    const token = localStorage.getItem('token');
-  if (!token) {
-    throw new Error('Token non trouvé dans le localStorage.');
-  }
-
-  const config: AxiosRequestConfig = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    }
-  };
-  
-    const response = await api.get(`/getRestaurantById/${code}`,config);
+    const config = getConfig();
+    const response = await api.get(`/getRestaurantById/${code}`, config);
     return response.data;
   } catch (error) {
     console.error('Error fetching restaurant by id:', error);
