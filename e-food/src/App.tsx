@@ -9,12 +9,12 @@ import UserList from './components/pages/UsersList';
 import Rest from './components/pages/Rest';
 import RestaurantUI from './components/pages/RestaurantUI';
 
-
-//// import Publicite from "./components/pages/Publicite";
+import { Publicites } from "./components/features/fayssol/components/publiciteComponents/Publicites";
 
 import Calendar from "./components/features/events/components/Calendar";
 import MenuCreate from "./components/pages/Menus/create";
-import Menus from "./components/pages/Menus";
+import Menus from "./components/features/menus/components/Menus";
+// import Menus from "./components/pages/Menus";
 
 import EventTable from './components/features/events/components/EventTable';
 import MainCommand from './components/features/commandes/components/main/MainCommand'
@@ -27,6 +27,7 @@ const router = createBrowserRouter([
       { path: "/", element: <Welcome /> },
       { path: "/liste", element: <UserTable /> },
 
+      { path: "/pub", element: <Publicites /> },
       //{ path: "/pub", element: <Publicite /> },
       {path:'/list/events',element: <EventTable />},
       {path:'list/commands',element:<MainCommand/>},
