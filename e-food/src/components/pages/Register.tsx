@@ -66,7 +66,7 @@ const Register: React.FC = () => {
     }
     try {
       const response = await authService.register(formData);
-      navigate('/e-food/auth/login');
+      navigate('/e-food/login');
       console.log('User registered successfully:', response.data);
     } catch (error) {
       console.error('Error registering user:', error);
@@ -194,10 +194,10 @@ const Register: React.FC = () => {
                             />
                             {errors.ville && <div className="text-danger">{errors.ville}</div>}
                           </div>
-                          <div className="col-md-6">
+                          {/* <div className="col-md-6">
                             <label className="form-label">File Upload</label>
                             <input className="form-control" type="file" id="formFileMultiple" multiple required />
-                          </div>
+                          </div> */}
                         </div>
                         <button type="submit" className="btn btn-secondary mt-4">Submit</button>
                       </form>
