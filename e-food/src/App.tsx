@@ -34,31 +34,36 @@ const router = createBrowserRouter([
 
       { path: "/manage/events", element: <Calendar /> },
       { path: "/menus", element: <Menus /> },
-      { path: "/create-menu", element: <MenuCreate /> },      
-      {path:'/e-food/users', element:<UserList/>},
+      { path: "/create-menu", element: <MenuCreate /> },
+      
+      
+
+      //utilisateurs
+      {
+        path:'/e-food/users', 
+        element:<UserList/>
+      },
+
+      //restaurants
 
       {
-        path:'/e-food/restaurants/ListeRestaurant',
+        path:'/e-food/restaurants',
         element:<Rest/>,
       },
 
-      {
-        path:'/e-food/restaurants/ListeRestauran',
-        element:<RestaurantUI/>,
-      }
-
+      
     ],
 
   },
         
   {
-    path:'/e-food/auth/login',
+    path:'/e-food/login',
     element:<Login/>,
     
   },
 
   {
-    path:'/e-food/auth/signup',
+    path:'/e-food/register',
     element:<Register/>,
     
   },

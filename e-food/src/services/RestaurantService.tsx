@@ -39,6 +39,7 @@ export const createRestaurant = async (restaurantData: Restaurant): Promise<Rest
     const config = getConfig();
     const response = await api.post('/SaveRestaurant', restaurantData, config);
     return response.data;
+    
   } catch (error) {
     console.error('Error creating restaurant:', error);
     throw error;
