@@ -8,25 +8,25 @@ import { ModalProvider } from './components/features/fayssol/context/ModalContex
 //REDUX
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
+import rootReducer from './reducers/index.ts';
+import { getPublicites } from './actions/pub.action.ts';
 
 const store = configureStore({
-  reducer: {
-    // Ici tu spécifies les reducers de ton application
-    // Exemple :
-    // myFeature: myFeatureReducer,
-    // anotherFeature: anotherFeatureReducer,
-  },
+    reducer: rootReducer,
+    devTools:true,
 });
+store.dispatch(getPublicites(1));
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
 
     <HoverProvider> 
       <ModalProvider>
-      <App />
-        {/* <Provider store={store}>
+      
+        <Provider store={store}>
         <App />
-        </Provider> */}
+        </Provider>
+        {/* <App /> */}
 
       </ModalProvider>
     </HoverProvider>
