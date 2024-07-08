@@ -203,7 +203,7 @@ const Register: React.FC = () => {
                       </form>
                       <div className="mt-3">
                         <p>
-                          Already have an account? <Link to="/e-food/auth/login">Login here</Link>.
+                          Already have an account? <Link to="/e-food/login">Login here</Link>.
                         </p>
                       </div>
                     </div>
