@@ -16,10 +16,11 @@ const store = configureStore({
     devTools:true,
 });
 store.dispatch(getPublicites(1));
+import { ComandListProvider } from './components/features/commandes/context/ComandContext.tsx';
+import { EventListProvider } from './components/features/events/context/EventContext.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-
     <HoverProvider> 
       <ModalProvider>
       
@@ -28,8 +29,14 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         </Provider>
         {/* <App /> */}
 
+      <ComandListProvider>
+        <EventListProvider>
+        <App />
+        </EventListProvider>
+        </ComandListProvider>
       </ModalProvider>
     </HoverProvider>
+    
    
   </React.StrictMode>,
 )

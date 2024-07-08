@@ -1,5 +1,5 @@
 import { EventToSend } from "../types/interfaces";
-import instance from "../utils/axios";
+import instance from "../../../utils/axios";
 
 const postEventUrl: string = "api/restaurant/events";
 

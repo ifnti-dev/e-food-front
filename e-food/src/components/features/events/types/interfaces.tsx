@@ -5,10 +5,10 @@ interface EventSelect {
    
 }
 
-interface ShowModal {
-    modal:boolean;
-    setModal:React.Dispatch<React.SetStateAction<boolean>>;
-}
+// interface ShowModal {
+//     modal:boolean;
+//     setModal:React.Dispatch<React.SetStateAction<boolean>>;
+// }
 
 interface EventProps {
     event: EventSelect;
