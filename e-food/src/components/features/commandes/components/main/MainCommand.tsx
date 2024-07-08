@@ -75,7 +75,7 @@ export default function MainCommand() {
                 
     }
 
-    const {menus,skeleton} = useFetchMenusCommande(idCmd);
+    const {menus,skeleton,livraisonInfoRef} = useFetchMenusCommande(idCmd);
 
 
     const togleHide = () => {
@@ -86,7 +86,7 @@ export default function MainCommand() {
 
     const fetchEnCours = () => {
 
-        const { cachedData } = useFetchCommandsByStatus({ status: "EN_COURS", page: 0, size: 10 });
+        const { cachedData } = useFetchCommandsByStatus({ status: "EN_COURS", page: 0, size: 20 });
 
         return cachedData;
 
@@ -152,13 +152,10 @@ export default function MainCommand() {
 
 
                 <Suspense fallback={<Spinner value={true} />}>
-
                     <AnimatePresence>
-                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton}/>}
+                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton} livraison={livraisonInfoRef} />}
                     </AnimatePresence>
                 </Suspense>
-
-
 
             </div>}
 

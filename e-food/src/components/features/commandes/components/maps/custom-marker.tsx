@@ -14,7 +14,7 @@ const CustomMarker: React.FC<CustomMarkerProps> = ({ position, children }) => {
 
   const customIcon = L.icon({
     iconUrl: MakrerUrl,
-    iconSize: [50, 50],
+    iconSize: [30, 30],
     iconAnchor: [25, 50],
   });
 

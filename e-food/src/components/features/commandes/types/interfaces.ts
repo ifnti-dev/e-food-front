@@ -33,4 +33,11 @@ interface MenuInterface{
 }
 
 
-export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType,MenuInterface}
+interface LivraisonPropsType{
+    coordonnee_x:number,
+    coordonnee_y:number,
+    description:string
+}
+
+
+export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType,MenuInterface,LivraisonPropsType}

@@ -12,7 +12,7 @@ const fetchMenuCommande = async (id:string)=>{
             throw new Error(response.status)
         }
         
-        return response.data.menus;
+        return {menus:response.data.menus,livraison:response.data.livraison};
 
         
     } catch (error) {
