@@ -51,7 +51,7 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
   };
 
   return (
-    <div className="mb-2 position-relative skeleton">
+    <div className="mb-2 position-relative skeleton" >
       <AnimatePresence initial={false} custom={direction}>
 
         <div className="rounded-2 border-1  shadow-lg" >
@@ -85,31 +85,37 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
 
           <hr className=" hr  mx-2 m-0 mb-3" style={{ backgroundColor: "grey", height: 2 }} />
 
-          <div className=" d-flex  justify-content-between flex-sm-wrap px-4 pb-3">
+          <div className="d-flex justify-content-between flex-sm-wrap px-4 gap-1 pb-3">
 
-            <div className=" card-comp  text-center p-2 w-25 border-1 border-black">
-              <div className="avatar-list avatar-list-stacked d-flex align-items-center justify-content-between">
-                <h3 className="avatar rounded-circle text-center text-capitalize" >F</h3>
+            <div className="card-comp d-flex  flex-column text-center pt-3  w-25">
+              <div className="avatar-list avatar-list-stacked">
+                <span className="avatar rounded-circle text-center text-capitalize">F</span>
+              </div>              
+            <p>dfdfdf</p>
+            </div>
+            <div className=" card-comp d-flex  flex-column text-center pt-3 w-25">
+              <div className="avatar-list avatar-list-stacked w-100">
+                <span className="avatar rounded-circle text-center text-capitalize">F</span>
 
-              </div>              <p>dfdfdf</p>
-            </div>
-            <div className=" card-comp text-center p-2 w-25">
-              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+              </div>
               <p>dfdfdf</p>
             </div>
-            <div className=" card-comp text-center  p-2 w-25">
-              <i className="icofont-home fs-5 bi bi-house-fill"></i>
+            <div className=" card-comp d-flex  flex-column text-center pt-3 w-25">
+              <div className="avatar-list avatar-list-stacked w-100">
+                <span className="avatar rounded-circle text-center text-capitalize">F</span>
+
+              </div>
+              <p>dfdfdf</p>
+            </div>
+            <div className=" card-comp d-flex  flex-column text-center pt-3 w-25">
+              <div className="avatar-list avatar-list-stacked w-100">
+                <span className="avatar rounded-circle text-center text-capitalize">F</span>
+
+              </div>
               <p>dfdfdf</p>
             </div>
 
-            <div className=" card-comp text-center  p-2 w-25">
-              <i className="icofont-home fs-5 bi bi-house-fill"></i>
-              <p>dfdfdf</p>
-            </div>
-            <div className=" card-comp text-center  p-2 w-25">
-              <i className="icofont-home fs-5 bi bi-house-fill"></i>
-              <p>dfdfdf</p>
-            </div>
+            
           </div>
 
           {/* <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} /> */}

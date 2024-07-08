@@ -10,7 +10,6 @@ import { EventListProvider } from './components/features/events/context/EventCon
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-
     <HoverProvider> 
       <ModalProvider>
       <ComandListProvider>

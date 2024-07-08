@@ -1,6 +1,6 @@
 
 import '../../css/index.css';
-import { lazy, Suspense, useContext, useRef, useState } from "react";
+import { lazy, Suspense,  useRef, useState } from "react";
 import CommandsInProcessing from '../commands_from_status/CommandsInProcessing';
 import CommandsInProgress from '../commands_from_status/CommandsInProgress';
 import CommandsInDelivery from '../commands_from_status/CommandsInDelivery'
@@ -15,37 +15,22 @@ import useUpdateCommandStatus from '../../hooks/useUpdateCommandStatus';
 import { useFetchMenusCommande } from '../../hooks/useFetchMenusCommande';
 
 
-// const Details = lazy(() => delayForDemo(import('../details_command/Details')))
-
-
-// function delayForDemo(promise: any) {
-//     return new Promise(resolve => {
-//         setTimeout(resolve, 2000);
-//     }).then(() => promise);
-// }
 
 export default function MainCommand() {
     const [show, setShow] = useState(false);
-    // const [showCommand,setShowCommand] = useState(true);
-
-    // const { parent } = useAnimate();
-
-
+ 
     const [dragging, setDragging] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('EN_COURS');
     const [id, setId] = useState("");
 
     const [idCmd,setIdCommande] = useState("");
-    // const [cards, setCards] = useState<number[]>(Array.from(Array(10).keys()));
 
     const traitementRef = useRef<HTMLOListElement>(null);
     const livraisonRef = useRef<HTMLOListElement>(null);
-    // const divRef = useRef<HTMLDivElement>(null);
+
 
 
     useUpdateCommandStatus({ id: id, status: status});
-
-
 
 
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>) => {
@@ -80,22 +65,18 @@ export default function MainCommand() {
 
 
 
-       
-        // console.log(command.current);
-
-        const {menus,skeleton} = useFetchMenusCommande(idCmd);
-
-       console.log(menus);
-    
-
-
     const togleShow = (id: string) => {
         
-
-        setShow(true);
         
+        
+        setShow(true);
+
         setIdCommande(id);
+                
     }
+
+    const {menus,skeleton} = useFetchMenusCommande(idCmd);
+
 
     const togleHide = () => {
 
@@ -149,9 +130,9 @@ export default function MainCommand() {
                     <div className="tab-content ">
                         <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
 
-                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS} />
+                            <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS}  status={"EN_COURS"}/>
 
-                            <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_TRAITEMENT')} data={EN_TRAITEMENT_COMMANDS} />
+                            <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} status={"EN_TRAITEMENT"} onDrop={(e: any) => handleDrop(e, 'EN_TRAITEMENT')} data={EN_TRAITEMENT_COMMANDS} />
 
                             <CommandsInDelivery refDelivery={livraisonRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_LIVRAISON')} />
 
@@ -173,7 +154,7 @@ export default function MainCommand() {
                 <Suspense fallback={<Spinner value={true} />}>
 
                     <AnimatePresence>
-                        {show && <Details togle={togleHide}  menus={menus!} skeleton={skeleton}/>}
+                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton}/>}
                     </AnimatePresence>
                 </Suspense>
 
