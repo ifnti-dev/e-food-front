@@ -8,6 +8,8 @@ export const CommandContext = createContext<any>("command-context");
 export const ComandListProvider = ({children}:{children:any}) => {
 
     const [commands, setCommands] = useState<PropsCommandType[]>([]);
+    const [commandsEnLiv, setCommandsEnLiv] = useState<PropsCommandType[]>([]);
+
     // const [command,setCommand] = useState<PropsCommandType>();
     const [loading, setLoading] = useState(false);
 
@@ -25,7 +27,7 @@ export const ComandListProvider = ({children}:{children:any}) => {
       
     
       const removeCommandEnTraitementById = (id:string) => {
-        const newCommands = commandsEnTraitement.filter((command:PropsCommandType) => command.id !== id);
+        const newCommands = commandsEnTraitement.filter((command:PropsCommandType) => command.id != id);
         setCommandsEnTraitement(newCommands);
       }
 
@@ -46,14 +48,35 @@ export const ComandListProvider = ({children}:{children:any}) => {
       
   
       const removeCommandById = (id:string) => {
-        const newCommands = commands.filter((command:PropsCommandType) => command.id !== id);
+
         
-        
+        const newCommands = commands.filter((command:PropsCommandType) => command.id != id);
+
+
         setCommands(newCommands);
       }
 
+      const updateCommandsEnLiv = (commands:PropsCommandType[]) => {
+        setCommandsEnLiv(commands)
+      }
+
+
+      const addCommandsEnLiv = (commandInComm:PropsCommandType[]) => {
+        setCommandsEnLiv([...commandsEnLiv,...commandInComm])
+      }
+      
+  
+      const removeCommandByIdEnLiv = (id:string) => {
+
+        
+        const newCommands = commandsEnLiv.filter((command:PropsCommandType) => command.id != id);
+
+
+        setCommandsEnLiv(newCommands);
+      }
+
     return (
-        <CommandContext.Provider value={{addCommands, commands,addCommandEnTraitement,removeCommandById, updateCommands,loading,setLoading ,updateCommandsEnTraitement, removeCommandEnTraitementById,commandsEnTraitement }}>
+        <CommandContext.Provider value={{addCommands, commands,addCommandEnTraitement,removeCommandById, updateCommandsEnLiv,commandsEnLiv,updateCommands,loading,setLoading ,updateCommandsEnTraitement, removeCommandEnTraitementById,commandsEnTraitement }}>
           {children}
         </CommandContext.Provider>
       );

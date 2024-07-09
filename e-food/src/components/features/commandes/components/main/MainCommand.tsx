@@ -51,6 +51,8 @@ export default function MainCommand() {
         e.stopPropagation();
         const droppedItemId = e.dataTransfer.getData('text/plain');
         const droppedItem = document.getElementById(droppedItemId);
+        console.log(droppedItem);
+        
 
 
         if (e.currentTarget && droppedItem) {
@@ -75,7 +77,7 @@ export default function MainCommand() {
                 
     }
 
-    const {menus,skeleton} = useFetchMenusCommande(idCmd);
+    const {menus,skeleton,livraisonInfoRef} = useFetchMenusCommande(idCmd);
 
 
     const togleHide = () => {
@@ -101,8 +103,21 @@ export default function MainCommand() {
 
     }
 
+    const fetchEnLivraison = () => {
+
+        const { cachedDataEnLiv } = useFetchCommandsByStatus({ status: "EN_LIVRAISON", page: 0, size: 10 });
+        console.log(cachedDataEnLiv);
+        
+
+        return cachedDataEnLiv;
+
+    }
+
     const EN_COURS_COMMANDS = fetchEnCours();
     const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
+    const EN_LIV_COMMANDS = fetchEnLivraison();
+  
+    
 
     return (
 
@@ -134,7 +149,8 @@ export default function MainCommand() {
 
                             <CommandsInProcessing refTraitement={traitementRef} togle={togleShow} handleDragStart={handleDragStart} onDragOver={handleDragOver} status={"EN_TRAITEMENT"} onDrop={(e: any) => handleDrop(e, 'EN_TRAITEMENT')} data={EN_TRAITEMENT_COMMANDS} />
 
-                            <CommandsInDelivery refDelivery={livraisonRef} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_LIVRAISON')} />
+
+                            <CommandsInDelivery refDelivery={livraisonRef} togle={togleShow} onDragOver={handleDragOver} onDrop={(e: any) => handleDrop(e, 'EN_LIVRAISON')} data={EN_LIV_COMMANDS} status={"EN_LIVRAISON"}  />
 
 
                         </div>
@@ -152,13 +168,10 @@ export default function MainCommand() {
 
 
                 <Suspense fallback={<Spinner value={true} />}>
-
                     <AnimatePresence>
-                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton}/>}
+                        {show && <Details togle={togleHide}  menus={menus} skeleton={skeleton} livraison={livraisonInfoRef} />}
                     </AnimatePresence>
                 </Suspense>
-
-
 
             </div>}
 

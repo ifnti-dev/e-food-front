@@ -92,6 +92,8 @@ img {
 }
 
 
+
+
 .useContextMenu_ContextMenu  {
   background-color: #484c7f !important;
   cursor: pointer;
@@ -102,5 +104,7 @@ img {
 
 .useContextMenu_ContextMenuItem:hover {
   color: #F19828 !important;
+  background-color: #484c7f !important;
 
 }
+

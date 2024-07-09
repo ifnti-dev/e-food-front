@@ -3,11 +3,12 @@ import HeadDetails from './Head';
 import { usePresence, useScroll, useSpring } from 'framer-motion';
 import { gsap } from "gsap";
 import MenusList from './MenusList';
-import { MenuInterface } from '../../types/interfaces';
+import { LivraisonPropsType, MenuInterface } from '../../types/interfaces';
+import Map from '../maps/Map';
 
 
 
-export default function Details({ togle, menus, skeleton}: { togle: any, menus: MenuInterface[], skeleton: boolean}) {
+export default function Details({ togle, menus, skeleton,livraison }: { togle: any, menus: MenuInterface[], skeleton: boolean,livraison:React.MutableRefObject<LivraisonPropsType | undefined>}) {
 
 
 
@@ -29,8 +30,6 @@ export default function Details({ togle, menus, skeleton}: { togle: any, menus: 
 
     });
 
-    
-
     const [isPresent, safeToRemove] = usePresence();
 
     useEffect(() => {
@@ -49,10 +48,7 @@ export default function Details({ togle, menus, skeleton}: { togle: any, menus: 
 
             <div ref={ref} className="card pb-4 end-0   w-50 fade-in-right shadow-lg position-relative " >
 
-                {/* <motion.div className="progress-bar" style={{ scaleX,pathLength: scrollYProgress }} /> */}
-
-                <HeadDetails setShow={togle} total={total}/>
-
+                <HeadDetails setShow={togle} total={total} l={livraison}/>
 
                 <div className="card-header py-3  border-bottom-0">
                     <h6 className="mb-0 fw-bold "></h6>
@@ -67,14 +63,9 @@ export default function Details({ togle, menus, skeleton}: { togle: any, menus: 
                     }
 
 
-                    {/* <Menu/>
-                    
+                    <MenusList menus={menus!} />                   
 
-                    <Menu/>
-
-                    <Menu/>  */}
-
-                    <MenusList menus={menus!} />
+                    <Map livraison={livraison!} />
 
 
                 </div>
