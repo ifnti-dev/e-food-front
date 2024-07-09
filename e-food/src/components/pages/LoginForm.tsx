@@ -83,7 +83,7 @@ const Login: React.FC = () => {
                         <input className="form-check-input" type="checkbox" value="" id="rememberPasswordCheck" />
                         <label className="form-check-label">Remember password</label>
                       </div>
-                      <Link to="/e-food/auth/register">Sign up</Link>
+                      <Link to="/e-food/register">Sign up</Link>
                     </div>
                     <div className="d-grid">
                       <button className="btn btn-lg btn-secondary btn-login text-uppercase fw-bold mb-2" type="submit">

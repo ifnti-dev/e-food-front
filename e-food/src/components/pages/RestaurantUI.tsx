@@ -13,7 +13,7 @@ const RestaurantUI: React.FC = () =>{
     telephone: '',
     heure_ouverture: '',
     heure_fermeture: '',
-    jour_ouverture: '',
+    jour_ouverture: [],
     etat: '',
     coordonnee_gps_x: 0,
     coordonnee_gps_y: 0,
@@ -45,7 +45,7 @@ const RestaurantUI: React.FC = () =>{
     try {
       const formData = new FormData();
         formData.append('restaurant', JSON.stringify(newRestaurant));
-      await createRestaurant(formData);
+      await createRestaurant(newRestaurant);
       setNewRestaurant({
         code: 0,
         nom: '',
@@ -54,7 +54,7 @@ const RestaurantUI: React.FC = () =>{
         telephone: '',
         heure_ouverture: '',
         heure_fermeture: '',
-        jour_ouverture: '',
+        jour_ouverture: [],
         etat: '',
         coordonnee_gps_x: 0,
         coordonnee_gps_y: 0,
@@ -82,7 +82,7 @@ const RestaurantUI: React.FC = () =>{
         telephone: '',
         heure_ouverture: '',
         heure_fermeture: '',
-        jour_ouverture: '',
+        jour_ouverture: [],
         etat: '',
         coordonnee_gps_x: 0,
         coordonnee_gps_y: 0,

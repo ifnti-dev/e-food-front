@@ -1,5 +1,8 @@
+import { PropsCommandType } from "../../types/interfaces";
+import CommandList from "../orders/CommandList";
 
-export default function CommandsInDelivery({ refDelivery, onDragOver, onDrop }: { refDelivery: any, onDragOver: React.DragEventHandler<any> | undefined, onDrop: React.DragEventHandler<HTMLOListElement> | undefined }) {
+export default function CommandsInDelivery({ refDelivery, onDragOver, onDrop ,status,data,togle }: { refDelivery: any, onDragOver: React.DragEventHandler<any> | undefined, onDrop: React.DragEventHandler<HTMLOListElement> | undefined ,status:string,data:PropsCommandType[],togle:any}) {
+console.log(data);
 
     return (
         <>
@@ -67,9 +70,12 @@ export default function CommandsInDelivery({ refDelivery, onDragOver, onDrop }: 
                     </div>
                 </span>
 
-                <div className="completed_task border rounded mt-2">
+                <div className="completed_task border rounded height-status mt-2">
                     <div className="dd  d-inline-block w-100 " data-plugin="nestable" >
+
                         <ol className="dd-list " ref={refDelivery} onDragOver={onDragOver} onDrop={onDrop} style={{ minHeight: 200 }}>
+                            
+                        <CommandList handleDragStart={"handleDragStart"} data={data} togle={togle} status={status} />
 
                         </ol>
                     </div>

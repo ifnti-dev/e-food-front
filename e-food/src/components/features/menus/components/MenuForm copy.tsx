@@ -47,7 +47,7 @@ const MenuForm: React.FC = () => {
             <Card.Body>
               <Form onSubmit={handleSubmit}>
                 <fieldset>
-                  <legend><span className='text-warning shadow-lg'>Menu</span></legend>
+                  <legend className='bg-primary z-2'>Menu</legend>
                     <div className='d-flex'>
                       <div>
 
@@ -117,8 +117,8 @@ const MenuForm: React.FC = () => {
                   </Form.Group>
                 </fieldset>
 
-                <fieldset>
-                  <legend><span className='text-warning shadow-lg mt-4'>Composants</span></legend>
+                {/* <fieldset>
+                  <legend>Ses composants</legend>
 
                   <Form.Group controlId="componentDesignation">
                     <Form.Label>Désignation</Form.Label>
@@ -144,10 +144,10 @@ const MenuForm: React.FC = () => {
                     </Form.Control>
                   </Form.Group>
 
-                  <Button variant="success" onClick={handleAddComponent} className='mt-4'>
-                    <BsPlusCircle className='fs-4' /> 
+                  <Button variant="success" onClick={handleAddComponent}>
+                    <BsPlusCircle /> Ajouter
                   </Button>
-                </fieldset> 
+                </fieldset> */}
 
                 <hr />
 
@@ -157,7 +157,7 @@ const MenuForm: React.FC = () => {
                     <div key={index} className="added-component" style={{ marginRight: '10px', marginBottom: '10px' }}>
                       {component.designation}-{component.type}
                       <Button variant="danger" size="sm" onClick={() => handleRemoveComponent(index)} style={{ marginLeft: '10px' }}>
-                        <BsTrash className='fs-4'/> 
+                        <BsTrash /> Supprimer
                       </Button>
                     </div>
                   ))}
