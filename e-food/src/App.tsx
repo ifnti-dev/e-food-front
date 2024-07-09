@@ -6,7 +6,7 @@ import UserTable from './components/pages/UserTable';
 import Login from './components/pages/LoginForm';
 import Register from './components/pages/Register';
 import UserList from './components/pages/UsersList';
-import Rest from './components/pages/Rest';
+import Rest from './components/pages/Restaurants/Rest';
 import RestaurantUI from './components/pages/RestaurantUI';
 
 import { Publicites } from "./components/features/fayssol/components/publiciteComponents/Publicites";

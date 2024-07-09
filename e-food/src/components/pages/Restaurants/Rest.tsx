@@ -1,6 +1,8 @@
 import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
-import Restaurant from '../../models/Restaurant';
-import { createRestaurant, deleteRestaurant, getAllRestaurants, getRestaurantById, updateRestaurant } from '../../services/RestaurantService';
+import Restaurant from '../../../models/Restaurant';
+import { createRestaurant, deleteRestaurant, getAllRestaurants, getRestaurantById, updateRestaurant } from '../../../services/RestaurantService';
+import Swal from 'sweetalert2';
+
 
 const Rest: React.FC = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
@@ -97,11 +99,20 @@ const Rest: React.FC = () => {
         coordonnee_gps_y: 0.0,
       });
       fetchRestaurants();
-      setAlert({ type: 'success', message: 'Restaurant créé avec succès!' });
+      Swal.fire({
+        icon: 'success',
+        title: 'Restaurant créé avec succès!',
+        showConfirmButton: false,
+        timer: 1500
+      });
       closeModal('#createRestaurantModal');
     } catch (error) {
       console.error('Erreur lors de la création du restaurant :', error);
-      setAlert({ type: 'error', message: 'Erreur lors de la création du restaurant.' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Erreur lors de la création du restaurant.',
+      });
     }
   };
 
@@ -112,15 +123,23 @@ const Rest: React.FC = () => {
         await updateRestaurant(editRestaurant.code, editRestaurant);
         setEditRestaurant(null);
         fetchRestaurants();
-        setAlert({ type: 'success', message: 'Restaurant mis à jour avec succès!' });
+        Swal.fire({
+          icon: 'success',
+          title: 'Restaurant mis à jour avec succès!',
+          showConfirmButton: false,
+          timer: 1500
+        });
         closeModal('#editRestaurantModal');
       } catch (error) {
         console.error('Erreur lors de la mise à jour du restaurant :', error);
-        setAlert({ type: 'error', message: 'Erreur lors de la mise à jour du restaurant.' });
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: 'Erreur lors de la mise à jour du restaurant.',
+        });
       }
     }
   };
-
   const handleEditClick = async (code: number) => {
     try {
       const restaurantToEdit = await getRestaurantById(code);
@@ -132,14 +151,30 @@ const Rest: React.FC = () => {
 
   const handleDelete = async (code: number) => {
     try {
-      await deleteRestaurant(code);
-      fetchRestaurants();
-      setAlert({ type: 'success', message: 'Restaurant supprimé avec succès!' });
+      const result = await Swal.fire({
+        title: 'Êtes-vous sûr?',
+        text: 'Vous ne pourrez pas revenir en arrière!',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Oui, supprimer!'
+      });
+      if (result.isConfirmed) {
+        await deleteRestaurant(code);
+        fetchRestaurants();
+        Swal.fire('Supprimé!', 'Le restaurant a été supprimé.', 'success');
+      }
     } catch (error) {
       console.error('Erreur lors de la suppression du restaurant :', error);
-      setAlert({ type: 'error', message: 'Erreur lors de la suppression du restaurant.' });
+      Swal.fire({
+        icon: 'error',
+        title: 'Erreur',
+        text: 'Erreur lors de la suppression du restaurant.',
+      });
     }
   };
+  
 
   const closeModal = (modalId: string) => {
     const modal = document.querySelector(modalId) as HTMLElement;
