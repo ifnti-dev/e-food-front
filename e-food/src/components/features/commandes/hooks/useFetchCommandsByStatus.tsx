@@ -7,6 +7,8 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
 
     const { commands, loading, setLoading, updateCommands } = useContext(CommandContext);
     const { commandsEnTraitement, updateCommandsEnTraitement } = useContext(CommandContext);
+    const { commandsEnLiv, updateCommandsEnLiv} = useContext(CommandContext);
+
 
    
 
@@ -16,7 +18,6 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
         async function fetchData() {
             try {
                 setLoading(true);
-
                 if (data.status == "EN_COURS") {
 
                     const commands = await fetchCommandsByStatus(data);
@@ -29,6 +30,17 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
                     const commands = await fetchCommandsByStatus(data);
                     updateCommandsEnTraitement(commands);
 
+
+                }
+
+                if (data.status == "EN_LIVRAISON") {
+                 
+                    const commands = await fetchCommandsByStatus(data);
+                    
+                    updateCommandsEnLiv(commands);
+
+                    console.log(commandsEnLiv);
+                    
 
                 }
                 setLoading(false);
@@ -49,10 +61,15 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
 
     const cachedData = useMemo(() => commands, [commands]);
     const cachedDataEnTratement = useMemo(() => commandsEnTraitement, [commandsEnTraitement]);
+    const cachedDataEnLiv = useMemo(() => commandsEnLiv, [commandsEnLiv]);
+    console.log(cachedDataEnLiv);
+    
+
 
     return {
         cachedData,
         loading,
-        cachedDataEnTratement
+        cachedDataEnTratement,
+        cachedDataEnLiv
     }
 }

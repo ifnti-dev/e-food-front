@@ -4,7 +4,7 @@ import { LivraisonPropsType } from '../../types/interfaces';
 
 
 export default function Map({livraison}:{livraison:React.MutableRefObject<LivraisonPropsType | undefined>}) {
-  console.log(livraison.current);
+
   
     if (!livraison.current) {
         <div></div>

@@ -5,7 +5,6 @@ import { gsap } from "gsap";
 import MenusList from './MenusList';
 import { LivraisonPropsType, MenuInterface } from '../../types/interfaces';
 import Map from '../maps/Map';
-import L from 'leaflet';
 
 
 
