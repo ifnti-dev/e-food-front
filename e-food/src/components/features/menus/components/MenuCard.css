@@ -1,0 +1,52 @@
+/* MenuCard.css */
+.menu-card-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+   
+  }
+  
+  .menu-card {
+    transition: transform 0.3s ease;
+   
+  }
+  
+  .menu-card.hovered {
+    transform: scale(1.05);
+  }
+  
+  .menu-card .actions {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+  
+  .menu-card .actions .icon-blue,
+  .menu-card .actions .icon-red,
+  .menu-card .actions .icon-green {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+  
+
+
+
+  /* MenuCard.css */
+
+  
+  .carousel-image-wrapper {
+    position: relative;
+  }
+  
+  .price-badge {
+    position: absolute;
+    top: 10px;
+    right: 1px;
+    background-color: #007bff; /* Couleur de fond du badge */
+    color: white; /* Couleur du texte */
+    padding: 5px 10px; /* Espacement à l'intérieur du badge */
+    border-radius: 50%; /* Pour rendre le badge circulaire */
+    font-size: 14px; /* Taille de la police */
+    z-index: 15;
+  }
+
+ 
