@@ -25,7 +25,7 @@ export const ComandListProvider = ({children}:{children:any}) => {
       
     
       const removeCommandEnTraitementById = (id:string) => {
-        const newCommands = commandsEnTraitement.filter((command:PropsCommandType) => command.id !== id);
+        const newCommands = commandsEnTraitement.filter((command:PropsCommandType) => command.id != id);
         setCommandsEnTraitement(newCommands);
       }
 
@@ -46,9 +46,11 @@ export const ComandListProvider = ({children}:{children:any}) => {
       
   
       const removeCommandById = (id:string) => {
-        const newCommands = commands.filter((command:PropsCommandType) => command.id !== id);
+
         
-        
+        const newCommands = commands.filter((command:PropsCommandType) => command.id != id);
+
+
         setCommands(newCommands);
       }
 

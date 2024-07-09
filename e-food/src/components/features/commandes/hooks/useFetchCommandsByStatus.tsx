@@ -16,7 +16,6 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
         async function fetchData() {
             try {
                 setLoading(true);
-
                 if (data.status == "EN_COURS") {
 
                     const commands = await fetchCommandsByStatus(data);
