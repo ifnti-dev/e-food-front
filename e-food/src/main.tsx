@@ -24,9 +24,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     <HoverProvider> 
       <ModalProvider>
       
-        <Provider store={store}>
+        {/* <Provider store={store}>
         <App />
-        </Provider>
+        </Provider> */}
         {/* <App /> */}
 
       <ComandListProvider>
