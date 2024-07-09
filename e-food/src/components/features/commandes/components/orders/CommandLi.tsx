@@ -13,14 +13,13 @@ export default function CommandLi({ order, handleDragStart, togle, status}: {sta
 
     let date = new Date(order.date);
     const [id,setId] = useState("");
-
+    //reject command
     useRejectOrder(id);
 
 
         const { contextMenu, onContextMenu, onKeyDown } = useContextMenu(
         <>
-          <ContextMenuItem key={order.id} dataTestId={order.id} onSelect={(e)=>{setId(order.id)}}  >Rejeter</ContextMenuItem>
-         
+          <ContextMenuItem  key={order.id} dataTestId={order.id} onSelect={(e: React.UIEvent)=>{setId(order.id)}}  >→ Rejeter</ContextMenuItem>        
         </>
       );
 
@@ -30,7 +29,7 @@ export default function CommandLi({ order, handleDragStart, togle, status}: {sta
             <>
     
                 <div className=" position-relative">
-                    <li className="dd-item shadow-lg mb-3" key={order.id} draggable id={order.id} onDragStart={handleDragStart}
+                    <li className="dd-item shadow-lg mb-3" key={order.id} draggable id={order.id} onDragStart={handleDragStart} data-status={status}
                         onDragOver={(e) => e.preventDefault()} onContextMenu={onContextMenu} onKeyDown={onKeyDown} tabIndex={parseInt(order.id)} >
                         <div className="dd-handle " onClick={() => togle(order.id)}>
                             <div className="task-info d-flex align-items-center justify-content-between">
@@ -77,7 +76,7 @@ export default function CommandLi({ order, handleDragStart, togle, status}: {sta
             <>
     
                 <div className=" position-relative">
-                    <li className="dd-item shadow-lg mb-3" key={order.id} draggable id={order.id} onDragStart={handleDragStart}
+                    <li className="dd-item shadow-lg mb-3" key={order.id} draggable id={order.id} onDragStart={handleDragStart} data-status={status}
                         onDragOver={(e) => e.preventDefault()} >
                         <div className="dd-handle " onClick={() => togle(order.id)}>
                             <div className="task-info d-flex align-items-center justify-content-between">
