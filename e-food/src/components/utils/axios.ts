@@ -3,7 +3,7 @@ import axios from "axios";
 const instance = axios.create({
     baseURL: 'http://localhost:8085/e-food/',
     timeout: 1000,
-    headers: {'X-Custom-Header': 'foobar','Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaWZpIiwiaWF0IjoxNzIwNDU1MjYzLCJleHAiOjE3MjA0NTg4NjN9.78Dw4yljSVuiEzTdhfx8n01x1FY89AVn8femhZY85d0'}
+    headers: {'X-Custom-Header': 'foobar','Authorization':'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmaWZpIiwiaWF0IjoxNzIwNTE0NzM3LCJleHAiOjE3MjA1MTgzMzd9.7Na7ViVxMIoU1IlQHfljgBwcEOAWQQjW_liJC7ZqacI'}
   });
 
 
