@@ -6,7 +6,7 @@ export default interface Restaurant {
   telephone: string;
   heure_ouverture: string;
   heure_fermeture: string;
-  jour_ouverture: string;
+  jour_ouverture: Array<string>;
   etat: string;
   coordonnee_gps_x: number;
   coordonnee_gps_y: number;
