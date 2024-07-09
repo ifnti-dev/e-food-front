@@ -70,6 +70,53 @@ function SideBar() {
 
           <ul className="menu-list  mt-2">
             <li className="collapsed">
+            <a className={splitLocation[1] === "users" ? "ms-link active" : "ms-link"} data-bs-toggle="collapse" data-bs-target="#users-Components" href="/" >
+                <i className="icofont-home fs-5 bi bi-people"></i>{" "}
+                <span>Users / Roles</span>{" "}
+                <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span>
+              </a>
+              {/* <!-- Menu: Sub menu ul --> */}
+              <ul className="sub-menu collapse " id="users-Components">
+                <Link to="/e-food/users">
+                  <a className="ms-link " href="">
+                    {" "}
+                    <span>Users</span>
+                  </a>
+                </Link>
+
+                <Link to="/liste">
+                  <a className="ms-link " href="">
+                    {" "}
+                    <span>Roles</span>
+                  </a>
+                </Link>
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="menu-list  mt-2">
+            <li className="collapsed">
+            <a className={splitLocation[1] === "restaurants" ? "ms-link active" : "ms-link"} data-bs-toggle="collapse" data-bs-target="#restaurants-Components" href="/" >
+                <i className="icofont-home fs-5 bi bi-building"></i>{" "}
+                <span>Restaurants</span>{" "}
+                <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span>
+              </a>
+              {/* <!-- Menu: Sub menu ul --> */}
+              <ul className="sub-menu collapse " id="restaurants-Components">
+                <Link to="/e-food/restaurants">
+                  <a className="ms-link " href="">
+                    {" "}
+                    <span>Restaurants</span>
+                  </a>
+                </Link>
+
+                
+              </ul>
+            </li>
+          </ul>
+
+          <ul className="menu-list  mt-2">
+            <li className="collapsed">
               <a className={splitLocation[1] === "events" ? "ms-link active" : "ms-link"} data-bs-toggle="collapse" data-bs-target="#events-Components" href="/" >
                 <i className="icofont-home fs-5 bi bi-house-fill"></i>{" "} <span>Evenements</span>{" "} <span className="arrow icofont-dotted-down ms-auto text-end fs-5 bi bi-chevron-down"></span></a>
               {/* <!-- Menu: Sub menu ul --> */}
