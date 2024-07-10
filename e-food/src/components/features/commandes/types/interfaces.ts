@@ -29,7 +29,9 @@ interface MenuInterface{
     id:string,
     temps_preparation:string,
     prix:number,
-    nom:string|null
+    nom:string|null,
+    preference:string | null,
+    quantite:number
 }
 
 

@@ -109,7 +109,6 @@ export default function CommandLi({ order, handleDragStart, togle, status}: {sta
     
                     </li>
     
-                    {contextMenu}
     
     
                 </div>

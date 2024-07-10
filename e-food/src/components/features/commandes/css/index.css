@@ -23,7 +23,7 @@ li {
   transform-origin: 0%;
 }
 
-.next,
+/* .next,
 .prev {
   top: calc(50% - 20px);
   position: absolute;
@@ -39,16 +39,16 @@ li {
   font-weight: bold;
   font-size: 18px;
   z-index: 2;
-}
+} */
 
-.next {
+/* .next {
   right: 10px;
 }
 
 .prev {
   left: 10px;
   transform: scale(-1);
-}
+} */
 
 img {
   /* position: absolute; */
@@ -107,4 +107,6 @@ img {
   background-color: #484c7f !important;
 
 }
+
+
 

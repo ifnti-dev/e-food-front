@@ -54,7 +54,7 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
     <div className="mb-2 position-relative skeleton" >
       <AnimatePresence initial={false} custom={direction}>
 
-        <div className="rounded-2 border-1  shadow-lg" >
+        <div className="rounded-2 border-1  shadow-lg px-1 mb-2 pb-3 position-relative" >
           <motion.img
             className=" rounded-top-2 " style={{ borderTopRightRadius: 5, borderTopLeftRadius: 5 }}
             key={page}
@@ -81,8 +81,11 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
               }
             }}
           />
-          <p className="text-black-20 m-2 px-1 text-start fs fw-bold">{menu.nom}  <span className=" ps-3 text-danger">{menu.prix} CFA</span> </p>
 
+     
+          <p className="text-black-20 m-2  text-start fs fw-bold">{menu.nom}  <span className=" ps-3 text-danger">{menu.prix} CFA</span></p>
+          <p className="text-black-20 m-2  text-center fs fw-bold border border-1 rounded-circle border-opacity-10 border-danger position-absolute top-0 end-0 bg-black" style={{width:25,height:25}}><span className=" p-1 text-danger">{menu.quantite}</span></p>
+    
           <hr className=" hr  mx-2 m-0 mb-3" style={{ backgroundColor: "grey", height: 2 }} />
 
           <div className="d-flex justify-content-between flex-sm-wrap px-4 gap-1 pb-3">
@@ -90,13 +93,6 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
             <div className="card-comp d-flex  flex-column text-center pt-3  w-25">
               <div className="avatar-list avatar-list-stacked">
                 <span className="avatar rounded-circle text-center text-capitalize">F</span>
-              </div>              
-            <p>dfdfdf</p>
-            </div>
-            <div className=" card-comp d-flex  flex-column text-center pt-3 w-25">
-              <div className="avatar-list avatar-list-stacked w-100">
-                <span className="avatar rounded-circle text-center text-capitalize">F</span>
-
               </div>
               <p>dfdfdf</p>
             </div>
@@ -114,11 +110,32 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
               </div>
               <p>dfdfdf</p>
             </div>
+            <div className=" card-comp d-flex  flex-column text-center pt-3 w-25">
+              <div className="avatar-list avatar-list-stacked w-100">
+                <span className="avatar rounded-circle text-center text-capitalize">F</span>
 
-            
+              </div>
+              <p>dfdfdf</p>
+            </div>
+
+
           </div>
 
-          {/* <hr className=" hr  mx-2 m-0 mb-2" style={{ backgroundColor: "grey", height: 2 }} /> */}
+         { menu.preference != null ?  <>
+          <hr className=" hr  mx-2 m-0 mb-3 mx-2" style={{ backgroundColor: "grey", height: 2 }} />
+
+          <p className=" d-flex justify-content-end m-0">
+            <a className=" btn btn-outline-primary p-1" data-bs-toggle="collapse" href={"#collapse"+menu.id} role="button" aria-expanded="false" aria-controls={"collapse"+menu.id}>
+             Voir la préférence ↓
+            </a>
+          
+          </p>
+          <div className="collapse mt-3" id={"collapse"+menu.id}>
+            <div className="card card-body text-black-50">
+              {menu.preference}
+            </div>
+          </div>
+          </> : <></>}
 
         </div>
       </AnimatePresence>
