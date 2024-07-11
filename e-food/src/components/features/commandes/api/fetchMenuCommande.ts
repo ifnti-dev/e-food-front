@@ -1,6 +1,6 @@
 import instance from "../../../utils/axios";
 
-const url:string = "api/client/order/";
+const url:string = "api/client/order/menus";
 
 const fetchMenuCommande = async (id:string)=>{
 

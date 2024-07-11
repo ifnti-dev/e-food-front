@@ -4,7 +4,8 @@ interface PropsCommandType {
     id: string,
     date:number,
     nom:string,
-    prenom:string
+    prenom:string,
+    status:string,
 
 }
 
@@ -29,7 +30,9 @@ interface MenuInterface{
     id:string,
     temps_preparation:string,
     prix:number,
-    nom:string|null
+    nom:string|null,
+    preference:string | null,
+    quantite:number
 }
 
 
@@ -39,5 +42,13 @@ interface LivraisonPropsType{
     description:string
 }
 
+interface CommandeParamFromRestaurant{
+    page:number|null,
+    size:number|null,
+    id:string,
+    current:number
 
-export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType,MenuInterface,LivraisonPropsType}
+}
+
+
+export type {PropsCommandType,ParamCommandStatusType,UpdateStatusType,MenuInterface,LivraisonPropsType,CommandeParamFromRestaurant}

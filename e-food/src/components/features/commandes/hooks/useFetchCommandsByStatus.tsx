@@ -39,9 +39,7 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
                     
                     updateCommandsEnLiv(commands);
 
-                    console.log(commandsEnLiv);
-                    
-
+                    // console.log(commandsEnLiv);
                 }
                 setLoading(false);
 
@@ -62,7 +60,6 @@ export function useFetchCommandsByStatus(data: ParamCommandStatusType) {
     const cachedData = useMemo(() => commands, [commands]);
     const cachedDataEnTratement = useMemo(() => commandsEnTraitement, [commandsEnTraitement]);
     const cachedDataEnLiv = useMemo(() => commandsEnLiv, [commandsEnLiv]);
-    console.log(cachedDataEnLiv);
     
 
 

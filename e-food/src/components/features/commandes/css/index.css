@@ -23,7 +23,7 @@ li {
   transform-origin: 0%;
 }
 
-.next,
+/* .next,
 .prev {
   top: calc(50% - 20px);
   position: absolute;
@@ -39,16 +39,16 @@ li {
   font-weight: bold;
   font-size: 18px;
   z-index: 2;
-}
+} */
 
-.next {
+/* .next {
   right: 10px;
 }
 
 .prev {
   left: 10px;
   transform: scale(-1);
-}
+} */
 
 img {
   /* position: absolute; */
@@ -107,4 +107,42 @@ img {
   background-color: #484c7f !important;
 
 }
+
+
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current{
+  border-radius: 5px;
+  background-color: #484c7f;
+  color:white !important;
+
+}
+
+
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button.current:hover{
+  border-radius: 5px;
+  background-color: #4e5181;
+  color:white !important;
+
+}
+
+
+div.dt-container .dt-paging .dt-paging-button.current, div.dt-container .dt-paging .dt-paging-button:hover{
+  border-radius: 5px;
+  background-color: #484c7f !important;
+  /* color:#F19828 !important; */
+
+}
+
+
+
+div.dt-container .dt-paging .dt-paging-button:hover {
+  background: #484c7f !important;
+
+}
+
+div.dt-container .dt-paging .dt-paging-button.disabled:hover {
+  background: transparent !important;
+
+}
+
+
 

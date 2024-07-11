@@ -2,7 +2,7 @@ import { PropsCommandType } from "../../types/interfaces";
 import CommandList from "../orders/CommandList";
 
 export default function CommandsInDelivery({ refDelivery, onDragOver, onDrop ,status,data,togle }: { refDelivery: any, onDragOver: React.DragEventHandler<any> | undefined, onDrop: React.DragEventHandler<HTMLOListElement> | undefined ,status:string,data:PropsCommandType[],togle:any}) {
-console.log(data);
+
 
     return (
         <>
