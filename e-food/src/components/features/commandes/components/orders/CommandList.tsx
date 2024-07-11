@@ -5,10 +5,12 @@ export default function CommandList({data,handleDragStart,togle,status}:{status 
 
 console.log(data);
 
-
+if (data != undefined) {
+    
     return (
-    <>
-        {data!.map(order => <CommandLi key={order.id} order={order} handleDragStart={handleDragStart} togle={togle} status={status}/>)}
-    </>
-    );
+        <>
+            {data!.map(order => <CommandLi key={order.id} order={order} handleDragStart={handleDragStart} togle={togle} status={status}/>)}
+        </>
+        );
+}
 }

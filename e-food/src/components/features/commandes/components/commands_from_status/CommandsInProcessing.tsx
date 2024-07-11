@@ -71,7 +71,7 @@ export default function CommandsInProcessing({ refTraitement, onDragOver, onDrop
                 </span>
                 <div className="review_task border rounded height-status mt-2">
                     <div className="dd  d-inline-block w-100 " data-plugin="nestable" >
-                        <ol className="dd-list " ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} >
+                        <ol className="dd-list " ref={refTraitement} onDragOver={onDragOver} onDrop={onDrop} style={{ minHeight: 200 }}>
 
                             <CommandList handleDragStart={handleDragStart} data={data} togle={togle} status={status} />
 

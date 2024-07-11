@@ -74,7 +74,7 @@ export default function CommandsInProgress({ handleDragStart, togle, data, statu
 
                 <div className="progress_task border rounded border-success-subtle height-status mt-2">
                     <div className="dd" data-plugin="nestable">
-                        <ol className="dd-list" >
+                        <ol className="dd-list" style={{ minHeight: 200 }}>
                             <CommandList handleDragStart={handleDragStart} data={data} togle={togle} status={status} />
                         </ol>
                     </div>
