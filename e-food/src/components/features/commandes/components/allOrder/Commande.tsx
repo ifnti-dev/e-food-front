@@ -1,105 +1,78 @@
 
-import React, { useState, useEffect } from 'react';
-import { Button } from 'primereact/button';
-import { DataView } from 'primereact/dataview';
-import { Rating } from 'primereact/rating';
-import { Tag } from 'primereact/tag';
-import { classNames } from 'primereact/utils';
-import { ProductService } from './service/ProductService';
+import DataTables from "datatables.net-dt";
+import { useEffect, useRef } from "react";
+import { columnDefs, columns, language, lengthMenu } from "./constant";
+import instance from "../../../../utils/axios";
+import DateFilterForm from "../../../../partials/DateFilterForm";
 
-interface Product {
-    id: string;
-    code: string;
-    name: string;
-    description: string;
-    image: string;
-    price: number;
-    category: string;
-    quantity: number;
-    inventoryStatus: string;
-    rating: number;
-}
 
-export default function PaginationDemo() {
-    const [products, setProducts] = useState<Product[]>([]);
+const url: string = "api/client/order/";
+
+
+
+export default function AllCommands() {
+
+    const tableRef = useRef<HTMLTableElement>(null);
 
     useEffect(() => {
-        ProductService.getProducts().then((data) => setProducts(data));
-    }, []);
+        const table = new DataTables(tableRef.current!, {
+            paging: true,
+            serverSide: true,
+            ajax: async (data: any, callBack) => {
 
-    const getSeverity = (product: Product) => {
-        switch (product.inventoryStatus) {
-            case 'INSTOCK':
-                return 'success';
+                try {
 
-            case 'LOWSTOCK':
-                return 'warning';
+                    const response: any = await instance.get(`${url}`, {
+                        params: {
+                            page: data.start / data.length,
+                            size: data.length,
+                            id: "2"
+                        }
+                    });
 
-            case 'OUTOFSTOCK':
-                return 'danger';
+                    callBack({
+                        draw: data.draw,
+                        recordsTotal: response.data.totalElements,
+                        recordsFiltered: response.data.totalElements,
+                        data: response.data.content
 
-            default:
-                return null;
-        }
-    };
+                    });
 
-    const itemTemplate = (product:any, index:any) => {
-        return (
-            <div className="">
-            <li className="dd-item shadow-lg mb-3" 
-                onDragOver={(e) => e.preventDefault()} >
-                <div className="dd-handle ">
-                    <div className="task-info d-flex align-items-center justify-content-between">
+                } catch (error) {
+                    console.log(error);
 
-                        <div className="avatar-list avatar-list-stacked ">
-                            <span className="avatar rounded-circle text-center text-capitalize">sdf</span>
+                }
 
-                        </div>
-                        <div>
-                            <span >sdf</span>
-                        </div>
-                        <div className="task-priority">
-
-                            <span className="badge bg-success text-end">100 <span className=" ms-1">CFA</span> </span>
-
-                        </div>
-                    </div>
-                    <p className="py-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In id
-                        nec scelerisque massa.</p>
-                    <div className="tikit-info row g-3 align-items-center">
-                        <div className="col-sm">
-
-                        </div>
-                        <div className="col-sm text-end">
-
-                            <div className="small text-truncate light-danger-bg py-1 px-2 rounded-1 d-inline-block fw-bold small"> 1233</div>
-                        </div>
-                    </div>
-                </div>
-
-            </li>
+            },
+            language: language,
+            columnDefs: columnDefs,
+            columns: columns,
+            lengthMenu: lengthMenu,
+            pageLength: 5,
 
 
-
-        </div>
-        );
-    };
-
-    const listTemplate = (items: Product) => {
-        if (!items || items.length === 0) return null;
-
-        let list = items.map((product, index) => {
-            return itemTemplate(product, index);
         });
 
-        return <div className="grid grid-nogutter">{list}</div>;
-    };
+        return () => {
+            table.destroy();
+        };
+
+    }, []);
 
     return (
-        <div className="card">
-        <DataView value={products} listTemplate={listTemplate} paginator rows={5} />
+        <div className="">
+                       <DateFilterForm/>
+
+            <table ref={tableRef} className="table table-hover align-middle mb-0 table-striped border " style={{ width: '100%' }}>
+
+            </table>
+
         </div>
-    )
+
+
+    );
+
+
+
 }
-            
-        
+

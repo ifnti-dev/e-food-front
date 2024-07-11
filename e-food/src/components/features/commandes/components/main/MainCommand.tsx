@@ -13,7 +13,7 @@ import { useFetchCommandsByStatus } from '../../hooks/useFetchCommandsByStatus';
 
 import useUpdateCommandStatus from '../../hooks/useUpdateCommandStatus';
 import { useFetchMenusCommande } from '../../hooks/useFetchMenusCommande';
-import BasicDemo from '../allOrder/Commande';
+import AllCommands from '../allOrder/Commande';
 
 
 
@@ -107,19 +107,20 @@ export default function MainCommand() {
     const fetchEnLivraison = () => {
 
         const { cachedDataEnLiv } = useFetchCommandsByStatus({ status: "EN_LIVRAISON", page: 0, size: 10 });
-        console.log(cachedDataEnLiv);
+    
         
 
         return cachedDataEnLiv;
 
     }
 
+   
+/* -------------------------------- CONSTANTS -------------------------------- */
     const EN_COURS_COMMANDS = fetchEnCours();
     const EN_TRAITEMENT_COMMANDS = fetchEnTraitement();
     const EN_LIV_COMMANDS = fetchEnLivraison();
-  
-    
 
+    
     return (
 
         <CommandContext.Consumer>
@@ -159,14 +160,12 @@ export default function MainCommand() {
                         <div className="tab-pane fade" id="Invoice-Simple">
                             
                         </div>
-                        <div className="tab-pane fade" id="Invoice-Email">
-                        <BasicDemo/>
+                        <div className="tab-pane fade position-absolute top-0 w-100" id="Invoice-Email">
+                        <AllCommands/>
                         </div>
                     </div>
 
                 </div>
-
-
 
                 <Suspense fallback={<Spinner value={true} />}>
                     <AnimatePresence>

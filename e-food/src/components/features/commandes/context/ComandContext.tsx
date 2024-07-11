@@ -9,6 +9,8 @@ export const ComandListProvider = ({children}:{children:any}) => {
 
     const [commands, setCommands] = useState<PropsCommandType[]>([]);
     const [commandsEnLiv, setCommandsEnLiv] = useState<PropsCommandType[]>([]);
+    const [allCommands, setAllCommands] = useState<PropsCommandType[]>([]);
+
 
     // const [command,setCommand] = useState<PropsCommandType>();
     const [loading, setLoading] = useState(false);
@@ -61,6 +63,11 @@ export const ComandListProvider = ({children}:{children:any}) => {
       }
 
 
+      const updateAllCommands = (commands:PropsCommandType[]) => { 
+        setAllCommands(commands)
+      }
+
+
       const addCommandsEnLiv = (commandInComm:PropsCommandType[]) => {
         setCommandsEnLiv([...commandsEnLiv,...commandInComm])
       }
@@ -76,7 +83,7 @@ export const ComandListProvider = ({children}:{children:any}) => {
       }
 
     return (
-        <CommandContext.Provider value={{addCommands, commands,addCommandEnTraitement,removeCommandById, updateCommandsEnLiv,commandsEnLiv,updateCommands,loading,setLoading ,updateCommandsEnTraitement, removeCommandEnTraitementById,commandsEnTraitement }}>
+        <CommandContext.Provider value={{allCommands,addCommands,updateAllCommands, commands,addCommandEnTraitement,removeCommandById, updateCommandsEnLiv,commandsEnLiv,updateCommands,loading,setLoading ,updateCommandsEnTraitement, removeCommandEnTraitementById,commandsEnTraitement }}>
           {children}
         </CommandContext.Provider>
       );

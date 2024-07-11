@@ -7,8 +7,6 @@ import useRejectOrder from "../../hooks/useRejectOrder";
 import { useState } from "react";
 
 
-
-
 export default function CommandLi({ order, handleDragStart, togle, status}: {status :string, order: PropsCommandType, handleDragStart: any, togle: any }) {
 
     let date = new Date(order.date);
