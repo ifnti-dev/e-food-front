@@ -22,6 +22,8 @@ const Rest: React.FC = () => {
   const [editRestaurant, setEditRestaurant] = useState<Restaurant | null>(null);
   const [alert, setAlert] = useState<{ type: string, message: string } | null>(null);
 
+  const joursDeLaSemaine = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
+
   useEffect(() => {
     fetchRestaurants();
   }, []);
@@ -51,17 +53,21 @@ const Rest: React.FC = () => {
   };
 
   const handleJourOuvertureChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    const jours = value.split(',').map((jour) => jour.trim());
+    const { value, checked } = e.target;
+    const jours = editRestaurant ? editRestaurant.jour_ouverture : newRestaurant.jour_ouverture;
+    const updatedJours = checked
+      ? [...jours, value]
+      : jours.filter(jour => jour !== value);
+
     if (editRestaurant) {
       setEditRestaurant({
         ...editRestaurant,
-        jour_ouverture: jours,
+        jour_ouverture: updatedJours,
       });
     } else {
       setNewRestaurant({
         ...newRestaurant,
-        jour_ouverture: jours,
+        jour_ouverture: updatedJours,
       });
     }
   };
@@ -252,188 +258,216 @@ const Rest: React.FC = () => {
           </div>
 
           <div className="modal fade" id="createRestaurantModal" tabIndex={-1} aria-labelledby="createRestaurantModalLabel" aria-hidden="true">
-            <div className="modal-dialog modal-lg modal-dialog-centered">
-              <div className="modal-content">
-                <form onSubmit={handleCreateSubmit}>
-                  <div className="modal-header">
-                    <h5 className="modal-title" id="createRestaurantModalLabel">Créer un restaurant</h5>
-                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+  <div className="modal-dialog modal-lg modal-dialog-centered">
+    <div className="modal-content">
+      <form onSubmit={handleCreateSubmit}>
+        <div className="modal-header">
+          <h5 className="modal-title" id="createRestaurantModalLabel">Créer un restaurant</h5>
+          <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div className="modal-body">
+          <div className="row mb-3">
+            <label htmlFor="nom" className="col-sm-3 col-form-label">Nom</label>
+            <div className="col-sm-9">
+              <input type="text" className="form-control" id="nom" name="nom" value={newRestaurant.nom} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="ville" className="col-sm-3 col-form-label">Ville</label>
+            <div className="col-sm-9">
+              <input type="text" className="form-control" id="ville" name="ville" value={newRestaurant.ville} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="adresse" className="col-sm-3 col-form-label">Adresse</label>
+            <div className="col-sm-9">
+              <input type="text" className="form-control" id="adresse" name="adresse" value={newRestaurant.adresse} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="telephone" className="col-sm-3 col-form-label">Téléphone</label>
+            <div className="col-sm-9">
+              <input type="text" className="form-control" id="telephone" name="telephone" value={newRestaurant.telephone} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="heure_ouverture" className="col-sm-3 col-form-label">Heure d'ouverture</label>
+            <div className="col-sm-9">
+              <input type="time" className="form-control" id="heure_ouverture" name="heure_ouverture" value={newRestaurant.heure_ouverture} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="heure_fermeture" className="col-sm-3 col-form-label">Heure de fermeture</label>
+            <div className="col-sm-9">
+              <input type="time" className="form-control" id="heure_fermeture" name="heure_fermeture" value={newRestaurant.heure_fermeture} onChange={handleInputChange} required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label className="col-sm-3 col-form-label">Jour d'ouverture</label>
+            <div className="col-sm-9 d-flex flex-wrap">
+                {joursDeLaSemaine.map((day) => (
+                  <div className="form-check m-3" key={day} >
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id={day}
+                      name="jour_ouverture"
+                      value={day}
+                      onChange={handleJourOuvertureChange}
+                    />
+                    <label className="form-check-label" htmlFor={day}>{day}</label>
                   </div>
-                  <div className="modal-body">
-                    <div className="row mb-3">
-                      <label htmlFor="nom" className="col-sm-3 col-form-label">Nom</label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" id="nom" name="nom" value={newRestaurant.nom} onChange={handleInputChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="ville" className="col-sm-3 col-form-label">Ville</label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" id="ville" name="ville" value={newRestaurant.ville} onChange={handleInputChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="adresse" className="col-sm-3 col-form-label">Adresse</label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" id="adresse" name="adresse" value={newRestaurant.adresse} onChange={handleInputChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="telephone" className="col-sm-3 col-form-label">Téléphone</label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" id="telephone" name="telephone" value={newRestaurant.telephone} onChange={handleInputChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="heure_ouverture" className="col-sm-3 col-form-label">Heure d'ouverture</label>
-                      <div className="col-sm-9">
-                        <input type="time" className="form-control" id="heure_ouverture" name="heure_ouverture" value={newRestaurant.heure_ouverture} onChange={handleInputChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="heure_fermeture" className="col-sm-3 col-form-label">Heure de fermeture</label>
-                      <div className="col-sm-9">
-                        <input type="time" className="form-control" id="heure_fermeture" name="heure_fermeture" value={newRestaurant.heure_fermeture} onChange={handleInputChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="jour_ouverture" className="col-sm-3 col-form-label">Jour d'ouverture</label>
-                      <div className="col-sm-9">
-                        <input type="text" className="form-control" id="jour_ouverture" name="jour_ouverture" value={newRestaurant.jour_ouverture.join(', ')} onChange={handleJourOuvertureChange} required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="etat" className="col-sm-3 col-form-label">État</label>
-                      <div className="col-sm-9">
-                        <select
-                          className="form-select"
-                          id="etat"
-                          name="etat"
-                          value={newRestaurant.etat}
-                          onChange={handleSelectChange}
-                          required
-                        >
-                          <option value="">Sélectionnez l'état</option>
-                          <option value="Ouvert">Ouvert</option>
-                          <option value="Fermé">Fermé</option>
-                          <option value="En attente">En attente</option>
-                        </select>
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="coordonnee_gps_x" className="col-sm-3 col-form-label">Coordonnée GPS X</label>
-                      <div className="col-sm-9">
-                        <input type="number" className="form-control" id="coordonnee_gps_x" name="coordonnee_gps_x" value={newRestaurant.coordonnee_gps_x} onChange={handleInputChange} step="any" required />
-                      </div>
-                    </div>
-                    <div className="row mb-3">
-                      <label htmlFor="coordonnee_gps_y" className="col-sm-3 col-form-label">Coordonnée GPS Y</label>
-                      <div className="col-sm-9">
-                        <input type="number" className="form-control" id="coordonnee_gps_y" name="coordonnee_gps_y" value={newRestaurant.coordonnee_gps_y} onChange={handleInputChange} step="any" required />
-                      </div>
-                    </div>
+                ))}
+              </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="etat" className="col-sm-3 col-form-label">État</label>
+            <div className="col-sm-9 ">
+              <select
+                className="form-select"
+                id="etat"
+                name="etat"
+                value={newRestaurant.etat}
+                onChange={handleSelectChange}
+                required
+              >
+                <option value="">Sélectionnez l'état</option>
+                <option value="Ouvert">Ouvert</option>
+                <option value="Fermé">Fermé</option>
+                <option value="En attente">En attente</option>
+              </select>
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="coordonnee_gps_x" className="col-sm-3 col-form-label">Coordonnée GPS X</label>
+            <div className="col-sm-9">
+              <input type="number" className="form-control" id="coordonnee_gps_x" name="coordonnee_gps_x" value={newRestaurant.coordonnee_gps_x} onChange={handleInputChange} step="any" required />
+            </div>
+          </div>
+          <div className="row mb-3">
+            <label htmlFor="coordonnee_gps_y" className="col-sm-3 col-form-label">Coordonnée GPS Y</label>
+            <div className="col-sm-9">
+              <input type="number" className="form-control" id="coordonnee_gps_y" name="coordonnee_gps_y" value={newRestaurant.coordonnee_gps_y} onChange={handleInputChange} step="any" required />
+            </div>
+          </div>
+        </div>
+        <div className="modal-footer">
+          <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="submit" className="btn btn-primary">Enregistrer</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+{editRestaurant && (
+  <div className="modal fade" id="editRestaurantModal" tabIndex={-1} aria-labelledby="editRestaurantModalLabel" aria-hidden="true">
+    <div className="modal-dialog modal-lg modal-dialog-centered">
+      <div className="modal-content">
+        <form onSubmit={handleUpdateSubmit}>
+          <div className="modal-header">
+            <h5 className="modal-title" id="editRestaurantModalLabel">Modifier le restaurant</h5>
+            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div className="modal-body">
+            <div className="row mb-3">
+              <label htmlFor="nom" className="col-sm-3 col-form-label">Nom</label>
+              <div className="col-sm-9">
+                <input type="text" className="form-control" id="nom" name="nom" value={editRestaurant.nom} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="ville" className="col-sm-3 col-form-label">Ville</label>
+              <div className="col-sm-9">
+                <input type="text" className="form-control" id="ville" name="ville" value={editRestaurant.ville} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="adresse" className="col-sm-3 col-form-label">Adresse</label>
+              <div className="col-sm-9">
+                <input type="text" className="form-control" id="adresse" name="adresse" value={editRestaurant.adresse} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="telephone" className="col-sm-3 col-form-label">Téléphone</label>
+              <div className="col-sm-9">
+                <input type="text" className="form-control" id="telephone" name="telephone" value={editRestaurant.telephone} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="heure_ouverture" className="col-sm-3 col-form-label">Heure d'ouverture</label>
+              <div className="col-sm-9">
+                <input type="time" className="form-control" id="heure_ouverture" name="heure_ouverture" value={editRestaurant.heure_ouverture} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="heure_fermeture" className="col-sm-3 col-form-label">Heure de fermeture</label>
+              <div className="col-sm-9">
+                <input type="time" className="form-control" id="heure_fermeture" name="heure_fermeture" value={editRestaurant.heure_fermeture} onChange={handleInputChange} required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label className="col-sm-3 col-form-label">Jour d'ouverture</label>
+              <div className="col-sm-9 d-flex flex-wrap">
+                {joursDeLaSemaine.map((day) => (
+                  <div className="form-check m-3" key={day}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      id={day}
+                      name="jour_ouverture"
+                      value={day}
+                      checked={editRestaurant.jour_ouverture.includes(day)}
+                      onChange={handleJourOuvertureChange}
+                    />
+                    <label className="form-check-label" htmlFor={day}>{day}</label>
                   </div>
-                  <div className="modal-footer">
-                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" className="btn btn-primary">Enregistrer</button>
-                  </div>
-                </form>
+                ))}
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="etat" className="col-sm-3 col-form-label">État</label>
+              <div className="col-sm-9">
+                <select
+                  className="form-select"
+                  id="etat"
+                  name="etat"
+                  value={editRestaurant.etat}
+                  onChange={handleSelectChange}
+                  required
+                >
+                  <option value="">Sélectionnez l'état</option>
+                  <option value="Ouvert">Ouvert</option>
+                  <option value="Fermé">Fermé</option>
+                  <option value="En attente">En attente</option>
+                </select>
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="coordonnee_gps_x" className="col-sm-3 col-form-label">Coordonnée GPS X</label>
+              <div className="col-sm-9">
+                <input type="number" className="form-control" id="coordonnee_gps_x" name="coordonnee_gps_x" value={editRestaurant.coordonnee_gps_x} onChange={handleInputChange} step="any" required />
+              </div>
+            </div>
+            <div className="row mb-3">
+              <label htmlFor="coordonnee_gps_y" className="col-sm-3 col-form-label">Coordonnée GPS Y</label>
+              <div className="col-sm-9">
+                <input type="number" className="form-control" id="coordonnee_gps_y" name="coordonnee_gps_y" value={editRestaurant.coordonnee_gps_y} onChange={handleInputChange} step="any" required />
               </div>
             </div>
           </div>
+          <div className="modal-footer">
+            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+            <button type="submit" className="btn btn-primary">Enregistrer</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+)}
 
-          {editRestaurant && (
-            <div className="modal fade" id="editRestaurantModal" tabIndex={-1} aria-labelledby="editRestaurantModalLabel" aria-hidden="true">
-              <div className="modal-dialog modal-lg modal-dialog-centered">
-                <div className="modal-content">
-                  <form onSubmit={handleUpdateSubmit}>
-                    <div className="modal-header">
-                      <h5 className="modal-title" id="editRestaurantModalLabel">Modifier le restaurant</h5>
-                      <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div className="modal-body">
-                      <div className="row mb-3">
-                        <label htmlFor="nom" className="col-sm-3 col-form-label">Nom</label>
-                        <div className="col-sm-9">
-                          <input type="text" className="form-control" id="nom" name="nom" value={editRestaurant.nom} onChange={handleInputChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="ville" className="col-sm-3 col-form-label">Ville</label>
-                        <div className="col-sm-9">
-                          <input type="text" className="form-control" id="ville" name="ville" value={editRestaurant.ville} onChange={handleInputChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="adresse" className="col-sm-3 col-form-label">Adresse</label>
-                        <div className="col-sm-9">
-                          <input type="text" className="form-control" id="adresse" name="adresse" value={editRestaurant.adresse} onChange={handleInputChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="telephone" className="col-sm-3 col-form-label">Téléphone</label>
-                        <div className="col-sm-9">
-                          <input type="text" className="form-control" id="telephone" name="telephone" value={editRestaurant.telephone} onChange={handleInputChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="heure_ouverture" className="col-sm-3 col-form-label">Heure d'ouverture</label>
-                        <div className="col-sm-9">
-                          <input type="time" className="form-control" id="heure_ouverture" name="heure_ouverture" value={editRestaurant.heure_ouverture} onChange={handleInputChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="heure_fermeture" className="col-sm-3 col-form-label">Heure de fermeture</label>
-                        <div className="col-sm-9">
-                          <input type="time" className="form-control" id="heure_fermeture" name="heure_fermeture" value={editRestaurant.heure_fermeture} onChange={handleInputChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="jour_ouverture" className="col-sm-3 col-form-label">Jour d'ouverture</label>
-                        <div className="col-sm-9">
-                          <input type="text" className="form-control" id="jour_ouverture" name="jour_ouverture" value={editRestaurant.jour_ouverture.join(', ')} onChange={handleJourOuvertureChange} required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="etat" className="col-sm-3 col-form-label">État</label>
-                        <div className="col-sm-9">
-                          <select
-                            className="form-select"
-                            id="etat"
-                            name="etat"
-                            value={editRestaurant.etat}
-                            onChange={handleSelectChange}
-                            required
-                          >
-                            <option value="">Sélectionnez l'état</option>
-                            <option value="Ouvert">Ouvert</option>
-                            <option value="Fermé">Fermé</option>
-                            <option value="En attente">En attente</option>
-                          </select>
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="coordonnee_gps_x" className="col-sm-3 col-form-label">Coordonnée GPS X</label>
-                        <div className="col-sm-9">
-                          <input type="number" className="form-control" id="coordonnee_gps_x" name="coordonnee_gps_x" value={editRestaurant.coordonnee_gps_x} onChange={handleInputChange} step="any" required />
-                        </div>
-                      </div>
-                      <div className="row mb-3">
-                        <label htmlFor="coordonnee_gps_y" className="col-sm-3 col-form-label">Coordonnée GPS Y</label>
-                        <div className="col-sm-9">
-                          <input type="number" className="form-control" id="coordonnee_gps_y" name="coordonnee_gps_y" value={editRestaurant.coordonnee_gps_y} onChange={handleInputChange} step="any" required />
-                        </div>
-                      </div>
-                    </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                      <button type="submit" className="btn btn-primary">Enregistrer</button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </>
