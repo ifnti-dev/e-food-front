@@ -83,8 +83,8 @@ export const Menu = ({ menu }: { menu: MenuInterface }) => {
           />
 
      
-          <p className="text-black-20 m-2  text-start fs fw-bold">{menu.nom}  <span className=" ps-3 text-danger">{menu.prix} CFA</span></p>
-          <p className="text-black-20 m-2  text-center fs fw-bold border border-1 rounded-circle border-opacity-10 border-danger position-absolute top-0 end-0 bg-black" style={{width:25,height:25}}><span className=" p-1 text-danger">{menu.quantite}</span></p>
+          <p className="text-black-20 m-2  text-start fs fw-bold">{menu.nom}  <span className=" ps-3" style={{color:"#F19828"}}>{menu.prix} CFA</span></p>
+          <p className="text-black-20 m-2  text-center fs fw-bold border border-1 rounded-circle border-opacity-10 border-danger position-absolute top-0 end-0 bg-black" style={{width:25,height:25}}><span className=" p-1 " style={{color:"#F19828"}}>{menu.quantite}</span></p>
     
           <hr className=" hr  mx-2 m-0 mb-3" style={{ backgroundColor: "grey", height: 2 }} />
 

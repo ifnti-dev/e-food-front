@@ -18,7 +18,8 @@ interface PropsCommandType {
 interface ParamCommandStatusType{
     status:string,
     page:number|null,
-    size:number|null
+    size:number|null,
+    id:string
 }
 
 interface UpdateStatusType{

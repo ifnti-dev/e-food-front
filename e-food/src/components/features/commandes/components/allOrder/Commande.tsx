@@ -4,11 +4,7 @@ import { useEffect, useRef } from "react";
 import { columnDefs, columns, language, lengthMenu } from "./constant";
 import instance from "../../../../utils/axios";
 import DateFilterForm from "../../../../partials/DateFilterForm";
-
-
 const url: string = "api/client/order/";
-
-
 
 export default function AllCommands() {
 

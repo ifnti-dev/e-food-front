@@ -5,7 +5,7 @@ const url: string = "api/client/order/all";
 
 const fetchCommandsByStatus = async (data:ParamCommandStatusType)=>{
 
-    const response: any = await instance.get(`${url}?page=${data.page}&size=${data.size}&status=${data.status}`,);
+    const response: any = await instance.get(`${url}?page=${data.page}&size=${data.size}&status=${data.status}&id=${data.id}`,);
 
 
     try {

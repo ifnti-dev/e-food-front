@@ -66,8 +66,6 @@ export default function MainCommand() {
         setDragging(false);
     };
 
-
-
     const togleShow = (id: string) => {
         
         
@@ -89,7 +87,7 @@ export default function MainCommand() {
 
     const fetchEnCours = () => {
 
-        const { cachedData } = useFetchCommandsByStatus({ status: "EN_COURS", page: 0, size: 10 });
+        const { cachedData } = useFetchCommandsByStatus({ status: "EN_COURS", page: 0, size: 10,id:"2" });
 
         return cachedData;
 
@@ -97,7 +95,7 @@ export default function MainCommand() {
 
     const fetchEnTraitement = () => {
 
-        const { cachedDataEnTratement } = useFetchCommandsByStatus({ status: "EN_TRAITEMENT", page: 0, size: 10 });
+        const { cachedDataEnTratement } = useFetchCommandsByStatus({ status: "EN_TRAITEMENT", page: 0, size: 10,id:"2" });
 
 
         return cachedDataEnTratement;
@@ -106,7 +104,7 @@ export default function MainCommand() {
 
     const fetchEnLivraison = () => {
 
-        const { cachedDataEnLiv } = useFetchCommandsByStatus({ status: "EN_LIVRAISON", page: 0, size: 10 });
+        const { cachedDataEnLiv } = useFetchCommandsByStatus({ status: "EN_LIVRAISON", page: 0, size: 10,id:"2" });
     
         
 
