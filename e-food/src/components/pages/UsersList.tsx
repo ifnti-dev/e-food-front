@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import userService, { User, Role } from '../../services/userService';
+import Swal from 'sweetalert2';
+
+const LoadingSpinner: React.FC = () => (
+  <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
+    <div className="spinner-border text-primary" role="status">
+      <span className="visually-hidden">Loading...</span>
+    </div>
+  </div>
+);
 
 const UserList: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
@@ -86,8 +95,10 @@ const UserList: React.FC = () => {
         await userService.deleteUser(currentUser.id);
         setUsers(users.filter(u => u.id !== currentUser.id));
         setShowModal(null);
+        Swal.fire('Supprimé!', 'L\'utilisateur a été supprimé.', 'success');
       } catch (error) {
         setError('Failed to delete user.');
+        Swal.fire('Erreur!', 'Échec de la suppression de l\'utilisateur.', 'error');
       }
     }
   };
@@ -103,18 +114,21 @@ const UserList: React.FC = () => {
       if (showModal === 'add') {
         const newUser = await userService.addUser(formData as User);
         setUsers([...users, newUser]);
+        Swal.fire('Ajouté!', 'L\'utilisateur a été ajouté avec succès.', 'success');
       } else if (currentUser && showModal === 'update') {
         const updatedUser = await userService.updateUser(currentUser.id, formData);
         setUsers(users.map(user => (user.id === currentUser.id ? updatedUser : user)));
+        Swal.fire('Mis à jour!', 'L\'utilisateur a été mis à jour avec succès.', 'success');
       }
       setShowModal(null);
     } catch (error) {
       setError('Failed to save user.');
+      Swal.fire('Erreur!', 'Échec de la sauvegarde de l\'utilisateur.', 'error');
     }
   };
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <LoadingSpinner />;
   }
 
   if (error) {
