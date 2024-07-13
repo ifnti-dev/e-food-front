@@ -64,7 +64,7 @@ export default function CommandsInProcessing({ refTraitement, onDragOver, onDrop
                                     textOverflow: "ellipsis"
                                 }}
                             >
-                                En Traitement
+                                En Prépation
                             </span>
                         </div>
                     </div>

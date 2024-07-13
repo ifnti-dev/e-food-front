@@ -131,9 +131,8 @@ export default function MainCommand() {
                                 <h3 className="fw-bold mb-0 py-3 pb-2">Commandes</h3>
                                 <div className="col-auto py-2 w-sm-100">
                                     <ul className="nav nav-tabs tab-body-header rounded invoice-set" role="tablist">
-                                        <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#Invoice-list" role="tab" aria-selected="false">Commande du jours</a></li>
-                                        <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#Invoice-Simple" role="tab" aria-selected="false">Commandes d'hier</a></li>
-                                        <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#Invoice-Email" role="tab" aria-selected="false">Toutes les commandes</a></li>
+                                        <li className="nav-item"><a className="nav-link active" data-bs-toggle="tab" href="#commande-by-status" role="tab" aria-selected="false">Commande du jours</a></li>
+                                        <li className="nav-item"><a className="nav-link" data-bs-toggle="tab" href="#all-commands" role="tab" aria-selected="false">Toutes les commandes</a></li>
                                     </ul>
                                 </div>
 
@@ -143,7 +142,7 @@ export default function MainCommand() {
 
 
                     <div className="tab-content position-relative">
-                        <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="Invoice-list">
+                        <div className="tab-pane fade show active row taskboard g-3 py-xxl-4 d-flex" id="commande-by-status">
 
                             <CommandsInProgress handleDragStart={handleDragStart} togle={togleShow} data={EN_COURS_COMMANDS}  status={"EN_COURS"}/>
 
@@ -155,10 +154,8 @@ export default function MainCommand() {
 
                         </div>
 
-                        <div className="tab-pane fade" id="Invoice-Simple">
-                            
-                        </div>
-                        <div className="tab-pane fade position-absolute top-0 w-100" id="Invoice-Email">
+                       
+                        <div className="tab-pane fade position-absolute top-0 w-100" id="all-commands">
                         <AllCommands/>
                         </div>
                     </div>

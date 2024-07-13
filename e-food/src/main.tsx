@@ -9,18 +9,18 @@ import { ModalProvider } from './components/features/fayssol/context/ModalContex
 import { Provider } from 'react-redux';
 import { PrimeReactProvider } from 'primereact/api';
 
-import { configureStore } from '@reduxjs/toolkit';
+// import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducers/index.ts';
 import { getPublicites } from './actions/pub.action.ts';
 // import 'primeflex/primeflex.css';  
 // import 'primereact/resources/primereact.css';
 import 'primereact/resources/themes/lara-light-indigo/theme.css';
 
-const store = configureStore({
-    reducer: rootReducer,
-    devTools:true,
-});
-store.dispatch(getPublicites(1));
+// const store = configureStore({
+//     reducer: rootReducer,
+//     devTools:true,
+// });
+// store.dispatch(getPublicites(1));
 import { ComandListProvider } from './components/features/commandes/context/ComandContext.tsx';
 import { EventListProvider } from './components/features/events/context/EventContext.tsx';
 

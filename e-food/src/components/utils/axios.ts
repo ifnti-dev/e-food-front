@@ -4,7 +4,7 @@ import axios from "axios";
 const getConfig = (): string => {
   const token = localStorage.getItem('token');
   if (!token) {
-    throw new Error('Token non trouvé dans le localStorage.');
+    return "null";
   }
   return  token
       

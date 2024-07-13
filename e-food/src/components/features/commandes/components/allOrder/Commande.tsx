@@ -22,7 +22,7 @@ export default function AllCommands() {
                         params: {
                             page: data.start / data.length,
                             size: data.length,
-                            id: "2"
+                            id: "1"
                         }
                     });
 
